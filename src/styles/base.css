@@ -1,0 +1,324 @@
+.ui-body {
+    font-size: clamp(14px, 1rem + 2vw, 18px);
+    line-height: calc(1.5em + (1.5 - 1.3) * ((100% - 21%)/(35 - 21)));
+    color: var(--ui-text-color);
+    background-color: var(--ui-body-bg);
+    font-family: "Lora", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.ui-base a {
+    color: var(--ui-link-color);
+    text-decoration: none;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.ui-base a.external i {
+    display: inline;
+    font-size: 0.8em;
+    margin-left: 0.1em;
+    position: relative;
+    top: 1px;
+}
+
+.ui-base a:hover {
+    color: var(--ui-link-hover);
+    text-decoration: underline;
+}
+
+.ui-base p,
+.ui-base form {
+    margin: 0 0 2em 0;
+}
+
+.ui-base form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.ui-base label {
+    cursor: pointer;
+    font-family: "Raleway", system-ui;
+    font-weight: 500;
+    font-size: 1em;
+    color: var(--ui-input-label-color);
+    margin: 0 0 0.3em 0;
+    letter-spacing: 0.5px;
+    display: block;
+    transition: color 0.3s;
+}
+
+.ui-base h1 {
+    font-family: "Raleway", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 3em;
+    color: var(--ui-h1-color);
+    letter-spacing: 1px;
+    line-height: 1.2em;
+    margin-block: 0.5em;
+}
+
+.ui-base h4 {
+    font-family: "Raleway", system-ui;
+    font-size: 1.5em;
+    line-height: 1.4em;
+    font-weight: 400;
+    color: var(--ui-h4-color);
+    margin: 1em 0;
+}
+
+.ui-base h5 {
+    font-family: "Raleway", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2em;
+    color: var(--ui-h5-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 1em 0;
+}
+
+.ui-base input[type="submit"] {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Raleway", system-ui;
+    font-weight: 500;
+    background-color: var(--ui-primary-btn);
+    color: var(--ui-text-color);
+    border: 1px solid transparent;
+    font-size: 1em;
+    border-radius: 6px;
+    padding-inline: 1em;
+    padding-block: 12px;
+    min-width: 8em;
+    transition: background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
+}
+
+.ui-base input[type="submit"]:hover {
+    background-color: var(--ui-primary-btn-hover);
+    box-shadow: var(--ui-primary-btn-hover-shadow);
+}
+
+.ui-base input[type="text"],
+.ui-base input[type="email"],
+.ui-base input[type="password"] {
+    font-family: 'Source Sans Pro', system-ui;
+    background-color: var(--ui-input-bg);
+    border: 1px solid var(--ui-input-border-color);
+    color: var(--ui-input-text-color);
+    padding-inline: 1em;
+    padding-block: 12px;
+    font-size: 1em;
+    border-radius: 6px;
+    transition: border 0.3s, box-shadow 0.3s;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ui-base textarea::placeholder,
+.ui-base input[type="text"]::placeholder,
+.ui-base input[type="email"]::placeholder,
+.ui-base input[type="password"]::placeholder {
+    color: var(--ui-input-placeholder-color);
+}
+
+.ui-base input[type="text"]:focus,
+.ui-base input[type="email"]:focus,
+.ui-base input[type="password"]:focus {
+    border-color: var(--ui-input-focus-border-color);
+    box-shadow: var(--ui-input-focus-shadow);
+    outline: none;
+}
+
+.ui-base input[type="text"]:disabled {
+    background-color: var(--ui-input-disabled-bg);
+    border-color: var(--ui-input-disabled-border-color);
+    pointer-events: none;
+}
+
+.ui-base label.required::after {
+    content: " *";
+    color: var(--ui-input-label-required-star-color);
+}
+
+.ui-base input.invalid {
+    border-color: var(--ui-input-error-border-color);
+}
+
+.ui-base input[type="text"].invalid:focus,
+.ui-base input[type="email"].invalid:focus,
+.ui-base input[type="password"].invalid:focus {
+    border-color: var(--ui-input-error-focus-border-color);
+}
+
+.ui-base input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    border: 1px solid var(--ui-input-border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border 0.3s, background-color 0.3s;
+}
+
+.ui-base input[type="checkbox"]:checked {
+    accent-color: var(--ui-input-checkbox-checked-accent);
+    border-color: var(--ui-input-checkbox-checked-border-color);
+}
+
+.ui-base input[type="checkbox"]:hover {
+    border-color: var(--ui-input-focus-border-color);
+}
+
+.ui-base .info-text {
+    color: var(--ui-info-text);
+}
+
+.ui-base .warn-text {
+    color: var(--ui-info-text);
+    margin-top: 0.25em;
+    display: block;
+}
+
+.ui-base .error-text {
+    color: var(--ui-error-text-color);
+    font-size: 0.875em;
+    margin-top: 0.33333em;
+}
+
+.ui-base .error-list {
+    color: var(--ui-error-text-color);
+    font-size: 0.875em;
+    padding: 0;
+    margin: 0;
+    margin-left: 1em;
+}
+
+@media only screen and (min-width: 540px) {
+    .ui-base form {
+        margin: 1em 0 1em 0;
+    }
+
+    .ui-base p {
+        margin: 0 0 1em 0;
+    }
+
+    .ui-base input[type="submit"] {
+        margin-block: 1em;
+    }
+}
+
+.ui-base button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Raleway", system-ui;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    border-radius: 6px;
+    font-size: 1em;
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding-block: 12px;
+    padding-inline: 1em;
+    min-width: 8em;
+    transition: background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
+}
+
+.ui-base button:disabled {
+    pointer-events: none;
+    opacity: 0.65;
+}
+
+.ui-base .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.ui-base .default {
+    background-color: var(--ui-button-default);
+    border: 1px solid var(--ui-button-default-border);
+    color: var(--ui-button-default-text);
+}
+
+.ui-base .default:hover {
+    background-color: var(--ui-button-default-hover-bg);
+    border-color: var(--ui-button-default-hover-border);
+}
+
+.ui-base .primary {
+    background-color: var(--ui-primary-btn);
+    color: var(--ui-text-color);
+}
+
+.ui-base .primary:hover {
+    background-color: var(--ui-primary-btn-hover);
+    box-shadow: var(--ui-primary-btn-hover-shadow);
+}
+
+.ui-base .danger {
+    background-color: var(--ui-button-danger);
+    color: var(--ui-button-danger-text);
+}
+
+.ui-base .danger:hover {
+    background-color: var(--ui-button-danger-hover);
+    box-shadow: var(--ui-button-danger-hover-shadow);
+}
+
+.ui-base .secondary {
+    background-color: var(--ui-secondary-btn);
+    color: var(--ui-text-color);
+}
+
+.ui-base .secondary:hover {
+    background-color: var(--ui-secondary-btn-hover);
+    box-shadow: var(--ui-primary-btn-hover-shadow);
+}
+
+@media only screen and (min-width: 840px) {
+    .ui-base button,
+    .ui-base input[type="submit"],
+    .ui-base input[type="text"],
+    .ui-base input[type="email"],
+    .ui-base input[type="password"] {
+        padding-block: 8px;
+    }
+}
+
+.ui-base textarea {
+    font-family: 'Source Sans Pro', system-ui;
+    display: block;
+    background-color: var(--ui-input-bg);
+    border: 1px solid var(--ui-input-border-color);
+    color: var(--ui-text-color);
+    padding: 12px 1em;
+    border-radius: 6px;
+    resize: vertical;
+    transition: border 0.3s, box-shadow 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 2em;
+}
+
+@media only screen and (min-width: 540px) {
+    .ui-base textarea {
+        margin-bottom: 1em;
+    }
+}
+
+.ui-base textarea:focus {
+    border-color: var(--ui-input-focus-border-color);
+    box-shadow: var(--ui-input-focus-shadow);
+    outline: none;
+}

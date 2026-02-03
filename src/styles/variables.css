@@ -1,0 +1,94 @@
+:root {
+    /* General Text and Background Colors */
+    --ui-text-color: #333333;
+    --ui-body-bg: #FAFAFA;
+    --ui-card-bg: #F5F5F5;
+    --ui-card-border-color: #D6D6D6;
+    --ui-card-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+
+    /* Buttons */
+    --ui-primary-btn: #FFD166;
+    --ui-primary-btn-hover: #EFB948;
+    --ui-primary-btn-hover-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    --ui-secondary-btn: #C4C4C4;
+    --ui-secondary-btn-hover: #B0B0B0;
+    --ui-button-default: #FAFAFA;
+    --ui-button-default-border: #C4C4C4;
+    --ui-button-default-text: #333333;
+    --ui-button-default-hover-bg: #F0F0F0;
+    --ui-button-default-hover-border: #B0B0B0;
+    --ui-button-danger: #F67280;
+    --ui-button-danger-text: #FFFFFF;
+    --ui-button-danger-hover: #E63946;
+    --ui-button-danger-hover-shadow: 0px 4px 8px rgba(230, 57, 70, 0.3);
+
+    /* Headings */
+    --ui-h1-color: #333333;
+    --ui-h2-color: #457B9D;
+    --ui-h3-color: #2D2D2D;
+    --ui-h4-color: #657B83;
+    --ui-h5-color: #F67280;
+
+    /* Links */
+    --ui-link-color: #457B9D;
+    --ui-link-hover: #F67280;
+    --ui-secondary-link-color: #657B83;
+    --ui-secondary-link-hover: #FFD166;
+
+    /* Input Styles */
+    --ui-input-label-color: #333333;
+    --ui-input-label-focus: #457B9D;
+    --ui-input-label-required-star-color: #E63946;
+    --ui-input-bg: #FAFAFA;
+    --ui-input-disabled-bg: #ECECEC;
+    --ui-input-disabled-border-color: #D6D6D6;
+    --ui-input-text-color: #333333;
+    --ui-input-border-color: #D1D1D1;
+    --ui-input-placeholder-color: #657B83;
+    --ui-input-focus-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    --ui-input-focus-border-color: #457B9D;
+    --ui-input-error-border-color: #E63946;
+    --ui-input-error-focus-border-color: #E63946;
+    --ui-error-text-color: #E63946;
+    --ui-success-text-color: #2A9D8F;
+    --ui-input-valid-border-color: #2A9D8F;
+    --ui-input-valid-focus-border-color: #2A9D8F;
+    --ui-input-checkbox-checked-accent: #FFD166;
+    --ui-input-checkbox-checked-border-color: #FFD155;
+
+    /* Badges */
+    --ui-badge-visitor-bg: #D6D6D6;
+    --ui-badge-visitor-text: #333333;
+    --ui-badge-guest-bg: #657B83;
+    --ui-badge-guest-text: #FFFFFF;
+    --ui-badge-guest-editor-bg: #A8DADC;
+    --ui-badge-guest-editor-text: #333333;
+    --ui-badge-reviewer-bg: #FFD166;
+    --ui-badge-reviewer-text: #333333;
+    --ui-badge-editor-bg: #F67280;
+    --ui-badge-editor-text: #333333;
+    --ui-badge-manager-bg: #457B9D;
+    --ui-badge-manager-text: #FFFFFF;
+    --ui-badge-admin-bg: #E63946;
+    --ui-badge-admin-text: #FFFFFF;
+    --ui-badge-public-bg: #2A9D8F;
+    --ui-badge-public-text: #FFFFFF;
+    --ui-badge-private-bg: #E63946;
+    --ui-badge-private-text: #FFFFFF;
+    --ui-badge-pending-bg: #F0E68C;
+    --ui-badge-pending-text: #333333;
+    --ui-badge-declined-bg: #C0C0C0;
+    --ui-badge-declined-text: #333333;
+    --ui-badge-accepted-bg: #4CAF50;
+    --ui-badge-accepted-text: #FFFFFF;
+
+    /* Modals & Alerts */
+    --ui-modal-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15), 0px 4px 8px rgba(0, 0, 0, 0.1);
+    --ui-modal-shadow-mobile: 0px -8px 16px rgba(0, 0, 0, 0.15), 0px -4px 8px rgba(0, 0, 0, 0.1);
+    --ui-modal-overlay: rgba(0, 0, 0, 0.25);
+    --ui-warning-icon: #D97706;
+    --ui-error-icon: #B71C1C;
+    --ui-info-icon: #3A82F7;
+    --ui-progress-icon: #CCCCCC;
+    --ui-info-text: #4A4A4A;
+}

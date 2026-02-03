@@ -1,0 +1,61 @@
+{
+  "name": "@taleswords/lib-ui",
+  "version": "1.0.0",
+  "description": "Vue 3 UI component library for Taleswords",
+  "type": "module",
+  "main": "./dist/lib-ui.umd.cjs",
+  "module": "./dist/lib-ui.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/lib-ui.js",
+      "require": "./dist/lib-ui.umd.cjs"
+    },
+    "./style.css": "./dist/lib-ui.css",
+    "./variables.css": "./dist/variables.css",
+    "./base.css": "./dist/base.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "dev": "vite --config vite.config.ts playground",
+    "clean": "del ./dist/",
+    "build": "npm run clean && vite build && vue-tsc -p tsconfig-build.json && cp src/styles/variables.css dist/ && cp src/styles/base.css dist/",
+    "typecheck": "vue-tsc --noEmit",
+    "pub": "npm version patch && npm run build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taleswords/taleswords-lib-ui.git"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "components",
+    "ui",
+    "library",
+    "typescript"
+  ],
+  "author": "Taleswords",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taleswords/taleswords-lib-ui/issues"
+  },
+  "homepage": "https://github.com/taleswords/taleswords-lib-ui#readme",
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.0",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "del-cli": "^7.0.0",
+    "vite": "^6.3.5",
+    "vue": "^3.5.27",
+    "vue-tsc": "^3.2.4"
+  }
+}
