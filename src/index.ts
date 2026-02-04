@@ -1,5 +1,7 @@
+import '@fontsource/source-sans-pro'
+import '@fontsource-variable/lora'
+import '@fontsource-variable/raleway'
 import type { App, Plugin } from 'vue'
-
 import UiButton from './components/UiButton.vue'
 
 import './styles/variables.css'
