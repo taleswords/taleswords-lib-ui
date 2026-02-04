@@ -7,5 +7,5 @@
         "noEmit": false,
         "allowImportingTsExtensions": false
     },
-    "include": ["src/index.ts", "src/types.ts", "src/env.d.ts", "src/components"]
+    "include": ["src/index.ts", "src/types.ts", "src/env.d.ts", "src/globals.d.ts", "src/components"]
 }

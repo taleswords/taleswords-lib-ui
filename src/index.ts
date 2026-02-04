@@ -1,3 +1,4 @@
+/// <reference path="./globals.d.ts" />
 import '@fontsource/source-sans-pro'
 import '@fontsource-variable/lora'
 import '@fontsource-variable/raleway'
