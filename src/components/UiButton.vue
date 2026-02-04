@@ -3,6 +3,7 @@ import type { UiButtonProps } from '../types'
 
 const props = withDefaults(defineProps<UiButtonProps>(), {
     variant: 'default',
+    size: 'medium',
     disabled: false,
 })
 </script>
@@ -10,7 +11,7 @@ const props = withDefaults(defineProps<UiButtonProps>(), {
 <template>
     <button
         class="ui-button"
-        :class="[`ui-button--${props.variant}`]"
+        :class="[`ui-button--${props.variant}`, `ui-button--${props.size}`]"
         :disabled="props.disabled"
     >
         <slot />
@@ -37,6 +38,18 @@ const props = withDefaults(defineProps<UiButtonProps>(), {
 .ui-button:disabled {
     pointer-events: none;
     opacity: 0.65;
+}
+
+.ui-button:focus-visible {
+    outline: 2px solid var(--ui-input-focus-border-color);
+    outline-offset: 2px;
+}
+
+.ui-button--small {
+    padding-block: 6px;
+    padding-inline: 0.75em;
+    font-size: 0.875em;
+    min-width: 6em;
 }
 
 /* Default variant */

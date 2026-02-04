@@ -4,12 +4,37 @@ import '@fontsource-variable/lora'
 import '@fontsource-variable/raleway'
 import type { App, Plugin } from 'vue'
 import UiButton from './components/UiButton.vue'
+import UiBadge from './components/UiBadge.vue'
+import UiModal from './components/UiModal.vue'
+import UiPopover from './components/UiPopover.vue'
+import UiInputField from './components/UiInputField.vue'
+import UiCheckboxField from './components/UiCheckboxField.vue'
+import UiInputSelect from './components/UiInputSelect.vue'
+import UiUserIcon from './components/UiUserIcon.vue'
+import UiBreadcrumbs from './components/UiBreadcrumbs.vue'
+import UiActionsHeader from './components/UiActionsHeader.vue'
+import UiCard from './components/UiCard.vue'
 
 import './styles/variables.css'
 import './styles/base.css'
 
 // Named exports for tree-shaking
-export { UiButton }
+export {
+    UiButton,
+    UiBadge,
+    UiModal,
+    UiPopover,
+    UiInputField,
+    UiCheckboxField,
+    UiInputSelect,
+    UiUserIcon,
+    UiBreadcrumbs,
+    UiActionsHeader,
+    UiCard,
+}
+
+// Color utilities
+export { stringToColor, getTextColorForBackground } from './utils/color'
 
 // Re-export types
 export * from './types'
@@ -18,6 +43,16 @@ export * from './types'
 export const LibUiPlugin: Plugin = {
     install(app: App) {
         app.component('UiButton', UiButton)
+        app.component('UiBadge', UiBadge)
+        app.component('UiModal', UiModal)
+        app.component('UiPopover', UiPopover)
+        app.component('UiInputField', UiInputField)
+        app.component('UiCheckboxField', UiCheckboxField)
+        app.component('UiInputSelect', UiInputSelect)
+        app.component('UiUserIcon', UiUserIcon)
+        app.component('UiBreadcrumbs', UiBreadcrumbs)
+        app.component('UiActionsHeader', UiActionsHeader)
+        app.component('UiCard', UiCard)
     }
 }
 

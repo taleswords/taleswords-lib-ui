@@ -1,6 +1,6 @@
-.ui-body {
-    font-size: clamp(14px, 1rem + 2vw, 18px);
-    line-height: calc(1.5em + (1.5 - 1.3) * ((100% - 21%)/(35 - 21)));
+body {
+    font-size: 1rem;
+    line-height: 1.5;
     color: var(--ui-text-color);
     background-color: var(--ui-body-bg);
     font-family: "Lora", serif;
@@ -9,13 +9,13 @@
     font-style: normal;
 }
 
-.ui-base a {
+a {
     color: var(--ui-link-color);
     text-decoration: none;
     transition: color 0.3s, text-decoration 0.3s;
 }
 
-.ui-base a.external i {
+a.external i {
     display: inline;
     font-size: 0.8em;
     margin-left: 0.1em;
@@ -23,17 +23,26 @@
     top: 1px;
 }
 
-.ui-base a:hover {
+a:hover {
     color: var(--ui-link-hover);
     text-decoration: underline;
 }
 
-.ui-base p,
-.ui-base form {
+a.secondary {
+    color: var(--ui-secondary-link-color);
+}
+
+a.secondary:hover {
+    color: var(--ui-secondary-link-hover);
+    text-decoration: none;
+}
+
+p,
+form {
     margin: 0 0 2em 0;
 }
 
-.ui-base form {
+form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -41,7 +50,7 @@
     align-items: center;
 }
 
-.ui-base label {
+label {
     cursor: pointer;
     font-family: "Raleway", system-ui;
     font-weight: 500;
@@ -53,7 +62,7 @@
     transition: color 0.3s;
 }
 
-.ui-base h1 {
+h1 {
     font-family: "Raleway", system-ui;
     font-optical-sizing: auto;
     font-weight: 700;
@@ -65,7 +74,34 @@
     margin-block: 0.5em;
 }
 
-.ui-base h4 {
+h2 {
+    font-family: "Raleway", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2.5em;
+    color: var(--ui-h2-color);
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    margin: 20px 0;
+}
+
+h3 {
+    font-family: "Raleway", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 2em;
+    color: var(--ui-h3-color);
+    margin: 16px 0;
+}
+
+h3,
+h5 {
+    line-height: 1.4;
+}
+
+h4 {
     font-family: "Raleway", system-ui;
     font-size: 1.5em;
     line-height: 1.4em;
@@ -74,7 +110,7 @@
     margin: 1em 0;
 }
 
-.ui-base h5 {
+h5 {
     font-family: "Raleway", system-ui;
     font-weight: 400;
     font-style: normal;
@@ -85,7 +121,7 @@
     margin: 1em 0;
 }
 
-.ui-base input[type="submit"] {
+input[type="submit"] {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -103,14 +139,15 @@
     transition: background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
 }
 
-.ui-base input[type="submit"]:hover {
+input[type="submit"]:hover {
     background-color: var(--ui-primary-btn-hover);
     box-shadow: var(--ui-primary-btn-hover-shadow);
 }
 
-.ui-base input[type="text"],
-.ui-base input[type="email"],
-.ui-base input[type="password"] {
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
     font-family: 'Source Sans Pro', system-ui;
     background-color: var(--ui-input-bg);
     border: 1px solid var(--ui-input-border-color);
@@ -125,43 +162,49 @@
     box-sizing: border-box;
 }
 
-.ui-base textarea::placeholder,
-.ui-base input[type="text"]::placeholder,
-.ui-base input[type="email"]::placeholder,
-.ui-base input[type="password"]::placeholder {
-    color: var(--ui-input-placeholder-color);
-}
-
-.ui-base input[type="text"]:focus,
-.ui-base input[type="email"]:focus,
-.ui-base input[type="password"]:focus {
+select:focus {
     border-color: var(--ui-input-focus-border-color);
     box-shadow: var(--ui-input-focus-shadow);
     outline: none;
 }
 
-.ui-base input[type="text"]:disabled {
+textarea::placeholder,
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+    color: var(--ui-input-placeholder-color);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--ui-input-focus-border-color);
+    box-shadow: var(--ui-input-focus-shadow);
+    outline: none;
+}
+
+input[type="text"]:disabled {
     background-color: var(--ui-input-disabled-bg);
     border-color: var(--ui-input-disabled-border-color);
     pointer-events: none;
 }
 
-.ui-base label.required::after {
+label.required::after {
     content: " *";
     color: var(--ui-input-label-required-star-color);
 }
 
-.ui-base input.invalid {
+input.invalid {
     border-color: var(--ui-input-error-border-color);
 }
 
-.ui-base input[type="text"].invalid:focus,
-.ui-base input[type="email"].invalid:focus,
-.ui-base input[type="password"].invalid:focus {
+input[type="text"].invalid:focus,
+input[type="email"].invalid:focus,
+input[type="password"].invalid:focus {
     border-color: var(--ui-input-error-focus-border-color);
 }
 
-.ui-base input[type="checkbox"] {
+input[type="checkbox"] {
     width: 1em;
     height: 1em;
     border: 1px solid var(--ui-input-border-color);
@@ -170,32 +213,32 @@
     transition: border 0.3s, background-color 0.3s;
 }
 
-.ui-base input[type="checkbox"]:checked {
+input[type="checkbox"]:checked {
     accent-color: var(--ui-input-checkbox-checked-accent);
     border-color: var(--ui-input-checkbox-checked-border-color);
 }
 
-.ui-base input[type="checkbox"]:hover {
+input[type="checkbox"]:hover {
     border-color: var(--ui-input-focus-border-color);
 }
 
-.ui-base .info-text {
+.info-text {
     color: var(--ui-info-text);
 }
 
-.ui-base .warn-text {
+.warn-text {
     color: var(--ui-info-text);
     margin-top: 0.25em;
     display: block;
 }
 
-.ui-base .error-text {
+.error-text {
     color: var(--ui-error-text-color);
     font-size: 0.875em;
     margin-top: 0.33333em;
 }
 
-.ui-base .error-list {
+.error-list {
     color: var(--ui-error-text-color);
     font-size: 0.875em;
     padding: 0;
@@ -204,20 +247,20 @@
 }
 
 @media only screen and (min-width: 540px) {
-    .ui-base form {
+    form {
         margin: 1em 0 1em 0;
     }
 
-    .ui-base p {
+    p {
         margin: 0 0 1em 0;
     }
 
-    .ui-base input[type="submit"] {
+    input[type="submit"] {
         margin-block: 1em;
     }
 }
 
-.ui-base button {
+button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -235,68 +278,69 @@
     transition: background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
 }
 
-.ui-base button:disabled {
+button:disabled {
     pointer-events: none;
     opacity: 0.65;
 }
 
-.ui-base .disabled {
+.disabled {
     pointer-events: none;
     opacity: 0.5;
 }
 
-.ui-base .default {
+button.default {
     background-color: var(--ui-button-default);
     border: 1px solid var(--ui-button-default-border);
     color: var(--ui-button-default-text);
 }
 
-.ui-base .default:hover {
+button.default:hover {
     background-color: var(--ui-button-default-hover-bg);
     border-color: var(--ui-button-default-hover-border);
 }
 
-.ui-base .primary {
+button.primary {
     background-color: var(--ui-primary-btn);
     color: var(--ui-text-color);
 }
 
-.ui-base .primary:hover {
+button.primary:hover {
     background-color: var(--ui-primary-btn-hover);
     box-shadow: var(--ui-primary-btn-hover-shadow);
 }
 
-.ui-base .danger {
+button.danger {
     background-color: var(--ui-button-danger);
     color: var(--ui-button-danger-text);
 }
 
-.ui-base .danger:hover {
+button.danger:hover {
     background-color: var(--ui-button-danger-hover);
     box-shadow: var(--ui-button-danger-hover-shadow);
 }
 
-.ui-base .secondary {
+button.secondary {
     background-color: var(--ui-secondary-btn);
     color: var(--ui-text-color);
 }
 
-.ui-base .secondary:hover {
+button.secondary:hover {
     background-color: var(--ui-secondary-btn-hover);
     box-shadow: var(--ui-primary-btn-hover-shadow);
 }
 
 @media only screen and (min-width: 840px) {
-    .ui-base button,
-    .ui-base input[type="submit"],
-    .ui-base input[type="text"],
-    .ui-base input[type="email"],
-    .ui-base input[type="password"] {
+    button,
+    input[type="submit"],
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
         padding-block: 8px;
     }
 }
 
-.ui-base textarea {
+textarea {
     font-family: 'Source Sans Pro', system-ui;
     display: block;
     background-color: var(--ui-input-bg);
@@ -312,12 +356,12 @@
 }
 
 @media only screen and (min-width: 540px) {
-    .ui-base textarea {
+    textarea {
         margin-bottom: 1em;
     }
 }
 
-.ui-base textarea:focus {
+textarea:focus {
     border-color: var(--ui-input-focus-border-color);
     box-shadow: var(--ui-input-focus-shadow);
     outline: none;
