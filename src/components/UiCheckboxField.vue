@@ -23,6 +23,7 @@ const emit = defineEmits<{ 'update:modelValue': [value: boolean] }>()
                     class="ui-checkbox-field__input"
                     :checked="props.modelValue"
                     :disabled="props.disabled"
+                    :aria-invalid="props.error ? true : undefined"
                     @change="emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
                 />
             </p>

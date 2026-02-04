@@ -12,8 +12,22 @@ import {
     UiBreadcrumbs,
     UiActionsHeader,
     UiCard,
+    UiTextarea,
+    UiTabs,
+    UiTooltip,
+    UiLoader,
+    UiPagination,
+    UiDropdownMenu,
+    UiAlert,
 } from '@lib'
 import type { UiButtonProps, UiBadgeValue } from '@lib'
+
+// Dark theme
+const isDark = ref(false)
+function toggleTheme() {
+    isDark.value = !isDark.value
+    document.documentElement.setAttribute('data-theme', isDark.value ? 'dark' : '')
+}
 
 // Button
 const btnDisabled = ref(false)
@@ -62,11 +76,31 @@ const breadcrumbs = [
     { label: 'Projects', href: '#' },
     { label: 'Current Project' },
 ]
+
+// Textarea
+const textareaValue = ref('')
+
+// Tabs
+const activeTab = ref('tab1')
+
+// Pagination
+const currentPage = ref(1)
+
+// Dropdown
+const lastAction = ref('')
+
+// Alert
+const showDismissibleAlert = ref(true)
 </script>
 
 <template>
     <main class="playground">
-        <h1>UI Library Playground</h1>
+        <div class="playground__header">
+            <h1>UI Library Playground</h1>
+            <UiButton variant="default" @click="toggleTheme">
+                {{ isDark ? 'Light Mode' : 'Dark Mode' }}
+            </UiButton>
+        </div>
 
         <!-- Typography -->
         <UiCard variant="outlined">
@@ -206,6 +240,33 @@ const breadcrumbs = [
             </div>
         </UiCard>
 
+        <!-- UiTextarea -->
+        <UiCard variant="outlined">
+            <h2>UiTextarea</h2>
+            <div class="form-area">
+                <UiTextarea
+                    v-model="textareaValue"
+                    label="Description"
+                    placeholder="Enter a description..."
+                    :rows="4"
+                    :max-length="200"
+                    show-counter
+                    required
+                />
+                <UiTextarea
+                    v-model="textareaValue"
+                    label="Disabled Textarea"
+                    disabled
+                />
+                <UiTextarea
+                    v-model="textareaValue"
+                    label="With Error"
+                    error="This field has an error"
+                />
+                <p>Value: {{ textareaValue }}</p>
+            </div>
+        </UiCard>
+
         <!-- UiCheckboxField -->
         <UiCard variant="outlined">
             <h2>UiCheckboxField</h2>
@@ -241,6 +302,126 @@ const breadcrumbs = [
                 />
                 <p>Selected: {{ selectValue || '(none)' }}</p>
             </div>
+        </UiCard>
+
+        <!-- UiTabs -->
+        <UiCard variant="outlined">
+            <h2>UiTabs</h2>
+            <UiTabs
+                v-model="activeTab"
+                :items="[
+                    { key: 'tab1', label: 'Overview' },
+                    { key: 'tab2', label: 'Details' },
+                    { key: 'tab3', label: 'Disabled', disabled: true },
+                    { key: 'tab4', label: 'Settings' },
+                ]"
+            >
+                <div v-if="activeTab === 'tab1'">
+                    <p>Overview content goes here.</p>
+                </div>
+                <div v-else-if="activeTab === 'tab2'">
+                    <p>Details content with more information.</p>
+                </div>
+                <div v-else-if="activeTab === 'tab4'">
+                    <p>Settings panel content.</p>
+                </div>
+            </UiTabs>
+        </UiCard>
+
+        <!-- UiTooltip -->
+        <UiCard variant="outlined">
+            <h2>UiTooltip</h2>
+            <div class="row">
+                <UiTooltip text="Top tooltip" position="top">
+                    <UiButton variant="default" size="small">Top</UiButton>
+                </UiTooltip>
+                <UiTooltip text="Bottom tooltip" position="bottom">
+                    <UiButton variant="default" size="small">Bottom</UiButton>
+                </UiTooltip>
+                <UiTooltip text="Left tooltip" position="left">
+                    <UiButton variant="default" size="small">Left</UiButton>
+                </UiTooltip>
+                <UiTooltip text="Right tooltip" position="right">
+                    <UiButton variant="default" size="small">Right</UiButton>
+                </UiTooltip>
+            </div>
+        </UiCard>
+
+        <!-- UiLoader -->
+        <UiCard variant="outlined">
+            <h2>UiLoader</h2>
+            <div class="row">
+                <UiLoader size="small" />
+                <UiLoader size="medium" />
+                <UiLoader size="large" />
+                <UiLoader variant="dots" size="small" />
+                <UiLoader variant="dots" size="medium" />
+                <UiLoader variant="dots" size="large" />
+            </div>
+            <UiLoader size="medium" label="Loading data..." />
+            <div style="position: relative; height: 100px; border: 1px dashed var(--ui-card-border-color); border-radius: 6px;">
+                <UiLoader overlay label="Loading..." />
+            </div>
+        </UiCard>
+
+        <!-- UiPagination -->
+        <UiCard variant="outlined">
+            <h2>UiPagination</h2>
+            <UiPagination v-model="currentPage" :total-pages="20" :max-visible="5" />
+            <p>Current page: {{ currentPage }}</p>
+        </UiCard>
+
+        <!-- UiDropdownMenu -->
+        <UiCard variant="outlined">
+            <h2>UiDropdownMenu</h2>
+            <div class="row">
+                <UiDropdownMenu
+                    :items="[
+                        { label: 'Edit', action: 'edit' },
+                        { label: 'Duplicate', action: 'duplicate' },
+                        { label: 'Archive', action: 'archive', disabled: true },
+                        { label: 'Delete', action: 'delete', variant: 'danger' },
+                    ]"
+                    @action="lastAction = $event"
+                >
+                    <UiButton variant="default" size="small">Actions</UiButton>
+                </UiDropdownMenu>
+                <UiDropdownMenu
+                    align="right"
+                    :items="[
+                        { label: 'Profile', action: 'profile' },
+                        { label: 'Settings', action: 'settings' },
+                        { label: 'Logout', action: 'logout', variant: 'danger' },
+                    ]"
+                    @action="lastAction = $event"
+                >
+                    <UiButton variant="primary" size="small">Right-aligned</UiButton>
+                </UiDropdownMenu>
+            </div>
+            <p v-if="lastAction">Last action: {{ lastAction }}</p>
+        </UiCard>
+
+        <!-- UiAlert -->
+        <UiCard variant="outlined">
+            <h2>UiAlert</h2>
+            <UiAlert type="info" message="This is an informational alert." />
+            <UiAlert type="success" message="Operation completed successfully!" />
+            <UiAlert type="warning" message="Please review the changes before continuing." />
+            <UiAlert type="error" message="An error occurred while processing your request." />
+            <UiAlert
+                v-if="showDismissibleAlert"
+                type="info"
+                message="This alert can be dismissed."
+                dismissible
+                @dismiss="showDismissibleAlert = false"
+            >
+                <p style="margin: 0.5em 0 0; font-size: 0.875em;">Additional details can go in the slot.</p>
+            </UiAlert>
+            <UiButton
+                v-if="!showDismissibleAlert"
+                size="small"
+                @click="showDismissibleAlert = true"
+            >Show Dismissible Alert</UiButton>
         </UiCard>
 
         <!-- UiModal -->
@@ -297,6 +478,17 @@ const breadcrumbs = [
     display: flex;
     flex-direction: column;
     gap: 2rem;
+}
+
+.playground__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.playground__header h1 {
+    margin: 0;
 }
 
 .row {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import type { UiModalProps } from '../types'
 
 const props = withDefaults(defineProps<UiModalProps>(), {
@@ -18,8 +18,45 @@ const emit = defineEmits<{
     'left-button-click': []
 }>()
 
+const modalRef = ref<HTMLElement | null>(null)
+const titleId = `ui-modal-title-${Math.random().toString(36).slice(2, 9)}`
+
+function getFocusableElements(): HTMLElement[] {
+    if (!modalRef.value) return []
+    return Array.from(
+        modalRef.value.querySelectorAll<HTMLElement>(
+            'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+    )
+}
+
+function handleTrapFocus(e: KeyboardEvent) {
+    if (e.key !== 'Tab') return
+    const focusable = getFocusableElements()
+    if (focusable.length === 0) return
+
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+
+    if (e.shiftKey) {
+        if (document.activeElement === first) {
+            e.preventDefault()
+            last.focus()
+        }
+    } else {
+        if (document.activeElement === last) {
+            e.preventDefault()
+            first.focus()
+        }
+    }
+}
+
 onMounted(() => {
     document.body.style.overflow = 'hidden'
+    nextTick(() => {
+        const focusable = getFocusableElements()
+        focusable[0]?.focus()
+    })
 })
 
 onUnmounted(() => {
@@ -39,14 +76,23 @@ function handleCancel() {
 
 <template>
     <Teleport to="body">
-        <div class="ui-modal-overlay" @click="closeModal">
+        <div
+            class="ui-modal-overlay"
+            @click="closeModal"
+            @keydown.escape="closeModal"
+            @keydown="handleTrapFocus"
+        >
             <div
+                ref="modalRef"
                 class="ui-modal"
                 :class="{ 'ui-modal--no-scrolls': props.noScrolls }"
+                role="dialog"
+                aria-modal="true"
+                :aria-labelledby="titleId"
                 @click.stop
             >
                 <header class="ui-modal__header">
-                    <h4 class="ui-modal__title">{{ props.title }}</h4>
+                    <h4 :id="titleId" class="ui-modal__title">{{ props.title }}</h4>
                     <button
                         class="ui-modal__x-button"
                         :disabled="props.actionsDisabled"

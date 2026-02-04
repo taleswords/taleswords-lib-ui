@@ -1,59 +1,72 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { UiInputFieldProps } from '../types'
+import type { UiTextareaProps } from '../types'
 
-const props = withDefaults(defineProps<UiInputFieldProps>(), {
-    type: 'text',
+const props = withDefaults(defineProps<UiTextareaProps>(), {
     required: false,
     disabled: false,
+    rows: 4,
+    showCounter: false,
 })
 
 const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 
-const inputId = computed(() => `ui-input-${Math.random().toString(36).slice(2, 9)}`)
+const inputId = computed(() => `ui-textarea-${Math.random().toString(36).slice(2, 9)}`)
 const errorId = computed(() => `${inputId.value}-error`)
+const isOverLimit = computed(() => props.maxLength != null && props.modelValue.length > props.maxLength)
 </script>
 
 <template>
-    <div class="ui-input-field">
+    <div class="ui-textarea">
         <label
             v-if="props.label"
             :for="inputId"
-            class="ui-input-field__label"
-            :class="{ 'ui-input-field__label--required': props.required }"
+            class="ui-textarea__label"
+            :class="{ 'ui-textarea__label--required': props.required }"
         >{{ props.label }}</label>
-        <input
+        <textarea
             :id="inputId"
-            class="ui-input-field__input"
-            :class="{ 'ui-input-field__input--error': props.error }"
-            :type="props.type"
+            class="ui-textarea__input"
+            :class="{ 'ui-textarea__input--error': props.error }"
             :value="props.modelValue"
             :placeholder="props.placeholder"
             :required="props.required"
             :disabled="props.disabled"
-            :autocomplete="props.autocomplete"
+            :rows="props.rows"
             :aria-invalid="props.error ? true : undefined"
             :aria-describedby="props.error ? errorId : undefined"
-            @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+            @input="emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
         />
-        <span v-if="props.error" :id="errorId" class="ui-input-field__error">{{ props.error }}</span>
+        <div class="ui-textarea__footer">
+            <span
+                v-if="props.error"
+                :id="errorId"
+                class="ui-textarea__error"
+            >{{ props.error }}</span>
+            <span v-else />
+            <span
+                v-if="props.showCounter && props.maxLength != null"
+                class="ui-textarea__counter"
+                :class="{ 'ui-textarea__counter--over': isOverLimit }"
+            >{{ props.modelValue.length }}/{{ props.maxLength }}</span>
+        </div>
     </div>
 </template>
 
 <style scoped>
-.ui-input-field {
+.ui-textarea {
     width: 100%;
     margin-bottom: 2em;
     position: relative;
 }
 
 @media only screen and (min-width: 540px) {
-    .ui-input-field {
+    .ui-textarea {
         margin-bottom: 1em;
     }
 }
 
-.ui-input-field__label {
+.ui-textarea__label {
     display: block;
     margin-bottom: 0.5em;
     font-family: "Raleway", system-ui, sans-serif;
@@ -62,16 +75,16 @@ const errorId = computed(() => `${inputId.value}-error`)
     transition: color 0.3s;
 }
 
-.ui-input-field:focus-within .ui-input-field__label {
+.ui-textarea:focus-within .ui-textarea__label {
     color: var(--ui-input-label-focus);
 }
 
-.ui-input-field__label--required::after {
+.ui-textarea__label--required::after {
     content: ' *';
     color: var(--ui-input-label-required-star-color);
 }
 
-.ui-input-field__input {
+.ui-textarea__input {
     width: 100%;
     padding: 12px 1em;
     font-family: 'Source Sans Pro', system-ui, sans-serif;
@@ -82,42 +95,62 @@ const errorId = computed(() => `${inputId.value}-error`)
     border-radius: 6px;
     box-sizing: border-box;
     transition: border-color 0.3s, box-shadow 0.3s;
+    resize: vertical;
 }
 
-.ui-input-field__input::placeholder {
+.ui-textarea__input::placeholder {
     color: var(--ui-input-placeholder-color);
 }
 
-.ui-input-field__input:focus {
+.ui-textarea__input:focus {
     outline: none;
     border-color: var(--ui-input-focus-border-color);
     box-shadow: var(--ui-input-focus-shadow);
 }
 
-.ui-input-field__input:disabled {
+.ui-textarea__input:disabled {
     background-color: var(--ui-input-disabled-bg);
     border-color: var(--ui-input-disabled-border-color);
     opacity: 0.65;
     cursor: not-allowed;
 }
 
-.ui-input-field__input--error {
+.ui-textarea__input--error {
     border-color: var(--ui-input-error-border-color);
 }
 
-.ui-input-field__input--error:focus {
+.ui-textarea__input--error:focus {
     border-color: var(--ui-input-error-focus-border-color);
 }
 
-.ui-input-field__error {
+.ui-textarea__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1em;
+    min-height: 1.5em;
+}
+
+.ui-textarea__error {
     display: block;
     margin-top: 0.5em;
     font-size: 0.875em;
     color: var(--ui-error-text-color);
 }
 
+.ui-textarea__counter {
+    margin-top: 0.5em;
+    font-size: 0.875em;
+    color: var(--ui-textarea-counter-color);
+    white-space: nowrap;
+}
+
+.ui-textarea__counter--over {
+    color: var(--ui-textarea-counter-over-color);
+}
+
 @media only screen and (min-width: 840px) {
-    .ui-input-field__input {
+    .ui-textarea__input {
         padding: 8px 1em;
     }
 }

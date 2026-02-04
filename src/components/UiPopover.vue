@@ -27,6 +27,7 @@ onUnmounted(() => {
         class="ui-popover"
         :class="[`ui-popover--${props.type}`]"
         role="alert"
+        aria-live="assertive"
     >
         <span v-if="props.type === 'success'" class="ui-popover__type-icon">&#10004;</span>
         <span v-if="props.type === 'error'" class="ui-popover__type-icon">&#10006;</span>

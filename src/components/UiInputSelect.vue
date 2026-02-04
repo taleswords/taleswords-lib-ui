@@ -12,6 +12,7 @@ const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 const isOpen = ref(false)
 const isFocused = ref(false)
 const isSwitchingOff = ref(false)
+const highlightedIndex = ref(-1)
 const hiddenInputRef = ref<HTMLInputElement | null>(null)
 
 const selectedOption = computed(() =>
@@ -21,6 +22,7 @@ const selectedOption = computed(() =>
 function handleFocus() {
     isFocused.value = true
     isOpen.value = true
+    highlightedIndex.value = props.options.findIndex(opt => opt.value === props.modelValue)
 }
 
 function handleBlur() {
@@ -29,6 +31,7 @@ function handleBlur() {
         isOpen.value = false
         isSwitchingOff.value = false
         isFocused.value = false
+        highlightedIndex.value = -1
     }, 200)
 }
 
@@ -48,6 +51,31 @@ function selectOption(value: string) {
     setTimeout(() => {
         hiddenInputRef.value?.blur()
     })
+}
+
+function handleKeydown(e: KeyboardEvent) {
+    if (!isOpen.value) return
+
+    switch (e.key) {
+        case 'ArrowDown':
+            e.preventDefault()
+            highlightedIndex.value = (highlightedIndex.value + 1) % props.options.length
+            break
+        case 'ArrowUp':
+            e.preventDefault()
+            highlightedIndex.value = (highlightedIndex.value - 1 + props.options.length) % props.options.length
+            break
+        case 'Enter':
+            e.preventDefault()
+            if (highlightedIndex.value >= 0 && highlightedIndex.value < props.options.length) {
+                selectOption(props.options[highlightedIndex.value].value)
+            }
+            break
+        case 'Escape':
+            e.preventDefault()
+            hiddenInputRef.value?.blur()
+            break
+    }
 }
 </script>
 
@@ -71,6 +99,7 @@ function selectOption(value: string) {
             :disabled="props.disabled"
             @focus="handleFocus"
             @blur="handleBlur"
+            @keydown="handleKeydown"
         />
         <div
             class="ui-input-select__display"
@@ -78,6 +107,7 @@ function selectOption(value: string) {
                 'ui-input-select__display--error': props.error,
                 'ui-input-select__display--disabled': props.disabled,
             }"
+            :aria-expanded="isOpen"
             @click="toggleDropdown"
         >
             <span v-if="selectedOption" class="ui-input-select__display-text">{{ selectedOption.label }}</span>
@@ -88,13 +118,16 @@ function selectOption(value: string) {
             :class="{ 'ui-input-select__dropdown-position--hiding': isSwitchingOff }"
         >
             <div class="ui-input-select__dropdown">
-                <div class="ui-input-select__dropdown-content">
+                <div class="ui-input-select__dropdown-content" role="listbox">
                     <div class="ui-input-select__dropdown-cap" />
                     <div class="ui-input-select__dropdown-mid">
                         <div
-                            v-for="option in props.options"
+                            v-for="(option, index) in props.options"
                             :key="option.value"
+                            role="option"
+                            :aria-selected="option.value === props.modelValue"
                             class="ui-input-select__option"
+                            :class="{ 'ui-input-select__option--highlighted': index === highlightedIndex }"
                             @click="selectOption(option.value)"
                         >{{ option.label }}</div>
                     </div>
@@ -260,7 +293,8 @@ function selectOption(value: string) {
     align-items: center;
 }
 
-.ui-input-select__option:hover {
+.ui-input-select__option:hover,
+.ui-input-select__option--highlighted {
     box-shadow: var(--ui-input-focus-shadow);
     border: 1px solid var(--ui-input-focus-border-color);
     border-bottom: 0;

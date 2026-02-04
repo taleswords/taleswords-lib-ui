@@ -26,6 +26,8 @@
     "dev": "vite --config vite.config.ts playground",
     "clean": "del ./dist/",
     "build": "npm run clean && vite build && vue-tsc -p tsconfig-build.json && cp src/styles/variables.css dist/ && cp src/styles/base.css dist/ && cp src/globals.d.ts dist/",
+    "test": "vitest",
+    "test:run": "vitest run",
     "typecheck": "vue-tsc --noEmit",
     "pub": "npm version patch && npm run build && npm publish"
   },
@@ -53,8 +55,11 @@
   "devDependencies": {
     "@types/node": "^25.2.0",
     "@vitejs/plugin-vue": "^6.0.4",
+    "@vue/test-utils": "^2.4.6",
     "del-cli": "^7.0.0",
+    "jsdom": "^28.0.0",
     "vite": "^6.3.5",
+    "vitest": "^4.0.18",
     "vue": "^3.5.27",
     "vue-tsc": "^3.2.4"
   },

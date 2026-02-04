@@ -14,6 +14,13 @@ import UiUserIcon from './components/UiUserIcon.vue'
 import UiBreadcrumbs from './components/UiBreadcrumbs.vue'
 import UiActionsHeader from './components/UiActionsHeader.vue'
 import UiCard from './components/UiCard.vue'
+import UiTextarea from './components/UiTextarea.vue'
+import UiTabs from './components/UiTabs.vue'
+import UiTooltip from './components/UiTooltip.vue'
+import UiLoader from './components/UiLoader.vue'
+import UiPagination from './components/UiPagination.vue'
+import UiDropdownMenu from './components/UiDropdownMenu.vue'
+import UiAlert from './components/UiAlert.vue'
 
 import './styles/variables.css'
 import './styles/base.css'
@@ -31,6 +38,13 @@ export {
     UiBreadcrumbs,
     UiActionsHeader,
     UiCard,
+    UiTextarea,
+    UiTabs,
+    UiTooltip,
+    UiLoader,
+    UiPagination,
+    UiDropdownMenu,
+    UiAlert,
 }
 
 // Color utilities
@@ -53,6 +67,13 @@ export const LibUiPlugin: Plugin = {
         app.component('UiBreadcrumbs', UiBreadcrumbs)
         app.component('UiActionsHeader', UiActionsHeader)
         app.component('UiCard', UiCard)
+        app.component('UiTextarea', UiTextarea)
+        app.component('UiTabs', UiTabs)
+        app.component('UiTooltip', UiTooltip)
+        app.component('UiLoader', UiLoader)
+        app.component('UiPagination', UiPagination)
+        app.component('UiDropdownMenu', UiDropdownMenu)
+        app.component('UiAlert', UiAlert)
     }
 }
 

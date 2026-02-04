@@ -102,3 +102,62 @@ export interface UiCardProps {
     noPadding?: boolean
     row?: boolean
 }
+
+export interface UiTextareaProps {
+    modelValue: string
+    label?: string
+    placeholder?: string
+    error?: string
+    required?: boolean
+    disabled?: boolean
+    rows?: number
+    maxLength?: number
+    showCounter?: boolean
+}
+
+export interface UiTabItem {
+    key: string
+    label: string
+    disabled?: boolean
+}
+
+export interface UiTabsProps {
+    items: UiTabItem[]
+    modelValue: string
+}
+
+export interface UiTooltipProps {
+    text: string
+    position?: 'top' | 'bottom' | 'left' | 'right'
+}
+
+export interface UiLoaderProps {
+    size?: 'small' | 'medium' | 'large'
+    variant?: 'spinner' | 'dots'
+    overlay?: boolean
+    label?: string
+}
+
+export interface UiPaginationProps {
+    modelValue: number
+    totalPages: number
+    maxVisible?: number
+}
+
+export interface UiDropdownMenuItem {
+    label: string
+    action: string
+    variant?: 'default' | 'danger'
+    disabled?: boolean
+}
+
+export interface UiDropdownMenuProps {
+    items: UiDropdownMenuItem[]
+    align?: 'left' | 'right'
+}
+
+export interface UiAlertProps {
+    type?: 'info' | 'success' | 'warning' | 'error'
+    message: string
+    dismissible?: boolean
+}

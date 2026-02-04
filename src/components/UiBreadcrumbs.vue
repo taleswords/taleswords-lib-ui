@@ -5,7 +5,7 @@ const props = defineProps<UiBreadcrumbsProps>()
 </script>
 
 <template>
-    <nav class="ui-breadcrumbs">
+    <nav class="ui-breadcrumbs" aria-label="Breadcrumb">
         <template v-for="(item, index) in props.items" :key="index">
             <p class="ui-breadcrumbs__item">
                 <a
@@ -13,7 +13,11 @@ const props = defineProps<UiBreadcrumbsProps>()
                     :href="item.href"
                     class="ui-breadcrumbs__link"
                 >&gt; {{ item.label }}</a>
-                <span v-else class="ui-breadcrumbs__current">&gt; {{ item.label }}</span>
+                <span
+                    v-else
+                    class="ui-breadcrumbs__current"
+                    :aria-current="index === props.items.length - 1 ? 'page' : undefined"
+                >&gt; {{ item.label }}</span>
             </p>
         </template>
     </nav>

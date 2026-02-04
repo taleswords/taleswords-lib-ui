@@ -91,4 +91,233 @@
     --ui-info-icon: #3A82F7;
     --ui-progress-icon: #CCCCCC;
     --ui-info-text: #4A4A4A;
+
+    /* Textarea */
+    --ui-textarea-counter-color: #657B83;
+    --ui-textarea-counter-over-color: #E63946;
+
+    /* Tabs */
+    --ui-tabs-border-color: #D6D6D6;
+    --ui-tabs-tab-color: #657B83;
+    --ui-tabs-tab-hover-color: #457B9D;
+    --ui-tabs-tab-active-color: #333333;
+    --ui-tabs-tab-active-border-color: #457B9D;
+    --ui-tabs-tab-disabled-color: #C4C4C4;
+
+    /* Tooltip */
+    --ui-tooltip-bg: #333333;
+    --ui-tooltip-text: #FAFAFA;
+    --ui-tooltip-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+
+    /* Loader */
+    --ui-loader-color: #457B9D;
+    --ui-loader-secondary-color: #D6D6D6;
+    --ui-loader-overlay-bg: rgba(250, 250, 250, 0.8);
+    --ui-loader-label-color: #657B83;
+
+    /* Pagination */
+    --ui-pagination-btn-bg: #FAFAFA;
+    --ui-pagination-btn-border: #D6D6D6;
+    --ui-pagination-btn-color: #333333;
+    --ui-pagination-btn-hover-bg: #F0F0F0;
+    --ui-pagination-btn-hover-border: #B0B0B0;
+    --ui-pagination-active-bg: #457B9D;
+    --ui-pagination-active-color: #FFFFFF;
+    --ui-pagination-disabled-color: #C4C4C4;
+    --ui-pagination-ellipsis-color: #657B83;
+
+    /* Dropdown Menu */
+    --ui-dropdown-bg: #FAFAFA;
+    --ui-dropdown-border: #D6D6D6;
+    --ui-dropdown-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    --ui-dropdown-item-hover-bg: #F0F0F0;
+    --ui-dropdown-item-color: #333333;
+    --ui-dropdown-item-danger-color: #E63946;
+    --ui-dropdown-item-disabled-color: #C4C4C4;
+
+    /* Alert */
+    --ui-alert-info-bg: #EBF5FF;
+    --ui-alert-info-border: #B8DAFF;
+    --ui-alert-info-icon: #3A82F7;
+    --ui-alert-info-text: #004085;
+    --ui-alert-success-bg: #E8F5E9;
+    --ui-alert-success-border: #A5D6A7;
+    --ui-alert-success-icon: #2A9D8F;
+    --ui-alert-success-text: #1B5E20;
+    --ui-alert-warning-bg: #FFF8E1;
+    --ui-alert-warning-border: #FFE082;
+    --ui-alert-warning-icon: #D97706;
+    --ui-alert-warning-text: #663C00;
+    --ui-alert-error-bg: #FFEBEE;
+    --ui-alert-error-border: #EF9A9A;
+    --ui-alert-error-icon: #E63946;
+    --ui-alert-error-text: #B71C1C;
+}
+
+[data-theme="dark"] {
+    /* General */
+    --ui-text-color: #E5E9F0;
+    --ui-body-bg: #2B2F3A;
+    --ui-card-bg: #343947;
+    --ui-card-border-color: #454B5E;
+    --ui-card-shadow: 0px 6px 18px rgba(0, 0, 0, 0.45);
+
+    /* Buttons */
+    --ui-primary-btn: #EBCB8B;
+    --ui-primary-btn-hover: #FFD166;
+    --ui-primary-btn-hover-shadow: 0px 4px 10px rgba(235, 203, 139, 0.35);
+
+    --ui-secondary-btn: #4C5366;
+    --ui-secondary-btn-hover: #5B6380;
+
+    --ui-button-default: #343947;
+    --ui-button-default-border: #454B5E;
+    --ui-button-default-text: #E5E9F0;
+    --ui-button-default-hover-bg: #3E4455;
+    --ui-button-default-hover-border: #5B6380;
+
+    --ui-button-danger: #E06C75;
+    --ui-button-danger-text: #FFFFFF;
+    --ui-button-danger-hover: #F67280;
+    --ui-button-danger-hover-shadow: 0px 4px 10px rgba(224, 108, 117, 0.4);
+
+    /* Headings */
+    --ui-h1-color: #ECEFF4;
+    --ui-h2-color: #7AA2C9;
+    --ui-h3-color: #E5E9F0;
+    --ui-h4-color: #A3ACC2;
+    --ui-h5-color: #E06C75;
+
+    /* Links */
+    --ui-link-color: #7AA2C9;
+    --ui-link-hover: #EBCB8B;
+    --ui-secondary-link-color: #A3ACC2;
+    --ui-secondary-link-hover: #FFD166;
+
+    /* Inputs */
+    --ui-input-label-color: #E5E9F0;
+    --ui-input-label-focus: #7AA2C9;
+    --ui-input-label-required-star-color: #E06C75;
+
+    --ui-input-bg: #2B2F3A;
+    --ui-input-disabled-bg: #262A33;
+    --ui-input-disabled-border-color: #3C4154;
+    --ui-input-text-color: #ECEFF4;
+    --ui-input-border-color: #454B5E;
+    --ui-input-placeholder-color: #9AA3B8;
+
+    --ui-input-focus-shadow: 0px 0px 0px 2px rgba(122, 162, 201, 0.35);
+    --ui-input-focus-border-color: #7AA2C9;
+
+    --ui-input-error-border-color: #E06C75;
+    --ui-input-error-focus-border-color: #E06C75;
+    --ui-error-text-color: #E06C75;
+
+    --ui-success-text-color: #8EC07C;
+    --ui-input-valid-border-color: #8EC07C;
+    --ui-input-valid-focus-border-color: #8EC07C;
+
+    --ui-input-checkbox-checked-accent: #EBCB8B;
+    --ui-input-checkbox-checked-border-color: #EBCB8B;
+
+    /* Loader */
+    --ui-loader-color: #7AA2C9;
+    --ui-loader-secondary-color: #454B5E;
+    --ui-loader-overlay-bg: rgba(43, 47, 58, 0.85);
+    --ui-loader-label-color: #A3ACC2;
+
+    /* Tooltip */
+    --ui-tooltip-bg: #ECEFF4;
+    --ui-tooltip-text: #2B2F3A;
+    --ui-tooltip-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+
+    /* Badges (dark-soft, derived from light) */
+    --ui-badge-visitor-bg: #3A404C;
+    --ui-badge-visitor-text: #D8DEE9;
+
+    --ui-badge-guest-bg: #4C566A;
+    --ui-badge-guest-text: #ECEFF4;
+
+    --ui-badge-guest-editor-bg: #6B8FA3;
+    --ui-badge-guest-editor-text: #ECEFF4;
+
+    --ui-badge-reviewer-bg: #EBCB8B;
+    --ui-badge-reviewer-text: #2E3440;
+
+    --ui-badge-editor-bg: #BF616A;
+    --ui-badge-editor-text: #ECEFF4;
+
+    --ui-badge-manager-bg: #5E81AC;
+    --ui-badge-manager-text: #ECEFF4;
+
+    --ui-badge-admin-bg: #BF616A;
+    --ui-badge-admin-text: #ECEFF4;
+
+    --ui-badge-public-bg: #8FBCBB;
+    --ui-badge-public-text: #2E3440;
+
+    --ui-badge-private-bg: #BF616A;
+    --ui-badge-private-text: #ECEFF4;
+
+    --ui-badge-pending-bg: #D9B56C;
+    --ui-badge-pending-text: #2E3440;
+
+    --ui-badge-declined-bg: #4C566A;
+    --ui-badge-declined-text: #A3B0C2;
+
+    --ui-badge-accepted-bg: #A3BE8C;
+    --ui-badge-accepted-text: #2E3440;
+
+    /* Tabs */
+    --ui-tabs-border-color: #434C5E;
+    --ui-tabs-tab-color: #A3B0C2;
+    --ui-tabs-tab-hover-color: #88C0D0;
+    --ui-tabs-tab-active-color: #ECEFF4;
+    --ui-tabs-tab-active-border-color: #88C0D0;
+    --ui-tabs-tab-disabled-color: #4C566A;
+
+    /* Pagination */
+    --ui-pagination-btn-bg: #3B4252;
+    --ui-pagination-btn-border: #434C5E;
+    --ui-pagination-btn-color: #D8DEE9;
+
+    --ui-pagination-btn-hover-bg: #434C5E;
+    --ui-pagination-btn-hover-border: #5E81AC;
+
+    --ui-pagination-active-bg: #88C0D0;
+    --ui-pagination-active-color: #2E3440;
+
+    --ui-pagination-disabled-color: #4C566A;
+    --ui-pagination-ellipsis-color: #A3B0C2;
+
+    /* Dropdown Menu */
+    --ui-dropdown-bg: #3B4252;
+    --ui-dropdown-border: #434C5E;
+    --ui-dropdown-shadow: 0px 6px 20px rgba(0, 0, 0, 0.45);
+
+    --ui-dropdown-item-hover-bg: #434C5E;
+    --ui-dropdown-item-color: #D8DEE9;
+    --ui-dropdown-item-danger-color: #BF616A;
+    --ui-dropdown-item-disabled-color: #4C566A;
+
+    /* Alerts (muted, readable, light-derived) */
+    --ui-alert-info-bg: #2E3A4F;
+    --ui-alert-info-border: #5E81AC;
+    --ui-alert-info-icon: #88C0D0;
+    --ui-alert-info-text: #D8DEE9;
+
+    --ui-alert-success-bg: #2F3E2F;
+    --ui-alert-success-border: #A3BE8C;
+    --ui-alert-success-icon: #A3BE8C;
+    --ui-alert-success-text: #ECEFF4;
+
+    --ui-alert-warning-bg: #3E3726;
+    --ui-alert-warning-border: #EBCB8B;
+    --ui-alert-warning-icon: #EBCB8B;
+    --ui-alert-warning-text: #ECEFF4;
+
+    --ui-alert-error-bg: #3B2327;
+    --ui-alert-error-border: #BF616A;
+    --ui-alert-error-icon: #BF616A;
+    --ui-alert-error-text: #ECEFF4;
 }
