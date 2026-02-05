@@ -111,14 +111,16 @@ function handleKeydown(e: KeyboardEvent) {
     padding: 0.75em 1.25em;
     border: none;
     border-bottom: 2px solid transparent;
+    border-radius: 0;
     margin-bottom: -2px;
     background: none;
     font-family: "Raleway", system-ui, sans-serif;
     font-weight: 500;
     font-size: 1em;
-    color: var(--ui-tabs-tab-color);
+    color: var(--ui-tabs-tab-color, #4A5568);
     cursor: pointer;
     transition: color 0.3s, border-color 0.3s;
+    min-width: auto;
 }
 
 .ui-tabs__tab:hover:not(:disabled) {

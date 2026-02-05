@@ -15,11 +15,15 @@ const emit = defineEmits<{ dismiss: [] }>()
         :class="[`ui-alert--${props.type}`]"
         role="alert"
     >
-        <span class="ui-alert__icon">
-            <template v-if="props.type === 'info'">&#9432;</template>
-            <template v-else-if="props.type === 'success'">&#10004;</template>
-            <template v-else>&#9888;</template>
-        </span>
+        <i
+            class="ui-alert__icon"
+            :class="{
+                'icon-info-circled': props.type === 'info',
+                'icon-ok-circled2': props.type === 'success',
+                'icon-attention-circled': props.type === 'warning',
+                'icon-cancel-circled2': props.type === 'error',
+            }"
+        />
         <div class="ui-alert__body">
             <p class="ui-alert__message">{{ props.message }}</p>
             <slot />
@@ -29,7 +33,7 @@ const emit = defineEmits<{ dismiss: [] }>()
             class="ui-alert__dismiss"
             aria-label="Dismiss alert"
             @click="emit('dismiss')"
-        >&times;</button>
+        ><i class="icon-cancel" /></button>
     </div>
 </template>
 
@@ -61,13 +65,20 @@ const emit = defineEmits<{ dismiss: [] }>()
 .ui-alert__dismiss {
     background: none;
     border: none;
+    border-radius: 0;
     font-size: 1.25em;
     cursor: pointer;
     padding: 0;
+    min-width: auto;
     line-height: 1;
     opacity: 0.7;
     transition: opacity 0.2s;
     color: inherit;
+}
+
+.ui-alert__dismiss i {
+    margin: 0;
+    width: auto;
 }
 
 .ui-alert__dismiss:hover {

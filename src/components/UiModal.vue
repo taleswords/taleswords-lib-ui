@@ -97,7 +97,7 @@ function handleCancel() {
                         class="ui-modal__x-button"
                         :disabled="props.actionsDisabled"
                         @click="closeModal"
-                    >&times;</button>
+                    ><i class="icon-cancel" /></button>
                 </header>
 
                 <div class="ui-modal__scroll">
@@ -106,7 +106,7 @@ function handleCancel() {
                             v-if="props.progressText"
                             class="ui-modal__action-info ui-modal__progress-text"
                         >
-                            <span class="ui-modal__action-icon">&#8987;</span>
+                            <i class="ui-modal__action-icon icon-dot-circled" />
                             <p>{{ props.progressText }}</p>
                         </div>
 
@@ -114,7 +114,7 @@ function handleCancel() {
                             v-if="props.errorText"
                             class="ui-modal__action-info ui-modal__error-text"
                         >
-                            <span class="ui-modal__action-icon">&#9888;</span>
+                            <i class="ui-modal__action-icon icon-cancel-circled2" />
                             <p>{{ props.errorText }}</p>
                         </div>
 
@@ -126,7 +126,7 @@ function handleCancel() {
                             v-if="props.infoText"
                             class="ui-modal__action-info ui-modal__info-text"
                         >
-                            <span class="ui-modal__action-icon">&#9432;</span>
+                            <i class="ui-modal__action-icon icon-info-circled" />
                             <p>{{ props.infoText }}</p>
                         </div>
 
@@ -134,7 +134,7 @@ function handleCancel() {
                             v-if="props.warningText"
                             class="ui-modal__action-info ui-modal__warning-text"
                         >
-                            <span class="ui-modal__action-icon">&#9888;</span>
+                            <i class="ui-modal__action-icon icon-attention-circled" />
                             <p>{{ props.warningText }}</p>
                         </div>
                     </div>

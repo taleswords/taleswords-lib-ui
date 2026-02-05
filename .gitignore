@@ -1,6 +1,6 @@
 # Dependencies
 node_modules/
-temp-old-react-app/
+old-react-app/
 
 # Build output
 dist/

@@ -24,6 +24,7 @@ import UiAlert from './components/UiAlert.vue'
 
 import './styles/variables.css'
 import './styles/base.css'
+import './styles/icons.css'
 
 // Named exports for tree-shaking
 export {

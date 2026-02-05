@@ -112,6 +112,7 @@ function handleKeydown(e: KeyboardEvent) {
         >
             <span v-if="selectedOption" class="ui-input-select__display-text">{{ selectedOption.label }}</span>
             <span v-else class="ui-input-select__placeholder">{{ props.placeholder }}</span>
+            <i class="ui-input-select__arrow icon-down-dir" />
         </div>
         <div
             class="ui-input-select__dropdown-position"
@@ -219,6 +220,21 @@ function handleKeydown(e: KeyboardEvent) {
 
 .ui-input-select__placeholder {
     color: var(--ui-input-placeholder-color);
+}
+
+.ui-input-select__display-text,
+.ui-input-select__placeholder {
+    flex: 1;
+}
+
+.ui-input-select__arrow {
+    color: var(--ui-input-placeholder-color);
+    transition: transform 0.2s, color 0.3s;
+}
+
+.ui-input-select--active .ui-input-select__arrow {
+    transform: rotate(180deg);
+    color: var(--ui-input-focus-border-color);
 }
 
 .ui-input-select__dropdown-position {

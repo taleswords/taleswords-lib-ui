@@ -29,14 +29,14 @@ onUnmounted(() => {
         role="alert"
         aria-live="assertive"
     >
-        <span v-if="props.type === 'success'" class="ui-popover__type-icon">&#10004;</span>
-        <span v-if="props.type === 'error'" class="ui-popover__type-icon">&#10006;</span>
+        <i v-if="props.type === 'success'" class="ui-popover__type-icon icon-ok-circled2" />
+        <i v-if="props.type === 'error'" class="ui-popover__type-icon icon-cancel-circled2" />
         <span class="ui-popover__message">{{ props.message }}</span>
         <button
             class="ui-popover__x-button"
             aria-label="Close popover"
             @click="emit('close')"
-        >&times;</button>
+        ><i class="icon-cancel" /></button>
     </div>
 </template>
 

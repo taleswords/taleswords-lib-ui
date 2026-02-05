@@ -98,11 +98,11 @@
 
     /* Tabs */
     --ui-tabs-border-color: #D6D6D6;
-    --ui-tabs-tab-color: #657B83;
-    --ui-tabs-tab-hover-color: #457B9D;
-    --ui-tabs-tab-active-color: #333333;
+    --ui-tabs-tab-color: #4A5568;
+    --ui-tabs-tab-hover-color: #2C5282;
+    --ui-tabs-tab-active-color: #1A202C;
     --ui-tabs-tab-active-border-color: #457B9D;
-    --ui-tabs-tab-disabled-color: #C4C4C4;
+    --ui-tabs-tab-disabled-color: #A0AEC0;
 
     /* Tooltip */
     --ui-tooltip-bg: #333333;
@@ -270,11 +270,11 @@
 
     /* Tabs */
     --ui-tabs-border-color: #434C5E;
-    --ui-tabs-tab-color: #A3B0C2;
+    --ui-tabs-tab-color: #CBD5E0;
     --ui-tabs-tab-hover-color: #88C0D0;
-    --ui-tabs-tab-active-color: #ECEFF4;
+    --ui-tabs-tab-active-color: #F7FAFC;
     --ui-tabs-tab-active-border-color: #88C0D0;
-    --ui-tabs-tab-disabled-color: #4C566A;
+    --ui-tabs-tab-disabled-color: #718096;
 
     /* Pagination */
     --ui-pagination-btn-bg: #3B4252;
