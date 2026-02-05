@@ -354,10 +354,19 @@ function handleDrillDown(item: DialogueNode) {
         <!-- UiActionsHeader -->
         <UiCard variant="outlined">
             <h2>UiActionsHeader</h2>
-            <UiActionsHeader title="Section Title">
-                <UiButton variant="primary" size="small">Action</UiButton>
-            </UiActionsHeader>
-            <UiActionsHeader title="Another Header" />
+            <p>When UiActionsHeader is first child in a card, it becomes flush with the card edges:</p>
+            <UiCard>
+                <UiActionsHeader title="Users List">
+                    <UiButton variant="primary" size="small" icon="plus">Add User</UiButton>
+                </UiActionsHeader>
+                <p>Card content goes here...</p>
+            </UiCard>
+            <UiCard>
+                <UiActionsHeader title="Settings">
+                    <UiButton variant="ghost" size="small" icon="cog" />
+                </UiActionsHeader>
+                <p>More content...</p>
+            </UiCard>
         </UiCard>
 
         <!-- UiInputField -->

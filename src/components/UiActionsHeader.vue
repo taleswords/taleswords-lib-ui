@@ -15,16 +15,12 @@ const props = defineProps<UiActionsHeaderProps>()
 .ui-actions-header {
     display: flex;
     gap: 1em;
-    padding-block: 1em;
-    padding-inline: 1em;
-    border: 1px solid var(--ui-card-border-color);
-    margin-bottom: 1em;
     align-items: center;
+    background-color: var(--ui-body-bg);
 }
 
 .ui-actions-header__title {
     flex: 1;
     margin: 0;
-    margin-block: -0.5em;
 }
 </style>
