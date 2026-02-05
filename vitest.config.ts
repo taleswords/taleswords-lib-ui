@@ -6,6 +6,6 @@ export default defineConfig({
     test: {
         environment: 'jsdom',
         globals: true,
-        exclude: ['**/node_modules/**', '**/dist/**', '**/temp-old-react-app/**'],
+        exclude: ['**/node_modules/**', '**/dist/**', '**/old-react-app/**'],
     },
 })

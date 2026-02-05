@@ -1,9 +1,57 @@
 // Component prop types
 
+export type IconName =
+    | 'cancel'
+    | 'login'
+    | 'down-dir'
+    | 'up-dir'
+    | 'cog'
+    | 'logout'
+    | 'ok'
+    | 'search'
+    | 'attention'
+    | 'edit'
+    | 'trash-empty'
+    | 'users'
+    | 'globe'
+    | 'info-circled'
+    | 'attention-circled'
+    | 'help-circled'
+    | 'cancel-circled2'
+    | 'ok-circled2'
+    | 'plus'
+    | 'pencil'
+    | 'link-ext'
+    | 'plus-squared'
+    | 'minus-squared'
+    | 'level-up'
+    | 'level-down'
+    | 'ok-squared'
+    | 'dollar'
+    | 'left'
+    | 'right'
+    | 'apple'
+    | 'android'
+    | 'dot-circled'
+    | 'cubes'
+    | 'toggle-off'
+    | 'toggle-on'
+    | 'diamond'
+    | 'user-plus'
+    | 'user-times'
+    | 'question-circle-o'
+
+export interface UiIconProps {
+    name: IconName
+    size?: 'small' | 'medium' | 'large'
+}
+
 export interface UiButtonProps {
-    variant?: 'default' | 'primary' | 'secondary' | 'danger'
+    variant?: 'default' | 'primary' | 'secondary' | 'danger' | 'ghost' | 'ghost-primary' | 'ghost-danger'
     size?: 'small' | 'medium'
     disabled?: boolean
+    icon?: IconName
+    iconPosition?: 'left' | 'right'
 }
 
 export type UiBadgeValue =
@@ -160,4 +208,34 @@ export interface UiAlertProps {
     type?: 'info' | 'success' | 'warning' | 'error'
     message: string
     dismissible?: boolean
+}
+
+export interface UiToggleProps {
+    modelValue: boolean
+    label?: string
+    disabled?: boolean
+    size?: 'small' | 'medium' | 'large'
+}
+
+export interface UiListItemProps {
+    hasChildren?: boolean
+    selected?: boolean
+    active?: boolean
+    disabled?: boolean
+}
+
+export interface UiListProps {
+    maxHeight?: string
+}
+
+export interface UiPathItem {
+    id: string | number
+    label: string
+    [key: string]: unknown
+}
+
+export interface UiPathListProps {
+    items: UiPathItem[]
+    selectedId?: string | number
+    maxHeight?: string
 }

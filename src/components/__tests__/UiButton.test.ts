@@ -17,6 +17,13 @@ describe('UiButton', () => {
         }
     })
 
+    it('renders ghost variant classes', () => {
+        for (const variant of ['ghost', 'ghost-primary', 'ghost-danger'] as const) {
+            const wrapper = mount(UiButton, { props: { variant }, slots: { default: 'Btn' } })
+            expect(wrapper.classes()).toContain(`ui-button--${variant}`)
+        }
+    })
+
     it('renders small size', () => {
         const wrapper = mount(UiButton, { props: { size: 'small' }, slots: { default: 'Btn' } })
         expect(wrapper.classes()).toContain('ui-button--small')
@@ -31,5 +38,36 @@ describe('UiButton', () => {
         const wrapper = mount(UiButton, { slots: { default: '<span>Icon</span> Save' } })
         expect(wrapper.html()).toContain('Icon')
         expect(wrapper.text()).toContain('Save')
+    })
+
+    it('renders icon on left by default', () => {
+        const wrapper = mount(UiButton, {
+            props: { icon: 'plus' },
+            slots: { default: 'Add' }
+        })
+        const icon = wrapper.find('.ui-button__icon')
+        expect(icon.exists()).toBe(true)
+        expect(icon.classes()).toContain('icon-plus')
+        expect(icon.classes()).toContain('ui-button__icon--left')
+    })
+
+    it('renders icon on right when specified', () => {
+        const wrapper = mount(UiButton, {
+            props: { icon: 'right', iconPosition: 'right' },
+            slots: { default: 'Next' }
+        })
+        const icon = wrapper.find('.ui-button__icon')
+        expect(icon.classes()).toContain('ui-button__icon--right')
+    })
+
+    it('renders icon-only button without slot content', () => {
+        const wrapper = mount(UiButton, { props: { icon: 'search' } })
+        expect(wrapper.classes()).toContain('ui-button--icon-only')
+        expect(wrapper.find('.icon-search').exists()).toBe(true)
+    })
+
+    it('does not render icon when not provided', () => {
+        const wrapper = mount(UiButton, { slots: { default: 'No Icon' } })
+        expect(wrapper.find('.ui-button__icon').exists()).toBe(false)
     })
 })

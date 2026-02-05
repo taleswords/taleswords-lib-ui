@@ -21,6 +21,11 @@ import UiLoader from './components/UiLoader.vue'
 import UiPagination from './components/UiPagination.vue'
 import UiDropdownMenu from './components/UiDropdownMenu.vue'
 import UiAlert from './components/UiAlert.vue'
+import UiIcon from './components/UiIcon.vue'
+import UiToggle from './components/UiToggle.vue'
+import UiList from './components/UiList.vue'
+import UiListItem from './components/UiListItem.vue'
+import UiPathList from './components/UiPathList.vue'
 
 import './styles/variables.css'
 import './styles/base.css'
@@ -46,6 +51,11 @@ export {
     UiPagination,
     UiDropdownMenu,
     UiAlert,
+    UiIcon,
+    UiToggle,
+    UiList,
+    UiListItem,
+    UiPathList,
 }
 
 // Color utilities
@@ -75,6 +85,11 @@ export const LibUiPlugin: Plugin = {
         app.component('UiPagination', UiPagination)
         app.component('UiDropdownMenu', UiDropdownMenu)
         app.component('UiAlert', UiAlert)
+        app.component('UiIcon', UiIcon)
+        app.component('UiToggle', UiToggle)
+        app.component('UiList', UiList)
+        app.component('UiListItem', UiListItem)
+        app.component('UiPathList', UiPathList)
     }
 }
 

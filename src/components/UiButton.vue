@@ -5,16 +5,31 @@ const props = withDefaults(defineProps<UiButtonProps>(), {
     variant: 'default',
     size: 'medium',
     disabled: false,
+    iconPosition: 'left',
 })
 </script>
 
 <template>
     <button
         class="ui-button"
-        :class="[`ui-button--${props.variant}`, `ui-button--${props.size}`]"
+        :class="[
+            `ui-button--${props.variant}`,
+            `ui-button--${props.size}`,
+            { 'ui-button--icon-only': props.icon && !$slots.default },
+        ]"
         :disabled="props.disabled"
     >
+        <i
+            v-if="props.icon && props.iconPosition === 'left'"
+            class="ui-button__icon ui-button__icon--left"
+            :class="`icon-${props.icon}`"
+        />
         <slot />
+        <i
+            v-if="props.icon && props.iconPosition === 'right'"
+            class="ui-button__icon ui-button__icon--right"
+            :class="`icon-${props.icon}`"
+        />
     </button>
 </template>
 
@@ -95,6 +110,67 @@ const props = withDefaults(defineProps<UiButtonProps>(), {
 .ui-button--danger:hover:not(:disabled) {
     background-color: var(--ui-button-danger-hover);
     box-shadow: var(--ui-button-danger-hover-shadow);
+}
+
+/* Ghost variant (neutral) */
+.ui-button--ghost {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--ui-text-color);
+}
+
+.ui-button--ghost:hover:not(:disabled) {
+    background-color: var(--ui-button-default-hover-bg);
+}
+
+/* Ghost primary variant */
+.ui-button--ghost-primary {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--ui-link-color);
+}
+
+.ui-button--ghost-primary:hover:not(:disabled) {
+    background-color: rgba(69, 123, 157, 0.1);
+    color: var(--ui-link-hover);
+}
+
+/* Ghost danger variant */
+.ui-button--ghost-danger {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--ui-error-text-color);
+}
+
+.ui-button--ghost-danger:hover:not(:disabled) {
+    background-color: rgba(230, 57, 70, 0.1);
+    color: var(--ui-button-danger-hover);
+}
+
+.ui-button__icon {
+    line-height: 1;
+}
+
+.ui-button__icon::before {
+    margin: 0;
+    width: auto;
+}
+
+.ui-button__icon--left {
+    margin-right: 0.5em;
+}
+
+.ui-button__icon--right {
+    margin-left: 0.5em;
+}
+
+.ui-button--icon-only {
+    min-width: auto;
+    padding-inline: 0.75em;
+}
+
+.ui-button--icon-only .ui-button__icon {
+    margin: 0;
 }
 
 @media only screen and (min-width: 840px) {
