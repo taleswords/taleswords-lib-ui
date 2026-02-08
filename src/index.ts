@@ -26,6 +26,8 @@ import UiToggle from './components/UiToggle.vue'
 import UiList from './components/UiList.vue'
 import UiListItem from './components/UiListItem.vue'
 import UiPathList from './components/UiPathList.vue'
+import UiFileUpload from './components/UiFileUpload.vue'
+import UiFileUploadModal from './components/UiFileUploadModal.vue'
 
 import './styles/variables.css'
 import './styles/base.css'
@@ -56,6 +58,8 @@ export {
     UiList,
     UiListItem,
     UiPathList,
+    UiFileUpload,
+    UiFileUploadModal,
 }
 
 // Color utilities
@@ -90,6 +94,8 @@ export const LibUiPlugin: Plugin = {
         app.component('UiList', UiList)
         app.component('UiListItem', UiListItem)
         app.component('UiPathList', UiPathList)
+        app.component('UiFileUpload', UiFileUpload)
+        app.component('UiFileUploadModal', UiFileUploadModal)
     }
 }
 

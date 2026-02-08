@@ -135,6 +135,16 @@
     --ui-dropdown-item-danger-color: #E63946;
     --ui-dropdown-item-disabled-color: #C4C4C4;
 
+    /* File Upload */
+    --ui-file-upload-border: #D1D1D1;
+    --ui-file-upload-border-hover: #457B9D;
+    --ui-file-upload-bg: #FAFAFA;
+    --ui-file-upload-bg-hover: #F0F5FA;
+    --ui-file-upload-icon-color: #A0AEC0;
+    --ui-file-upload-hint-color: #657B83;
+    --ui-file-upload-preview-bg: #F0F0F0;
+    --ui-file-upload-remove-bg: rgba(0, 0, 0, 0.6);
+
     /* Alert */
     --ui-alert-info-bg: #EBF5FF;
     --ui-alert-info-border: #B8DAFF;
@@ -299,6 +309,16 @@
     --ui-dropdown-item-color: #D8DEE9;
     --ui-dropdown-item-danger-color: #BF616A;
     --ui-dropdown-item-disabled-color: #4C566A;
+
+    /* File Upload */
+    --ui-file-upload-border: #454B5E;
+    --ui-file-upload-border-hover: #7AA2C9;
+    --ui-file-upload-bg: #2B2F3A;
+    --ui-file-upload-bg-hover: #323848;
+    --ui-file-upload-icon-color: #5B6380;
+    --ui-file-upload-hint-color: #A3ACC2;
+    --ui-file-upload-preview-bg: #3B4252;
+    --ui-file-upload-remove-bg: rgba(0, 0, 0, 0.7);
 
     /* Alerts (muted, readable, light-derived) */
     --ui-alert-info-bg: #2E3A4F;

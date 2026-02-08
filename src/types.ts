@@ -40,6 +40,10 @@ export type IconName =
     | 'user-plus'
     | 'user-times'
     | 'question-circle-o'
+    | 'chat'
+    | 'picture'
+    | 'spinner'
+    | 'file-image'
 
 export interface UiIconProps {
     name: IconName
@@ -238,4 +242,21 @@ export interface UiPathListProps {
     items: UiPathItem[]
     selectedId?: string | number
     maxHeight?: string
+}
+
+export interface UiFileUploadProps {
+    modelValue?: File[]
+    multiple?: boolean
+    maxFileSize?: number
+    maxFiles?: number
+    accept?: string
+}
+
+export interface UiFileUploadModalProps {
+    title?: string
+    multiple?: boolean
+    maxFileSize?: number
+    maxFiles?: number
+    confirmText?: string
+    cancelText?: string
 }

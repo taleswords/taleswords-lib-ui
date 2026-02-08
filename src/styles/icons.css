@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'taleswords-icons';
-    src: url('../assets/fontello-5cb615bb/font/taleswords-icons.woff2') format('woff2'),
-         url('../assets/fontello-5cb615bb/font/taleswords-icons.woff') format('woff'),
-         url('../assets/fontello-5cb615bb/font/taleswords-icons.ttf') format('truetype');
+    src: url('../assets/fontello-63b11ae8/font/taleswords-icons.woff2') format('woff2'),
+         url('../assets/fontello-63b11ae8/font/taleswords-icons.woff') format('woff'),
+         url('../assets/fontello-63b11ae8/font/taleswords-icons.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -46,8 +46,11 @@
 .icon-ok-circled2:before { content: '\e811'; }
 .icon-plus:before { content: '\e812'; }
 .icon-pencil:before { content: '\e813'; }
+.icon-chat:before { content: '\e814'; }
+.icon-picture:before { content: '\e815'; }
 .icon-link-ext:before { content: '\f08e'; }
 .icon-plus-squared:before { content: '\f0fe'; }
+.icon-spinner:before { content: '\f110'; }
 .icon-minus-squared:before { content: '\f146'; }
 .icon-level-up:before { content: '\f148'; }
 .icon-level-down:before { content: '\f149'; }
@@ -59,6 +62,7 @@
 .icon-android:before { content: '\f17b'; }
 .icon-dot-circled:before { content: '\f192'; }
 .icon-cubes:before { content: '\f1b3'; }
+.icon-file-image:before { content: '\f1c5'; }
 .icon-toggle-off:before { content: '\f204'; }
 .icon-toggle-on:before { content: '\f205'; }
 .icon-diamond:before { content: '\f219'; }

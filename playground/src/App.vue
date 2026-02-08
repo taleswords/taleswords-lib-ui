@@ -23,6 +23,8 @@ import {
     UiList,
     UiListItem,
     UiPathList,
+    UiFileUpload,
+    UiFileUploadModal,
 } from '@lib'
 import type { UiButtonProps, UiBadgeValue } from '@lib'
 
@@ -98,6 +100,19 @@ const lastAction = ref('')
 
 // Alert
 const showDismissibleAlert = ref(true)
+
+// File Upload
+const uploadFiles = ref<File[]>([])
+const uploadMultiple = ref(true)
+
+// File Upload Modal
+const showUploadModal = ref(false)
+const uploadedFromModal = ref<string[]>([])
+
+function handleModalConfirm(files: File[]) {
+    uploadedFromModal.value = files.map(f => f.name)
+    showUploadModal.value = false
+}
 
 // List demo - nested dialogue tree
 interface DialogueNode {
@@ -250,6 +265,10 @@ function handleDrillDown(item: DialogueNode) {
                 <span class="icon-demo"><i class="icon-cubes"></i> cubes</span>
                 <span class="icon-demo"><i class="icon-diamond"></i> diamond</span>
                 <span class="icon-demo"><i class="icon-dollar"></i> dollar</span>
+                <span class="icon-demo"><i class="icon-chat"></i> chat</span>
+                <span class="icon-demo"><i class="icon-picture"></i> picture</span>
+                <span class="icon-demo"><i class="icon-file-image"></i> file-image</span>
+                <span class="icon-demo"><i class="icon-spinner"></i> spinner</span>
                 <span class="icon-demo"><i class="icon-apple"></i> apple</span>
                 <span class="icon-demo"><i class="icon-android"></i> android</span>
             </div>
@@ -621,6 +640,39 @@ function handleDrillDown(item: DialogueNode) {
                 </div>
             </div>
             <p>Selected: {{ selectedListItem || '(none)' }}</p>
+        </UiCard>
+
+        <!-- UiFileUpload -->
+        <UiCard variant="outlined">
+            <h2>UiFileUpload</h2>
+            <UiCard row>
+                <label><input type="checkbox" v-model="uploadMultiple" /> Multiple</label>
+                <UiButton size="small" variant="default" @click="uploadFiles = []">Clear files</UiButton>
+            </UiCard>
+            <UiFileUpload
+                v-model="uploadFiles"
+                :multiple="uploadMultiple"
+                :max-file-size="5 * 1024 * 1024"
+                :max-files="6"
+            />
+            <p>Selected files: {{ uploadFiles.length }}</p>
+        </UiCard>
+
+        <!-- UiFileUploadModal -->
+        <UiCard variant="outlined">
+            <h2>UiFileUploadModal</h2>
+            <UiButton variant="primary" @click="showUploadModal = true">Open Upload Modal</UiButton>
+            <UiFileUploadModal
+                v-if="showUploadModal"
+                title="Upload Images"
+                multiple
+                :max-file-size="5 * 1024 * 1024"
+                :max-files="4"
+                @confirm="handleModalConfirm"
+                @cancel="showUploadModal = false"
+                @close="showUploadModal = false"
+            />
+            <p v-if="uploadedFromModal.length">Confirmed: {{ uploadedFromModal.join(', ') }}</p>
         </UiCard>
 
         <!-- UiAlert -->
