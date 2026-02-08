@@ -47,11 +47,19 @@ function handleClose() {
         @cancel="handleCancel"
         @close="handleClose"
     >
-        <UiFileUpload
-            v-model="files"
-            :multiple="props.multiple"
-            :max-file-size="props.maxFileSize"
-            :max-files="props.maxFiles"
-        />
+        <div class="ui-file-upload-modal__body">
+            <UiFileUpload
+                v-model="files"
+                :multiple="props.multiple"
+                :max-file-size="props.maxFileSize"
+                :max-files="props.maxFiles"
+            />
+        </div>
     </UiModal>
 </template>
+
+<style scoped>
+.ui-file-upload-modal__body {
+    padding-bottom: 1em;
+}
+</style>
