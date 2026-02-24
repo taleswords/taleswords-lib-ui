@@ -1,103 +1,53 @@
 /// <reference path="./globals.d.ts" />
+
+// Font imports
 import '@fontsource/source-sans-pro'
 import '@fontsource-variable/lora'
 import '@fontsource-variable/raleway'
-import type { App, Plugin } from 'vue'
-import UiButton from './components/UiButton.vue'
-import UiBadge from './components/UiBadge.vue'
-import UiModal from './components/UiModal.vue'
-import UiPopover from './components/UiPopover.vue'
-import UiInputField from './components/UiInputField.vue'
-import UiCheckboxField from './components/UiCheckboxField.vue'
-import UiInputSelect from './components/UiInputSelect.vue'
-import UiUserIcon from './components/UiUserIcon.vue'
-import UiBreadcrumbs from './components/UiBreadcrumbs.vue'
-import UiActionsHeader from './components/UiActionsHeader.vue'
-import UiCard from './components/UiCard.vue'
-import UiTextarea from './components/UiTextarea.vue'
-import UiTabs from './components/UiTabs.vue'
-import UiTooltip from './components/UiTooltip.vue'
-import UiLoader from './components/UiLoader.vue'
-import UiPagination from './components/UiPagination.vue'
-import UiDropdownMenu from './components/UiDropdownMenu.vue'
-import UiAlert from './components/UiAlert.vue'
-import UiIcon from './components/UiIcon.vue'
-import UiToggle from './components/UiToggle.vue'
-import UiList from './components/UiList.vue'
-import UiListItem from './components/UiListItem.vue'
-import UiPathList from './components/UiPathList.vue'
-import UiFileUpload from './components/UiFileUpload.vue'
-import UiFileUploadModal from './components/UiFileUploadModal.vue'
 
-import './styles/variables.css'
+// Styles (order matters: palette → tokens → dark → fonts → base → icons)
+import './styles/palette.css'
+import './styles/tokens.css'
+import './styles/tokens-dark.css'
+import './styles/fonts.css'
 import './styles/base.css'
 import './styles/icons.css'
 
-// Named exports for tree-shaking
-export {
-    UiButton,
-    UiBadge,
-    UiModal,
-    UiPopover,
-    UiInputField,
-    UiCheckboxField,
-    UiInputSelect,
-    UiUserIcon,
-    UiBreadcrumbs,
-    UiActionsHeader,
-    UiCard,
-    UiTextarea,
-    UiTabs,
-    UiTooltip,
-    UiLoader,
-    UiPagination,
-    UiDropdownMenu,
-    UiAlert,
-    UiIcon,
-    UiToggle,
-    UiList,
-    UiListItem,
-    UiPathList,
-    UiFileUpload,
-    UiFileUploadModal,
-}
+// Foundation — Inputs
+export { default as ButtonBase } from './inputs/buttons/Base.vue'
+export { default as TextboxBase } from './inputs/textboxes/Base.vue'
+export { default as CheckboxInput } from './inputs/checkboxes/Input.vue'
+export { default as CheckboxBase } from './inputs/checkboxes/Base.vue'
+export { default as Radio } from './inputs/Radio.vue'
+export { default as Switch } from './inputs/Switch.vue'
 
-// Color utilities
+// Foundation — Info
+export { default as BadgeBase } from './info/badges/Base.vue'
+export { default as LoaderIcon } from './info/loaders/Icon.vue'
+export { default as LoaderBase } from './info/loaders/Base.vue'
+export { default as ProgressBar } from './info/ProgressBar.vue'
+
+// Foundation — Forms
+export { default as FormField } from './forms/Field.vue'
+
+// Utilities
 export { stringToColor, getTextColorForBackground } from './utils/color'
+export { uid, resetUidCounter } from './utils/uid'
+export { resolveNavigationTag, resolveNavigationAttrs } from './utils/navigation'
+export { useOutsideClick } from './utils/outsideClick'
+export { calculateDropdownPosition } from './utils/positioning'
 
-// Re-export types
-export * from './types'
-
-// Plugin for Vue app.use()
-export const LibUiPlugin: Plugin = {
-    install(app: App) {
-        app.component('UiButton', UiButton)
-        app.component('UiBadge', UiBadge)
-        app.component('UiModal', UiModal)
-        app.component('UiPopover', UiPopover)
-        app.component('UiInputField', UiInputField)
-        app.component('UiCheckboxField', UiCheckboxField)
-        app.component('UiInputSelect', UiInputSelect)
-        app.component('UiUserIcon', UiUserIcon)
-        app.component('UiBreadcrumbs', UiBreadcrumbs)
-        app.component('UiActionsHeader', UiActionsHeader)
-        app.component('UiCard', UiCard)
-        app.component('UiTextarea', UiTextarea)
-        app.component('UiTabs', UiTabs)
-        app.component('UiTooltip', UiTooltip)
-        app.component('UiLoader', UiLoader)
-        app.component('UiPagination', UiPagination)
-        app.component('UiDropdownMenu', UiDropdownMenu)
-        app.component('UiAlert', UiAlert)
-        app.component('UiIcon', UiIcon)
-        app.component('UiToggle', UiToggle)
-        app.component('UiList', UiList)
-        app.component('UiListItem', UiListItem)
-        app.component('UiPathList', UiPathList)
-        app.component('UiFileUpload', UiFileUpload)
-        app.component('UiFileUploadModal', UiFileUploadModal)
-    }
-}
-
-// Default export is the plugin
-export default LibUiPlugin
+// Type re-exports
+export type { ButtonBaseProps, ButtonVariant, ButtonSize } from './inputs/buttons/Base.vue'
+export type { TextboxBaseProps, TextboxType } from './inputs/textboxes/Base.vue'
+export type { CheckboxInputProps } from './inputs/checkboxes/Input.vue'
+export type { CheckboxBaseProps } from './inputs/checkboxes/Base.vue'
+export type { RadioProps } from './inputs/Radio.vue'
+export type { SwitchProps, SwitchSize } from './inputs/Switch.vue'
+export type { BadgeBaseProps, BadgeVariant } from './info/badges/Base.vue'
+export type { LoaderIconProps, LoaderIconSize } from './info/loaders/Icon.vue'
+export type { LoaderBaseProps, LoaderVariant } from './info/loaders/Base.vue'
+export type { ProgressBarProps, ProgressVariant } from './info/ProgressBar.vue'
+export type { FormFieldProps, ValidationEntry } from './forms/Field.vue'
+export type { NavigationTag, NavigationProps } from './utils/navigation'
+export type { PositionOffset } from './utils/positioning'

@@ -1,0 +1,9 @@
+/* Font family declarations for the design system.
+   Actual @font-face rules are provided by @fontsource packages
+   imported in src/index.ts. This file defines font-stack tokens. */
+
+:root {
+    --font-heading: 'Raleway', system-ui, sans-serif;
+    --font-body: 'Lora', serif;
+    --font-ui: 'Source Sans Pro', system-ui, sans-serif;
+}

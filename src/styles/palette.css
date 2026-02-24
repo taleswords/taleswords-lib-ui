@@ -1,0 +1,90 @@
+/* Layer 1 — Raw palette: immutable color values.
+   These are never referenced directly by components.
+   Components use semantic tokens from tokens.css. */
+
+:root {
+    /* Neutrals */
+    --color-neutral-50: #FAFAFA;
+    --color-neutral-100: #F5F5F5;
+    --color-neutral-200: #F0F0F0;
+    --color-neutral-300: #ECECEC;
+    --color-neutral-400: #D6D6D6;
+    --color-neutral-500: #D1D1D1;
+    --color-neutral-600: #C4C4C4;
+    --color-neutral-700: #C0C0C0;
+    --color-neutral-800: #B0B0B0;
+    --color-neutral-900: #A0AEC0;
+    --color-neutral-1000: #657B83;
+    --color-neutral-1100: #4A5568;
+    --color-neutral-1200: #4A4A4A;
+    --color-neutral-1300: #333333;
+    --color-neutral-1400: #2D2D2D;
+
+    /* Primary (gold) */
+    --color-primary-300: #FFD166;
+    --color-primary-400: #EFB948;
+    --color-primary-500: #F0E68C;
+
+    /* Accent (blue) */
+    --color-accent-300: #A8DADC;
+    --color-accent-400: #7AA2C9;
+    --color-accent-500: #457B9D;
+    --color-accent-600: #2C5282;
+
+    /* Danger (red) */
+    --color-danger-300: #F67280;
+    --color-danger-400: #E63946;
+    --color-danger-500: #B71C1C;
+
+    /* Success (teal/green) */
+    --color-success-300: #A5D6A7;
+    --color-success-400: #4CAF50;
+    --color-success-500: #2A9D8F;
+    --color-success-600: #1B5E20;
+
+    /* Warning (amber) */
+    --color-warning-300: #FFE082;
+    --color-warning-400: #D97706;
+    --color-warning-500: #663C00;
+
+    /* Info (blue) */
+    --color-info-300: #B8DAFF;
+    --color-info-400: #3A82F7;
+    --color-info-500: #004085;
+
+    /* Surfaces */
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+
+    /* Nord-inspired dark palette */
+    --color-nord-bg: #2B2F3A;
+    --color-nord-surface: #343947;
+    --color-nord-border: #454B5E;
+    --color-nord-muted: #4C5366;
+    --color-nord-hover: #3E4455;
+    --color-nord-elevated: #5B6380;
+    --color-nord-text: #E5E9F0;
+    --color-nord-text-bright: #ECEFF4;
+    --color-nord-text-muted: #A3ACC2;
+    --color-nord-text-subtle: #9AA3B8;
+    --color-nord-accent: #7AA2C9;
+    --color-nord-primary: #EBCB8B;
+    --color-nord-danger: #E06C75;
+    --color-nord-success: #8EC07C;
+    --color-nord-teal: #8FBCBB;
+    --color-nord-frost: #88C0D0;
+    --color-nord-deep: #2E3440;
+    --color-nord-deep-surface: #3B4252;
+    --color-nord-deep-border: #434C5E;
+    --color-nord-deep-accent: #5E81AC;
+    --color-nord-deep-danger: #BF616A;
+    --color-nord-deep-success: #A3BE8C;
+    --color-nord-deep-warning: #D9B56C;
+    --color-nord-dim: #262A33;
+    --color-nord-dim-border: #3C4154;
+    --color-nord-sub: #4C566A;
+    --color-nord-sub-text: #D8DEE9;
+    --color-nord-sub-muted: #A3B0C2;
+    --color-nord-sub-dim: #718096;
+    --color-nord-sub-deep: #CBD5E0;
+}

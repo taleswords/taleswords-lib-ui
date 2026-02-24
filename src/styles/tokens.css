@@ -1,0 +1,272 @@
+/* Layer 2 — Semantic tokens: light theme (default).
+   Components reference ONLY these tokens.
+   Pattern: --{component}-{property}-{state} */
+
+:root {
+    /* ──────────────────────────────────────────
+       General
+       ────────────────────────────────────────── */
+    --general-text-color: var(--color-neutral-1300);
+    --general-body-bg: var(--color-neutral-50);
+    --general-card-bg: var(--color-neutral-100);
+    --general-card-border: var(--color-neutral-400);
+    --general-card-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    --general-focus-ring: var(--color-accent-500);
+    --general-focus-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    --general-error-color: var(--color-danger-400);
+    --general-success-color: var(--color-success-500);
+
+    /* ──────────────────────────────────────────
+       Headings
+       ────────────────────────────────────────── */
+    --heading-h1-color: var(--color-neutral-1300);
+    --heading-h2-color: var(--color-accent-500);
+    --heading-h3-color: var(--color-neutral-1400);
+    --heading-h4-color: var(--color-neutral-1000);
+    --heading-h5-color: var(--color-danger-300);
+
+    /* ──────────────────────────────────────────
+       Links
+       ────────────────────────────────────────── */
+    --link-color: var(--color-accent-500);
+    --link-color-hover: var(--color-danger-300);
+    --link-secondary-color: var(--color-neutral-1000);
+    --link-secondary-color-hover: var(--color-primary-300);
+
+    /* ──────────────────────────────────────────
+       Button
+       ────────────────────────────────────────── */
+    --button-border-radius: 6px;
+    --button-transition: background-color 0.3s, box-shadow 0.3s, opacity 0.3s, border-color 0.3s;
+
+    /* default */
+    --button-default-bg: var(--color-neutral-50);
+    --button-default-border: var(--color-neutral-600);
+    --button-default-text: var(--color-neutral-1300);
+    --button-default-bg-hover: var(--color-neutral-200);
+    --button-default-border-hover: var(--color-neutral-800);
+    --button-default-bg-disabled: var(--color-neutral-300);
+    --button-default-text-disabled: var(--color-neutral-800);
+    --button-default-border-disabled: var(--color-neutral-400);
+
+    /* primary */
+    --button-primary-bg: var(--color-primary-300);
+    --button-primary-text: var(--color-neutral-1300);
+    --button-primary-bg-hover: var(--color-primary-400);
+    --button-primary-shadow-hover: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+    /* secondary */
+    --button-secondary-bg: var(--color-neutral-600);
+    --button-secondary-text: var(--color-neutral-1300);
+    --button-secondary-bg-hover: var(--color-neutral-800);
+    --button-secondary-shadow-hover: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+    /* danger */
+    --button-danger-bg: var(--color-danger-300);
+    --button-danger-text: var(--color-white);
+    --button-danger-bg-hover: var(--color-danger-400);
+    --button-danger-shadow-hover: 0px 4px 8px rgba(230, 57, 70, 0.3);
+
+    /* ghost */
+    --button-ghost-bg: transparent;
+    --button-ghost-text: var(--color-neutral-1300);
+    --button-ghost-bg-hover: var(--color-neutral-200);
+
+    /* ghost-primary */
+    --button-ghost-primary-text: var(--color-accent-500);
+    --button-ghost-primary-bg-hover: rgba(69, 123, 157, 0.1);
+    --button-ghost-primary-text-hover: var(--color-danger-300);
+
+    /* ghost-danger */
+    --button-ghost-danger-text: var(--color-danger-400);
+    --button-ghost-danger-bg-hover: rgba(230, 57, 70, 0.1);
+    --button-ghost-danger-text-hover: var(--color-danger-300);
+
+    /* ──────────────────────────────────────────
+       Textbox / Input
+       ────────────────────────────────────────── */
+    --textbox-bg: var(--color-neutral-50);
+    --textbox-text: var(--color-neutral-1300);
+    --textbox-border: var(--color-neutral-500);
+    --textbox-border-radius: 6px;
+    --textbox-placeholder: var(--color-neutral-1000);
+    --textbox-bg-disabled: var(--color-neutral-300);
+    --textbox-border-disabled: var(--color-neutral-400);
+    --textbox-text-disabled: var(--color-neutral-800);
+    --textbox-border-focus: var(--color-accent-500);
+    --textbox-shadow-focus: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    --textbox-border-error: var(--color-danger-400);
+    --textbox-border-error-focus: var(--color-danger-400);
+
+    /* ──────────────────────────────────────────
+       Checkbox
+       ────────────────────────────────────────── */
+    --checkbox-accent: var(--color-primary-300);
+    --checkbox-border: var(--color-neutral-500);
+    --checkbox-border-hover: var(--color-accent-500);
+    --checkbox-border-checked: var(--color-primary-300);
+    --checkbox-border-error: var(--color-danger-400);
+    --checkbox-bg-disabled: var(--color-neutral-300);
+    --checkbox-border-disabled: var(--color-neutral-400);
+
+    /* ──────────────────────────────────────────
+       Radio
+       ────────────────────────────────────────── */
+    --radio-accent: var(--color-accent-500);
+    --radio-border: var(--color-neutral-500);
+    --radio-border-hover: var(--color-accent-500);
+    --radio-border-checked: var(--color-accent-500);
+    --radio-border-error: var(--color-danger-400);
+    --radio-bg-disabled: var(--color-neutral-300);
+    --radio-border-disabled: var(--color-neutral-400);
+
+    /* ──────────────────────────────────────────
+       Switch / Toggle
+       ────────────────────────────────────────── */
+    --switch-track-bg: var(--color-neutral-600);
+    --switch-track-bg-checked: var(--color-primary-300);
+    --switch-thumb-bg: var(--color-white);
+    --switch-thumb-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --switch-track-bg-disabled: var(--color-neutral-300);
+    --switch-thumb-bg-disabled: var(--color-neutral-400);
+
+    /* ──────────────────────────────────────────
+       Badge
+       ────────────────────────────────────────── */
+    --badge-border-radius: 6px;
+
+    --badge-visitor-bg: var(--color-neutral-400);
+    --badge-visitor-text: var(--color-neutral-1300);
+    --badge-guest-bg: var(--color-neutral-1000);
+    --badge-guest-text: var(--color-white);
+    --badge-guest-editor-bg: var(--color-accent-300);
+    --badge-guest-editor-text: var(--color-neutral-1300);
+    --badge-reviewer-bg: var(--color-primary-300);
+    --badge-reviewer-text: var(--color-neutral-1300);
+    --badge-editor-bg: var(--color-danger-300);
+    --badge-editor-text: var(--color-neutral-1300);
+    --badge-manager-bg: var(--color-accent-500);
+    --badge-manager-text: var(--color-white);
+    --badge-admin-bg: var(--color-danger-400);
+    --badge-admin-text: var(--color-white);
+    --badge-public-bg: var(--color-success-500);
+    --badge-public-text: var(--color-white);
+    --badge-private-bg: var(--color-danger-400);
+    --badge-private-text: var(--color-white);
+    --badge-pending-bg: var(--color-primary-500);
+    --badge-pending-text: var(--color-neutral-1300);
+    --badge-declined-bg: var(--color-neutral-700);
+    --badge-declined-text: var(--color-neutral-1300);
+    --badge-accepted-bg: var(--color-success-400);
+    --badge-accepted-text: var(--color-white);
+
+    /* ──────────────────────────────────────────
+       Loader
+       ────────────────────────────────────────── */
+    --loader-color: var(--color-accent-500);
+    --loader-secondary-color: var(--color-neutral-400);
+    --loader-overlay-bg: rgba(250, 250, 250, 0.8);
+    --loader-label-color: var(--color-neutral-1000);
+
+    /* ──────────────────────────────────────────
+       Progress Bar
+       ────────────────────────────────────────── */
+    --progress-bg: var(--color-neutral-300);
+    --progress-fill-bg: var(--color-accent-500);
+    --progress-fill-success: var(--color-success-500);
+    --progress-fill-danger: var(--color-danger-400);
+    --progress-fill-warning: var(--color-warning-400);
+    --progress-border-radius: 999px;
+    --progress-text-color: var(--color-neutral-1000);
+
+    /* ──────────────────────────────────────────
+       Form Field
+       ────────────────────────────────────────── */
+    --form-field-label-color: var(--color-neutral-1300);
+    --form-field-label-focus-color: var(--color-accent-500);
+    --form-field-required-star: var(--color-danger-400);
+    --form-field-description-color: var(--color-neutral-1000);
+    --form-field-error-color: var(--color-danger-400);
+
+    /* ──────────────────────────────────────────
+       Tooltip
+       ────────────────────────────────────────── */
+    --tooltip-bg: var(--color-neutral-1300);
+    --tooltip-text: var(--color-neutral-50);
+    --tooltip-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+
+    /* ──────────────────────────────────────────
+       Modal
+       ────────────────────────────────────────── */
+    --modal-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15), 0px 4px 8px rgba(0, 0, 0, 0.1);
+    --modal-overlay-bg: rgba(0, 0, 0, 0.25);
+
+    /* ──────────────────────────────────────────
+       Alert
+       ────────────────────────────────────────── */
+    --alert-info-bg: #EBF5FF;
+    --alert-info-border: var(--color-info-300);
+    --alert-info-icon: var(--color-info-400);
+    --alert-info-text: var(--color-info-500);
+
+    --alert-success-bg: #E8F5E9;
+    --alert-success-border: var(--color-success-300);
+    --alert-success-icon: var(--color-success-500);
+    --alert-success-text: var(--color-success-600);
+
+    --alert-warning-bg: #FFF8E1;
+    --alert-warning-border: var(--color-warning-300);
+    --alert-warning-icon: var(--color-warning-400);
+    --alert-warning-text: var(--color-warning-500);
+
+    --alert-error-bg: #FFEBEE;
+    --alert-error-border: #EF9A9A;
+    --alert-error-icon: var(--color-danger-400);
+    --alert-error-text: var(--color-danger-500);
+
+    /* ──────────────────────────────────────────
+       Tabs
+       ────────────────────────────────────────── */
+    --tabs-border-color: var(--color-neutral-400);
+    --tabs-tab-color: var(--color-neutral-1100);
+    --tabs-tab-hover-color: var(--color-accent-600);
+    --tabs-tab-active-color: #1A202C;
+    --tabs-tab-active-border: var(--color-accent-500);
+    --tabs-tab-disabled-color: var(--color-neutral-900);
+
+    /* ──────────────────────────────────────────
+       Dropdown
+       ────────────────────────────────────────── */
+    --dropdown-bg: var(--color-neutral-50);
+    --dropdown-border: var(--color-neutral-400);
+    --dropdown-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    --dropdown-item-hover-bg: var(--color-neutral-200);
+    --dropdown-item-color: var(--color-neutral-1300);
+    --dropdown-item-danger-color: var(--color-danger-400);
+    --dropdown-item-disabled-color: var(--color-neutral-600);
+
+    /* ──────────────────────────────────────────
+       Pagination
+       ────────────────────────────────────────── */
+    --pagination-btn-bg: var(--color-neutral-50);
+    --pagination-btn-border: var(--color-neutral-400);
+    --pagination-btn-color: var(--color-neutral-1300);
+    --pagination-btn-hover-bg: var(--color-neutral-200);
+    --pagination-btn-hover-border: var(--color-neutral-800);
+    --pagination-active-bg: var(--color-accent-500);
+    --pagination-active-color: var(--color-white);
+    --pagination-disabled-color: var(--color-neutral-600);
+    --pagination-ellipsis-color: var(--color-neutral-1000);
+
+    /* ──────────────────────────────────────────
+       File Upload
+       ────────────────────────────────────────── */
+    --file-upload-border: var(--color-neutral-500);
+    --file-upload-border-hover: var(--color-accent-500);
+    --file-upload-bg: var(--color-neutral-50);
+    --file-upload-bg-hover: #F0F5FA;
+    --file-upload-icon-color: var(--color-neutral-900);
+    --file-upload-hint-color: var(--color-neutral-1000);
+    --file-upload-preview-bg: var(--color-neutral-200);
+    --file-upload-remove-bg: rgba(0, 0, 0, 0.6);
+}

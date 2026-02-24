@@ -13,12 +13,12 @@ export function stringToColor(str: string): string {
     return color
 }
 
-const luminanceFactor = (value: number): number => {
+function luminanceFactor(value: number): number {
     value /= 255
     return value <= 0.03928 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4)
 }
 
-export function getTextColorForBackground(hexColor: string): string {
+export function getTextColorForBackground(hexColor: string): '#FAFAFA' | '#333333' {
     const r = parseInt(hexColor.slice(1, 3), 16)
     const g = parseInt(hexColor.slice(3, 5), 16)
     const b = parseInt(hexColor.slice(5, 7), 16)

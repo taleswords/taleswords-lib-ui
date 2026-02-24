@@ -1,0 +1,254 @@
+/* Layer 3 — Dark theme overrides.
+   Only tokens that differ from light are redeclared. */
+
+[data-theme="dark"] {
+    /* ──────────────────────────────────────────
+       General
+       ────────────────────────────────────────── */
+    --general-text-color: var(--color-nord-text);
+    --general-body-bg: var(--color-nord-bg);
+    --general-card-bg: var(--color-nord-surface);
+    --general-card-border: var(--color-nord-border);
+    --general-card-shadow: 0px 6px 18px rgba(0, 0, 0, 0.45);
+    --general-focus-ring: var(--color-nord-accent);
+    --general-focus-shadow: 0px 0px 0px 2px rgba(122, 162, 201, 0.35);
+    --general-error-color: var(--color-nord-danger);
+    --general-success-color: var(--color-nord-success);
+
+    /* ──────────────────────────────────────────
+       Headings
+       ────────────────────────────────────────── */
+    --heading-h1-color: var(--color-nord-text-bright);
+    --heading-h2-color: var(--color-nord-accent);
+    --heading-h3-color: var(--color-nord-text);
+    --heading-h4-color: var(--color-nord-text-muted);
+    --heading-h5-color: var(--color-nord-danger);
+
+    /* ──────────────────────────────────────────
+       Links
+       ────────────────────────────────────────── */
+    --link-color: var(--color-nord-accent);
+    --link-color-hover: var(--color-nord-primary);
+    --link-secondary-color: var(--color-nord-text-muted);
+    --link-secondary-color-hover: var(--color-primary-300);
+
+    /* ──────────────────────────────────────────
+       Button
+       ────────────────────────────────────────── */
+    --button-default-bg: var(--color-nord-surface);
+    --button-default-border: var(--color-nord-border);
+    --button-default-text: var(--color-nord-text);
+    --button-default-bg-hover: var(--color-nord-hover);
+    --button-default-border-hover: var(--color-nord-elevated);
+    --button-default-bg-disabled: var(--color-nord-muted);
+    --button-default-text-disabled: var(--color-nord-text-muted);
+    --button-default-border-disabled: var(--color-nord-border);
+
+    --button-primary-bg: var(--color-nord-primary);
+    --button-primary-text: var(--color-neutral-1300);
+    --button-primary-bg-hover: var(--color-primary-300);
+    --button-primary-shadow-hover: 0px 4px 10px rgba(235, 203, 139, 0.35);
+
+    --button-secondary-bg: var(--color-nord-muted);
+    --button-secondary-text: var(--color-nord-text);
+    --button-secondary-bg-hover: var(--color-nord-elevated);
+
+    --button-danger-bg: var(--color-nord-danger);
+    --button-danger-text: var(--color-white);
+    --button-danger-bg-hover: var(--color-danger-300);
+    --button-danger-shadow-hover: 0px 4px 10px rgba(224, 108, 117, 0.4);
+
+    --button-ghost-text: var(--color-nord-text);
+    --button-ghost-bg-hover: var(--color-nord-hover);
+
+    --button-ghost-primary-text: var(--color-nord-accent);
+    --button-ghost-primary-bg-hover: rgba(122, 162, 201, 0.15);
+    --button-ghost-primary-text-hover: var(--color-nord-primary);
+
+    --button-ghost-danger-text: var(--color-nord-danger);
+    --button-ghost-danger-bg-hover: rgba(224, 108, 117, 0.15);
+    --button-ghost-danger-text-hover: var(--color-danger-300);
+
+    /* ──────────────────────────────────────────
+       Textbox / Input
+       ────────────────────────────────────────── */
+    --textbox-bg: var(--color-nord-bg);
+    --textbox-text: var(--color-nord-text-bright);
+    --textbox-border: var(--color-nord-border);
+    --textbox-placeholder: var(--color-nord-text-subtle);
+    --textbox-bg-disabled: var(--color-nord-dim);
+    --textbox-border-disabled: var(--color-nord-dim-border);
+    --textbox-text-disabled: var(--color-nord-text-muted);
+    --textbox-border-focus: var(--color-nord-accent);
+    --textbox-shadow-focus: 0px 0px 0px 2px rgba(122, 162, 201, 0.35);
+    --textbox-border-error: var(--color-nord-danger);
+    --textbox-border-error-focus: var(--color-nord-danger);
+
+    /* ──────────────────────────────────────────
+       Checkbox
+       ────────────────────────────────────────── */
+    --checkbox-accent: var(--color-nord-primary);
+    --checkbox-border: var(--color-nord-border);
+    --checkbox-border-hover: var(--color-nord-accent);
+    --checkbox-border-checked: var(--color-nord-primary);
+    --checkbox-border-error: var(--color-nord-danger);
+    --checkbox-bg-disabled: var(--color-nord-dim);
+    --checkbox-border-disabled: var(--color-nord-dim-border);
+
+    /* ──────────────────────────────────────────
+       Radio
+       ────────────────────────────────────────── */
+    --radio-accent: var(--color-nord-accent);
+    --radio-border: var(--color-nord-border);
+    --radio-border-hover: var(--color-nord-accent);
+    --radio-border-checked: var(--color-nord-accent);
+    --radio-border-error: var(--color-nord-danger);
+    --radio-bg-disabled: var(--color-nord-dim);
+    --radio-border-disabled: var(--color-nord-dim-border);
+
+    /* ──────────────────────────────────────────
+       Switch / Toggle
+       ────────────────────────────────────────── */
+    --switch-track-bg: var(--color-nord-muted);
+    --switch-track-bg-checked: var(--color-nord-primary);
+    --switch-thumb-bg: var(--color-white);
+    --switch-track-bg-disabled: var(--color-nord-dim-border);
+    --switch-thumb-bg-disabled: var(--color-nord-border);
+
+    /* ──────────────────────────────────────────
+       Badge
+       ────────────────────────────────────────── */
+    --badge-visitor-bg: #3A404C;
+    --badge-visitor-text: var(--color-nord-sub-text);
+    --badge-guest-bg: var(--color-nord-sub);
+    --badge-guest-text: var(--color-nord-text-bright);
+    --badge-guest-editor-bg: #6B8FA3;
+    --badge-guest-editor-text: var(--color-nord-text-bright);
+    --badge-reviewer-bg: var(--color-nord-primary);
+    --badge-reviewer-text: var(--color-nord-deep);
+    --badge-editor-bg: var(--color-nord-deep-danger);
+    --badge-editor-text: var(--color-nord-text-bright);
+    --badge-manager-bg: var(--color-nord-deep-accent);
+    --badge-manager-text: var(--color-nord-text-bright);
+    --badge-admin-bg: var(--color-nord-deep-danger);
+    --badge-admin-text: var(--color-nord-text-bright);
+    --badge-public-bg: var(--color-nord-teal);
+    --badge-public-text: var(--color-nord-deep);
+    --badge-private-bg: var(--color-nord-deep-danger);
+    --badge-private-text: var(--color-nord-text-bright);
+    --badge-pending-bg: var(--color-nord-deep-warning);
+    --badge-pending-text: var(--color-nord-deep);
+    --badge-declined-bg: var(--color-nord-sub);
+    --badge-declined-text: var(--color-nord-sub-muted);
+    --badge-accepted-bg: var(--color-nord-deep-success);
+    --badge-accepted-text: var(--color-nord-deep);
+
+    /* ──────────────────────────────────────────
+       Loader
+       ────────────────────────────────────────── */
+    --loader-color: var(--color-nord-accent);
+    --loader-secondary-color: var(--color-nord-border);
+    --loader-overlay-bg: rgba(43, 47, 58, 0.85);
+    --loader-label-color: var(--color-nord-text-muted);
+
+    /* ──────────────────────────────────────────
+       Progress Bar
+       ────────────────────────────────────────── */
+    --progress-bg: var(--color-nord-border);
+    --progress-fill-bg: var(--color-nord-accent);
+    --progress-fill-success: var(--color-nord-success);
+    --progress-fill-danger: var(--color-nord-danger);
+    --progress-fill-warning: var(--color-nord-primary);
+    --progress-text-color: var(--color-nord-text-muted);
+
+    /* ──────────────────────────────────────────
+       Form Field
+       ────────────────────────────────────────── */
+    --form-field-label-color: var(--color-nord-text);
+    --form-field-label-focus-color: var(--color-nord-accent);
+    --form-field-required-star: var(--color-nord-danger);
+    --form-field-description-color: var(--color-nord-text-muted);
+    --form-field-error-color: var(--color-nord-danger);
+
+    /* ──────────────────────────────────────────
+       Tooltip
+       ────────────────────────────────────────── */
+    --tooltip-bg: var(--color-nord-text-bright);
+    --tooltip-text: var(--color-nord-bg);
+    --tooltip-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+
+    /* ──────────────────────────────────────────
+       Modal
+       ────────────────────────────────────────── */
+    --modal-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+    --modal-overlay-bg: rgba(0, 0, 0, 0.45);
+
+    /* ──────────────────────────────────────────
+       Alert
+       ────────────────────────────────────────── */
+    --alert-info-bg: #2E3A4F;
+    --alert-info-border: var(--color-nord-deep-accent);
+    --alert-info-icon: var(--color-nord-frost);
+    --alert-info-text: var(--color-nord-sub-text);
+
+    --alert-success-bg: #2F3E2F;
+    --alert-success-border: var(--color-nord-deep-success);
+    --alert-success-icon: var(--color-nord-deep-success);
+    --alert-success-text: var(--color-nord-text-bright);
+
+    --alert-warning-bg: #3E3726;
+    --alert-warning-border: var(--color-nord-primary);
+    --alert-warning-icon: var(--color-nord-primary);
+    --alert-warning-text: var(--color-nord-text-bright);
+
+    --alert-error-bg: #3B2327;
+    --alert-error-border: var(--color-nord-deep-danger);
+    --alert-error-icon: var(--color-nord-deep-danger);
+    --alert-error-text: var(--color-nord-text-bright);
+
+    /* ──────────────────────────────────────────
+       Tabs
+       ────────────────────────────────────────── */
+    --tabs-border-color: var(--color-nord-deep-border);
+    --tabs-tab-color: var(--color-nord-sub-deep);
+    --tabs-tab-hover-color: var(--color-nord-frost);
+    --tabs-tab-active-color: #F7FAFC;
+    --tabs-tab-active-border: var(--color-nord-frost);
+    --tabs-tab-disabled-color: var(--color-nord-sub-dim);
+
+    /* ──────────────────────────────────────────
+       Dropdown
+       ────────────────────────────────────────── */
+    --dropdown-bg: var(--color-nord-deep-surface);
+    --dropdown-border: var(--color-nord-deep-border);
+    --dropdown-shadow: 0px 6px 20px rgba(0, 0, 0, 0.45);
+    --dropdown-item-hover-bg: var(--color-nord-deep-border);
+    --dropdown-item-color: var(--color-nord-sub-text);
+    --dropdown-item-danger-color: var(--color-nord-deep-danger);
+    --dropdown-item-disabled-color: var(--color-nord-sub);
+
+    /* ──────────────────────────────────────────
+       Pagination
+       ────────────────────────────────────────── */
+    --pagination-btn-bg: var(--color-nord-deep-surface);
+    --pagination-btn-border: var(--color-nord-deep-border);
+    --pagination-btn-color: var(--color-nord-sub-text);
+    --pagination-btn-hover-bg: var(--color-nord-deep-border);
+    --pagination-btn-hover-border: var(--color-nord-deep-accent);
+    --pagination-active-bg: var(--color-nord-frost);
+    --pagination-active-color: var(--color-nord-deep);
+    --pagination-disabled-color: var(--color-nord-sub);
+    --pagination-ellipsis-color: var(--color-nord-sub-muted);
+
+    /* ──────────────────────────────────────────
+       File Upload
+       ────────────────────────────────────────── */
+    --file-upload-border: var(--color-nord-border);
+    --file-upload-border-hover: var(--color-nord-accent);
+    --file-upload-bg: var(--color-nord-bg);
+    --file-upload-bg-hover: #323848;
+    --file-upload-icon-color: var(--color-nord-elevated);
+    --file-upload-hint-color: var(--color-nord-text-muted);
+    --file-upload-preview-bg: var(--color-nord-deep-surface);
+    --file-upload-remove-bg: rgba(0, 0, 0, 0.7);
+}
