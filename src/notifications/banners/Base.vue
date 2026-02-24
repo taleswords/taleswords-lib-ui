@@ -1,0 +1,144 @@
+<script setup lang="ts">
+import type { BannerVariant } from '../../utils/useBanner'
+
+// ── Types ──────────────────────────────────────────
+
+export interface BannerBaseProps {
+    id: number
+    variant?: BannerVariant
+    message: string
+    isDismissible?: boolean
+    hasDontShowAgain?: boolean
+    testId?: string
+}
+
+// ── Props / Emits ──────────────────────────────────
+
+withDefaults(defineProps<BannerBaseProps>(), {
+    variant: 'info',
+    isDismissible: true,
+    hasDontShowAgain: false,
+    testId: 'banner-base',
+})
+
+const emit = defineEmits<{
+    dismiss: [id: number]
+    'dont-show-again': [id: number]
+}>()
+</script>
+
+<template>
+    <div
+        class="banner"
+        :class="[`banner--${variant}`]"
+        role="alert"
+        :data-testid="testId"
+    >
+        <span class="banner__message">{{ message }}</span>
+        <div class="banner__actions">
+            <button
+                v-if="hasDontShowAgain"
+                class="banner__action-btn"
+                type="button"
+                @click="emit('dont-show-again', id)"
+            >Don't show again</button>
+            <button
+                v-if="isDismissible"
+                class="banner__dismiss"
+                type="button"
+                aria-label="Dismiss banner"
+                @click="emit('dismiss', id)"
+            >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M10.5 3.5L3.5 10.5M3.5 3.5L10.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</template>
+
+<style scoped>
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--button-border-radius);
+    border-left: 4px solid;
+    font-family: var(--font-ui);
+    font-size: 0.875rem;
+}
+
+.banner--info {
+    background: var(--alert-info-bg);
+    border-color: var(--alert-info-border);
+    color: var(--alert-info-text);
+}
+
+.banner--success {
+    background: var(--alert-success-bg);
+    border-color: var(--alert-success-border);
+    color: var(--alert-success-text);
+}
+
+.banner--warning {
+    background: var(--alert-warning-bg);
+    border-color: var(--alert-warning-border);
+    color: var(--alert-warning-text);
+}
+
+.banner--error {
+    background: var(--alert-error-bg);
+    border-color: var(--alert-error-border);
+    color: var(--alert-error-text);
+}
+
+.banner__message {
+    flex: 1;
+    line-height: 1.4;
+}
+
+.banner__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.banner__action-btn {
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.banner__action-btn:hover {
+    opacity: 1;
+}
+
+.banner__dismiss {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.125rem;
+    color: inherit;
+    opacity: 0.7;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: opacity 0.2s;
+}
+
+.banner__dismiss:hover {
+    opacity: 1;
+}
+</style>

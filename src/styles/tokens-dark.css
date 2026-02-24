@@ -251,4 +251,24 @@
     --file-upload-hint-color: var(--color-nord-text-muted);
     --file-upload-preview-bg: var(--color-nord-deep-surface);
     --file-upload-remove-bg: rgba(0, 0, 0, 0.7);
+
+    /* ──────────────────────────────────────────
+       Toast
+       ────────────────────────────────────────── */
+    --toast-shadow: 0px 6px 20px rgba(0, 0, 0, 0.45);
+
+    /* ──────────────────────────────────────────
+       Navigation Buttons
+       ────────────────────────────────────────── */
+    --nav-btn-color: var(--color-nord-sub-text);
+    --nav-btn-hover-bg: var(--color-nord-hover);
+    --nav-btn-active-bg: var(--color-nord-frost);
+    --nav-btn-active-color: var(--color-nord-deep);
+    --nav-btn-icon-color: var(--color-nord-elevated);
+
+    /* ──────────────────────────────────────────
+       Accordion
+       ────────────────────────────────────────── */
+    --accordion-border: var(--color-nord-border);
+    --accordion-trigger-hover-bg: var(--color-nord-hover);
 }

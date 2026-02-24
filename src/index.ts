@@ -42,12 +42,34 @@ export { default as TableBase } from './tables/Base.vue'
 // Composed — Lists
 export { default as ListBase } from './lists/Base.vue'
 
+// Phase 4 — Features
+export { default as TitleDescAction } from './features/TitleDescAction.vue'
+export { default as Breadcrumbs } from './features/Breadcrumbs.vue'
+export { default as Pagination } from './features/Pagination.vue'
+export { default as NavigationButtons } from './features/NavigationButtons.vue'
+export { default as RowExpandable } from './features/RowExpandable.vue'
+
+// Phase 4 — Wrappers
+export { default as CardBase } from './wrappers/cards/Base.vue'
+export { default as LayoutBase } from './wrappers/layouts/Base.vue'
+export { default as TabsBase } from './wrappers/tabs/Base.vue'
+export { default as AccordionBase } from './wrappers/accordions/Base.vue'
+export { default as AccordionItem } from './wrappers/accordions/components/Item.vue'
+
+// Phase 4 — Notifications
+export { default as ToastBase } from './notifications/toasts/Base.vue'
+export { default as ToastArea } from './notifications/toasts/Area.vue'
+export { default as BannerBase } from './notifications/banners/Base.vue'
+export { default as BannerArea } from './notifications/banners/Area.vue'
+
 // Utilities
 export { stringToColor, getTextColorForBackground } from './utils/color'
 export { uid, resetUidCounter } from './utils/uid'
 export { resolveNavigationTag, resolveNavigationAttrs } from './utils/navigation'
 export { useOutsideClick } from './utils/outsideClick'
 export { calculateDropdownPosition } from './utils/positioning'
+export { useToast } from './utils/useToast'
+export { useBanner } from './utils/useBanner'
 
 // Type re-exports
 export type { ButtonBaseProps, ButtonVariant, ButtonSize } from './inputs/buttons/Base.vue'
@@ -77,3 +99,21 @@ export type {
     TableBaseProps,
 } from './tables/Base.vue'
 export type { ListBaseProps } from './lists/Base.vue'
+
+// Phase 4 — Type re-exports
+export type { TitleDescActionProps } from './features/TitleDescAction.vue'
+export type { CardBaseProps } from './wrappers/cards/Base.vue'
+export type { LayoutBaseProps } from './wrappers/layouts/Base.vue'
+export type { TabItem, TabsBaseProps } from './wrappers/tabs/Base.vue'
+export type { AccordionBaseProps } from './wrappers/accordions/Base.vue'
+export type { AccordionItemProps } from './wrappers/accordions/components/Item.vue'
+export type { BreadcrumbItem, BreadcrumbsProps } from './features/Breadcrumbs.vue'
+export type { PaginationProps } from './features/Pagination.vue'
+export type { NavItem, NavigationButtonsProps } from './features/NavigationButtons.vue'
+export type { RowExpandableProps } from './features/RowExpandable.vue'
+export type { ToastBaseProps } from './notifications/toasts/Base.vue'
+export type { ToastAreaProps } from './notifications/toasts/Area.vue'
+export type { ToastOptions, ToastVariant, ToastEntry } from './utils/useToast'
+export type { BannerBaseProps } from './notifications/banners/Base.vue'
+export type { BannerAreaProps } from './notifications/banners/Area.vue'
+export type { BannerOptions, BannerVariant, BannerEntry } from './utils/useBanner'
