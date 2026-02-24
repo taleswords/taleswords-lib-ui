@@ -139,6 +139,7 @@ const isLoading = ref(false)
                 <ButtonBase
                     size="small"
                     :variant="isLoading ? 'danger' : 'secondary'"
+                    :icon="isLoading ? 'stop' : 'sync'"
                     :label="isLoading ? 'Stop Loading' : 'Start Loading'"
                     @click="isLoading = !isLoading"
                 />

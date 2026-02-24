@@ -55,7 +55,7 @@ import { AccordionBase, AccordionItem, BadgeBase, ButtonBase, CardBase } from '@
                         <p><strong>Name:</strong> Alice Johnson</p>
                         <p><strong>Role:</strong> <BadgeBase variant="admin" label="Admin" /></p>
                         <p><strong>Status:</strong> <BadgeBase variant="accepted" label="Active" /></p>
-                        <ButtonBase variant="secondary" size="small" label="Edit Profile" />
+                        <ButtonBase variant="secondary" size="small" icon="edit" label="Edit Profile" />
                     </div>
                 </AccordionItem>
                 <AccordionItem id="rich-2" title="Permissions">

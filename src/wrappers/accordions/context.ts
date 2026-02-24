@@ -1,7 +1,7 @@
 import type { InjectionKey, Ref } from 'vue'
 
 export interface AccordionContext {
-    expandedIds: Readonly<Ref<Set<string>>>
+    expandedIds: Readonly<Ref<ReadonlySet<string>>>
     allowMultiple: boolean
     toggle: (id: string) => void
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, ref } from 'vue'
+import { computed, inject } from 'vue'
 import { AccordionKey } from '../context'
 import type { AccordionContext } from '../context'
 import { uid } from '../../../utils/uid'
@@ -38,8 +38,6 @@ const panelId = uid('accordion-panel')
 const isExpanded = computed(() => accordion?.expandedIds.value.has(props.id) ?? false)
 
 // ── Content height transition ──────────────────────
-
-const contentRef = ref<HTMLElement | null>(null)
 
 function handleToggle(): void {
     if (props.isDisabled || !accordion) return

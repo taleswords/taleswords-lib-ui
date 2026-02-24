@@ -29,7 +29,28 @@ import { ButtonBase, CardBase } from '@lib'
             <div class="demo-row">
                 <ButtonBase variant="primary" icon="add" label="Add Item" />
                 <ButtonBase variant="secondary" icon="download" icon-position="right" label="Download" />
+                <ButtonBase variant="danger" icon="delete" label="Delete" />
                 <ButtonBase variant="ghost" icon="settings" />
+                <ButtonBase variant="ghost-primary" icon="edit" label="Edit" />
+            </div>
+        </CardBase>
+
+        <CardBase title="Icon-Only Buttons">
+            <div class="demo-row">
+                <ButtonBase variant="default" icon="search" />
+                <ButtonBase variant="primary" icon="add" />
+                <ButtonBase variant="secondary" icon="edit" />
+                <ButtonBase variant="danger" icon="delete" />
+                <ButtonBase variant="ghost" icon="more_vert" />
+                <ButtonBase variant="ghost" icon="close" />
+            </div>
+        </CardBase>
+
+        <CardBase title="Small with Icons">
+            <div class="demo-row">
+                <ButtonBase variant="primary" size="small" icon="save" label="Save" />
+                <ButtonBase variant="secondary" size="small" icon="content_copy" label="Copy" />
+                <ButtonBase variant="ghost" size="small" icon="refresh" />
             </div>
         </CardBase>
 

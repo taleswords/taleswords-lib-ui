@@ -23,6 +23,7 @@ async function confirmClose(): Promise<boolean> {
         <CardBase title="Basic Modal">
             <ButtonBase
                 variant="primary"
+                icon="open_in_new"
                 label="Open Basic Modal"
                 data-testid="open-basic-modal"
                 @click="showBasic = true"
@@ -38,9 +39,9 @@ async function confirmClose(): Promise<boolean> {
 
         <CardBase title="Sizes">
             <div class="demo-row">
-                <ButtonBase variant="secondary" label="Small" @click="showSmall = true" />
-                <ButtonBase variant="secondary" label="Large" @click="showLarge = true" />
-                <ButtonBase variant="secondary" label="Fullscreen" @click="showFull = true" />
+                <ButtonBase variant="secondary" icon="crop_square" label="Small" @click="showSmall = true" />
+                <ButtonBase variant="secondary" icon="aspect_ratio" label="Large" @click="showLarge = true" />
+                <ButtonBase variant="secondary" icon="fullscreen" label="Fullscreen" @click="showFull = true" />
             </div>
 
             <ModalBase v-model="showSmall" size="small" title="Small Modal">
@@ -57,6 +58,7 @@ async function confirmClose(): Promise<boolean> {
         <CardBase title="Before Close (Confirm)">
             <ButtonBase
                 variant="danger"
+                icon="warning"
                 label="Open with Confirm"
                 data-testid="open-confirm-modal"
                 @click="showBeforeClose = true"
@@ -73,6 +75,7 @@ async function confirmClose(): Promise<boolean> {
         <CardBase title="Nested Modals">
             <ButtonBase
                 variant="primary"
+                icon="layers"
                 label="Open Outer Modal"
                 data-testid="open-nested-modal"
                 @click="showNested = true"
@@ -93,6 +96,7 @@ async function confirmClose(): Promise<boolean> {
         <CardBase title="Custom Slots">
             <ButtonBase
                 variant="secondary"
+                icon="tune"
                 label="Custom Header & Footer"
                 @click="showCustomSlots = true"
             />

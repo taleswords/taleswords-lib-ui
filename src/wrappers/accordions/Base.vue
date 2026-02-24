@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, provide, readonly } from 'vue'
 import { AccordionKey } from './context'
-import type { AccordionContext } from './context'
 
 // ── Types ──────────────────────────────────────────
 

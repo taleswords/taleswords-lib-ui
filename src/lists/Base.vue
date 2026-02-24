@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import type { TableRow, TableColumn, RowId, TableSort, TablePagination } from '../tables/Base.vue'
 import TableBase from '../tables/Base.vue'
 
@@ -55,10 +54,6 @@ const columns: TableColumn[] = [
     { key: props.labelKey, label: 'Items' },
 ]
 
-// ── Refs ───────────────────────────────────────────
-
-const tableRef = ref<InstanceType<typeof TableBase> | null>(null)
-
 // ── Expose ─────────────────────────────────────────
 
 function clearSelection(): void {
@@ -92,7 +87,7 @@ defineExpose({ clearSelection })
             <slot name="features" />
         </template>
 
-        <template #cell="{ row, column, value }">
+        <template #cell="{ row, value }">
             <slot name="item" :row="row" :value="value">
                 {{ value === null || value === undefined ? '' : String(value) }}
             </slot>

@@ -7,6 +7,7 @@ const basicValue = ref<string | undefined>(undefined)
 const multiValue = ref<string[]>([])
 const searchValue = ref<string | undefined>(undefined)
 const groupedValue = ref<string | undefined>(undefined)
+const iconValue = ref<string | undefined>(undefined)
 const customValue = ref<string | undefined>(undefined)
 const topValue = ref<string | undefined>(undefined)
 
@@ -25,6 +26,13 @@ const groupedOptions: DropdownOption<string>[] = [
     { value: 'carrot', label: 'Carrot', groupId: 'vegetables' },
     { value: 'broccoli', label: 'Broccoli', groupId: 'vegetables' },
     { value: 'spinach', label: 'Spinach', groupId: 'vegetables' },
+]
+
+const iconOptions: DropdownOption<string>[] = [
+    { value: 'home', label: 'Home', icon: 'home' },
+    { value: 'settings', label: 'Settings', icon: 'settings' },
+    { value: 'analytics', label: 'Analytics', icon: 'bar_chart' },
+    { value: 'users', label: 'Users', icon: 'group' },
 ]
 
 const customOptions: DropdownOption<string>[] = [
@@ -77,6 +85,14 @@ const customOptions: DropdownOption<string>[] = [
                 :options="groupedOptions"
                 has-groups
                 placeholder="Choose food..."
+            />
+        </CardBase>
+
+        <CardBase title="Options with Icons">
+            <DropdownBase
+                v-model="iconValue"
+                :options="iconOptions"
+                placeholder="Choose a section..."
             />
         </CardBase>
 
