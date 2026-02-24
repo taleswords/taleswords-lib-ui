@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { DropdownBase, ButtonBase, CardBase } from '@lib'
+import { DropdownBase, ButtonBase } from '@lib'
 import type { DropdownOption } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Accessibility'], isInteractive: true })
 
 const basicValue = ref<string | undefined>(undefined)
 const multiValue = ref<string[]>([])
@@ -43,20 +48,16 @@ const customOptions: DropdownOption<string>[] = [
 </script>
 
 <template>
-    <div class="page" data-testid="page-dropdowns">
-        <h1>Dropdowns</h1>
-
-        <CardBase title="Basic Select">
+    <Section title="Variants">
+        <Case title="Basic Select" layout="columns">
             <DropdownBase
                 v-model="basicValue"
                 :options="basicOptions"
                 placeholder="Choose a fruit..."
                 test-id="dropdown-basic"
             />
-            <p class="demo-value">Selected: {{ basicValue ?? 'none' }}</p>
-        </CardBase>
-
-        <CardBase title="Multi-Select with Checkboxes">
+        </Case>
+        <Case title="Multi-Select with Checkboxes" layout="columns">
             <DropdownBase
                 v-model="multiValue"
                 :options="basicOptions"
@@ -66,10 +67,8 @@ const customOptions: DropdownOption<string>[] = [
                 has-clear-button
                 placeholder="Select fruits..."
             />
-            <p class="demo-value">Selected: {{ multiValue.length ? multiValue.join(', ') : 'none' }}</p>
-        </CardBase>
-
-        <CardBase title="Searchable">
+        </Case>
+        <Case title="Searchable" layout="columns">
             <DropdownBase
                 v-model="searchValue"
                 :options="basicOptions"
@@ -77,26 +76,51 @@ const customOptions: DropdownOption<string>[] = [
                 search-placeholder="Type to filter..."
                 placeholder="Search fruits..."
             />
-        </CardBase>
-
-        <CardBase title="Grouped Options">
+        </Case>
+        <Case title="Grouped Options" layout="columns">
             <DropdownBase
                 v-model="groupedValue"
                 :options="groupedOptions"
                 has-groups
                 placeholder="Choose food..."
             />
-        </CardBase>
-
-        <CardBase title="Options with Icons">
+        </Case>
+        <Case title="Options with Icons" layout="columns">
             <DropdownBase
                 v-model="iconValue"
                 :options="iconOptions"
                 placeholder="Choose a section..."
             />
-        </CardBase>
+        </Case>
+        <Case title="Placement Top" layout="columns">
+            <DropdownBase
+                v-model="topValue"
+                :options="basicOptions"
+                placement="top-start"
+                placeholder="Opens upward..."
+            />
+        </Case>
+    </Section>
 
-        <CardBase title="Custom Slots">
+    <Section title="States">
+        <Case title="Disabled" layout="columns">
+            <DropdownBase
+                :options="basicOptions"
+                placeholder="Disabled..."
+                is-disabled
+            />
+        </Case>
+        <Case title="Error" layout="columns">
+            <DropdownBase
+                :options="basicOptions"
+                placeholder="Error state..."
+                has-error
+            />
+        </Case>
+    </Section>
+
+    <Section title="Composition">
+        <Case title="Custom Trigger and Option Slots" layout="columns">
             <DropdownBase
                 v-model="customValue"
                 :options="customOptions"
@@ -111,69 +135,18 @@ const customOptions: DropdownOption<string>[] = [
                     />
                 </template>
                 <template #option="{ option, isSelected }">
-                    <div class="custom-option">
-                        <span class="custom-option__avatar">{{ option.label.charAt(0) }}</span>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--button-primary-bg); color: var(--button-primary-text); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600;">{{ option.label.charAt(0) }}</span>
                         <span :style="{ fontWeight: isSelected ? '700' : '400' }">{{ option.label }}</span>
                     </div>
                 </template>
             </DropdownBase>
-        </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="States">
-            <div class="demo-row">
-                <DropdownBase
-                    :options="basicOptions"
-                    placeholder="Disabled..."
-                    is-disabled
-                />
-                <DropdownBase
-                    :options="basicOptions"
-                    placeholder="Error state..."
-                    has-error
-                />
-            </div>
-        </CardBase>
-
-        <CardBase title="Placement: Top">
-            <DropdownBase
-                v-model="topValue"
-                :options="basicOptions"
-                placement="top-start"
-                placeholder="Opens upward..."
-            />
-        </CardBase>
-    </div>
+    <Section title="Accessibility">
+        <Case title="Keyboard Navigation" layout="columns">
+            <p>Tab to focus trigger, Enter/Space to open. Arrow keys navigate options. Enter selects. Escape closes. Multi-select uses checkboxes for screen reader clarity.</p>
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.demo-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.demo-value {
-    margin-top: 0.5rem;
-    font-size: 0.8125rem;
-    color: var(--form-field-description-color);
-}
-
-.custom-option {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.custom-option__avatar {
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    background: var(--button-primary-bg);
-    color: var(--button-primary-text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-</style>

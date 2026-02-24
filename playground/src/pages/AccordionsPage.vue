@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { AccordionBase, AccordionItem, BadgeBase, ButtonBase, CardBase } from '@lib'
+import { AccordionBase, AccordionItem, BadgeBase, ButtonBase } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Accessibility'], isInteractive: true })
 </script>
 
 <template>
-    <div class="page" data-testid="page-accordions">
-        <h1>Accordions</h1>
-
-        <CardBase title="Single Expand (Default)">
+    <Section title="Variants" :full-width="true">
+        <Case title="Single Expand (Default)" layout="columns">
             <AccordionBase>
                 <AccordionItem id="faq-1" title="What is lib-ui?">
                     A Vue 3 component library for building admin dashboards.
@@ -18,9 +21,8 @@ import { AccordionBase, AccordionItem, BadgeBase, ButtonBase, CardBase } from '@
                     Yes, all components follow WAI-ARIA patterns and are tested with axe-core.
                 </AccordionItem>
             </AccordionBase>
-        </CardBase>
-
-        <CardBase title="Multiple Expand">
+        </Case>
+        <Case title="Multiple Expand" layout="columns">
             <AccordionBase allow-multiple>
                 <AccordionItem id="multi-1" title="Section A">
                     Content for section A. Multiple sections can be open at once.
@@ -32,9 +34,11 @@ import { AccordionBase, AccordionItem, BadgeBase, ButtonBase, CardBase } from '@
                     Content for section C.
                 </AccordionItem>
             </AccordionBase>
-        </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="Disabled Item">
+    <Section title="States" :full-width="true">
+        <Case title="Disabled Item" layout="columns">
             <AccordionBase>
                 <AccordionItem id="dis-1" title="Enabled Item">
                     This item can be toggled normally.
@@ -46,39 +50,30 @@ import { AccordionBase, AccordionItem, BadgeBase, ButtonBase, CardBase } from '@
                     This item also works fine.
                 </AccordionItem>
             </AccordionBase>
-        </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="Rich Content">
+    <Section title="Composition" :full-width="true">
+        <Case title="Rich Content" layout="columns">
             <AccordionBase>
                 <AccordionItem id="rich-1" title="User Details">
-                    <div class="rich-content">
-                        <p><strong>Name:</strong> Alice Johnson</p>
-                        <p><strong>Role:</strong> <BadgeBase variant="admin" label="Admin" /></p>
-                        <p><strong>Status:</strong> <BadgeBase variant="accepted" label="Active" /></p>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <p style="margin: 0; display: flex; align-items: center; gap: 0.5rem;"><strong>Name:</strong> Alice Johnson</p>
+                        <p style="margin: 0; display: flex; align-items: center; gap: 0.5rem;"><strong>Role:</strong> <BadgeBase variant="admin" label="Admin" /></p>
+                        <p style="margin: 0; display: flex; align-items: center; gap: 0.5rem;"><strong>Status:</strong> <BadgeBase variant="accepted" label="Active" /></p>
                         <ButtonBase variant="secondary" size="small" icon="edit" label="Edit Profile" />
                     </div>
                 </AccordionItem>
                 <AccordionItem id="rich-2" title="Permissions">
-                    <div class="rich-content">
-                        <p>Full access to all dashboard features including user management, analytics, and settings.</p>
-                    </div>
+                    <p style="margin: 0;">Full access to all dashboard features including user management, analytics, and settings.</p>
                 </AccordionItem>
             </AccordionBase>
-        </CardBase>
-    </div>
+        </Case>
+    </Section>
+
+    <Section title="Accessibility">
+        <Case title="Keyboard Navigation" layout="columns">
+            <p>Enter/Space toggles the focused accordion item. Arrow keys move between headers. Home/End jump to first/last header. Disabled items are skipped.</p>
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.rich-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.rich-content p {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-</style>

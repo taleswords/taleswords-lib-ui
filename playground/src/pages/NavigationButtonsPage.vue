@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NavigationButtons, CardBase } from '@lib'
+import { NavigationButtons } from '@lib'
 import type { NavItem } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'States', 'Accessibility'], isInteractive: true })
 
 const activeId = ref('dashboard')
 
@@ -37,56 +42,47 @@ const disabledActiveId = ref('active-item')
 </script>
 
 <template>
-    <div class="page" data-testid="page-nav-buttons">
-        <h1>Navigation Buttons</h1>
-
-        <CardBase title="Basic">
-            <div class="nav-container">
+    <Section title="Variants">
+        <Case title="Basic" layout="columns">
+            <div style="max-width: 240px;">
                 <NavigationButtons
                     :items="basicItems"
                     :active-id="activeId"
                     @item-clicked="(item) => activeId = item.id"
                 />
             </div>
-            <p class="demo-value">Active: {{ activeId }}</p>
-        </CardBase>
-
-        <CardBase title="With Icons">
-            <div class="nav-container">
+        </Case>
+        <Case title="With Icons" layout="columns">
+            <div style="max-width: 240px;">
                 <NavigationButtons
                     :items="iconItems"
                     :active-id="iconActiveId"
                     @item-clicked="(item) => iconActiveId = item.id"
                 />
             </div>
-        </CardBase>
+        </Case>
+        <Case title="With Links" layout="columns">
+            <div style="max-width: 240px;">
+                <NavigationButtons :items="linkItems" />
+            </div>
+        </Case>
+    </Section>
 
-        <CardBase title="Disabled Item">
-            <div class="nav-container">
+    <Section title="States">
+        <Case title="Disabled Item" layout="columns">
+            <div style="max-width: 240px;">
                 <NavigationButtons
                     :items="disabledItems"
                     :active-id="disabledActiveId"
                     @item-clicked="(item) => disabledActiveId = item.id"
                 />
             </div>
-        </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="With Links">
-            <div class="nav-container">
-                <NavigationButtons :items="linkItems" />
-            </div>
-        </CardBase>
-    </div>
+    <Section title="Accessibility">
+        <Case title="Keyboard Navigation" layout="columns">
+            <p>Tab navigates between buttons. Enter/Space activates. Active item is visually distinguished. Disabled items are not focusable.</p>
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.nav-container {
-    max-width: 240px;
-}
-
-.demo-value {
-    margin-top: 0.5rem;
-    font-size: 0.8125rem;
-    color: var(--form-field-description-color);
-}
-</style>

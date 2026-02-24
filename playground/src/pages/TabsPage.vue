@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { TabsBase, ButtonBase, CardBase } from '@lib'
+import { TabsBase, ButtonBase } from '@lib'
 import type { TabItem } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'States', 'Accessibility'], isInteractive: true })
 
 const activeTab = ref('overview')
 const controlledTab = ref('tab-a')
@@ -35,43 +40,41 @@ const disabledActiveTab = ref('active-1')
 </script>
 
 <template>
-    <div class="page" data-testid="page-tabs">
-        <h1>Tabs</h1>
-
-        <CardBase title="Basic Tabs">
+    <Section title="Variants" :full-width="true">
+        <Case title="Basic Tabs" layout="columns">
             <TabsBase v-model="activeTab" :tabs="basicTabs">
                 <template #default="{ activeTab: current }">
-                    <div class="tab-content">
+                    <div style="padding: 1rem 0;">
                         <p v-if="current === 'overview'">Overview content goes here.</p>
                         <p v-else-if="current === 'details'">Details content with more information.</p>
                         <p v-else>Settings panel for configuration.</p>
                     </div>
                 </template>
             </TabsBase>
-        </CardBase>
-
-        <CardBase title="Tabs with Icons">
+        </Case>
+        <Case title="Tabs with Icons" layout="columns">
             <TabsBase v-model="iconActiveTab" :tabs="iconTabs">
                 <template #default="{ activeTab: current }">
-                    <div class="tab-content">
+                    <div style="padding: 1rem 0;">
                         <p>Currently viewing: {{ current }}</p>
                     </div>
                 </template>
             </TabsBase>
-        </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="Disabled Tab">
+    <Section title="States" :full-width="true">
+        <Case title="Disabled Tab" layout="columns">
             <TabsBase v-model="disabledActiveTab" :tabs="disabledTabs">
                 <template #default="{ activeTab: current }">
-                    <div class="tab-content">
+                    <div style="padding: 1rem 0;">
                         <p>Active: {{ current }}</p>
                     </div>
                 </template>
             </TabsBase>
-        </CardBase>
-
-        <CardBase title="Controlled Externally">
-            <div class="demo-row" style="margin-bottom: 1rem;">
+        </Case>
+        <Case title="Controlled Externally" layout="columns">
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
                 <ButtonBase
                     v-for="tab in controlledTabs"
                     :key="tab.id"
@@ -83,22 +86,17 @@ const disabledActiveTab = ref('active-1')
             </div>
             <TabsBase v-model="controlledTab" :tabs="controlledTabs">
                 <template #default="{ activeTab: current }">
-                    <div class="tab-content">
+                    <div style="padding: 1rem 0;">
                         <p>Content of {{ current }}. Use the buttons above to switch tabs externally.</p>
                     </div>
                 </template>
             </TabsBase>
-        </CardBase>
-    </div>
+        </Case>
+    </Section>
+
+    <Section title="Accessibility">
+        <Case title="Keyboard Navigation" layout="columns">
+            <p>Arrow keys navigate between tabs. Tab moves focus into the active panel. Disabled tabs are skipped. ARIA roles tablist, tab, and tabpanel are applied automatically.</p>
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.tab-content {
-    padding: 1rem 0;
-}
-
-.demo-row {
-    display: flex;
-    gap: 0.5rem;
-}
-</style>

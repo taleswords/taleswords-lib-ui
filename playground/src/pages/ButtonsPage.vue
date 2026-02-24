@@ -1,81 +1,73 @@
 <script setup lang="ts">
-import { ButtonBase, CardBase } from '@lib'
+import { ButtonBase } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'Sizes'], isInteractive: true })
 </script>
 
 <template>
-    <div class="page" data-testid="page-buttons">
-        <h1>Buttons</h1>
+    <Section title="Variants">
+        <Case title="All Variants" layout="row">
+            <ButtonBase variant="default" label="Default" />
+            <ButtonBase variant="primary" label="Primary" />
+            <ButtonBase variant="secondary" label="Secondary" />
+            <ButtonBase variant="danger" label="Danger" />
+            <ButtonBase variant="ghost" label="Ghost" />
+            <ButtonBase variant="ghost-primary" label="Ghost Primary" />
+            <ButtonBase variant="ghost-danger" label="Ghost Danger" />
+        </Case>
+    </Section>
 
-        <CardBase title="Variants">
-            <div class="demo-row">
-                <ButtonBase variant="default" label="Default" />
-                <ButtonBase variant="primary" label="Primary" />
-                <ButtonBase variant="secondary" label="Secondary" />
-                <ButtonBase variant="danger" label="Danger" />
-                <ButtonBase variant="ghost" label="Ghost" />
-                <ButtonBase variant="ghost-primary" label="Ghost Primary" />
-                <ButtonBase variant="ghost-danger" label="Ghost Danger" />
-            </div>
-        </CardBase>
+    <Section title="Sizes">
+        <Case title="Size Comparison" layout="row">
+            <ButtonBase variant="primary" size="small" label="Small" />
+            <ButtonBase variant="primary" size="medium" label="Medium" />
+        </Case>
+    </Section>
 
-        <CardBase title="Sizes">
-            <div class="demo-row">
-                <ButtonBase variant="primary" size="small" label="Small" />
-                <ButtonBase variant="primary" size="medium" label="Medium" />
-            </div>
-        </CardBase>
+    <Section title="With Icons">
+        <Case title="Icon Buttons" layout="row">
+            <ButtonBase variant="primary" icon="add" label="Add Item" />
+            <ButtonBase variant="secondary" icon="download" icon-position="right" label="Download" />
+            <ButtonBase variant="danger" icon="delete" label="Delete" />
+            <ButtonBase variant="ghost" icon="settings" />
+            <ButtonBase variant="ghost-primary" icon="edit" label="Edit" />
+        </Case>
+    </Section>
 
-        <CardBase title="With Icons">
-            <div class="demo-row">
-                <ButtonBase variant="primary" icon="add" label="Add Item" />
-                <ButtonBase variant="secondary" icon="download" icon-position="right" label="Download" />
-                <ButtonBase variant="danger" icon="delete" label="Delete" />
-                <ButtonBase variant="ghost" icon="settings" />
-                <ButtonBase variant="ghost-primary" icon="edit" label="Edit" />
-            </div>
-        </CardBase>
+    <Section title="Icon-Only Buttons">
+        <Case title="Icon Only" layout="row">
+            <ButtonBase variant="default" icon="search" />
+            <ButtonBase variant="primary" icon="add" />
+            <ButtonBase variant="secondary" icon="edit" />
+            <ButtonBase variant="danger" icon="delete" />
+            <ButtonBase variant="ghost" icon="more_vert" />
+            <ButtonBase variant="ghost" icon="close" />
+        </Case>
+    </Section>
 
-        <CardBase title="Icon-Only Buttons">
-            <div class="demo-row">
-                <ButtonBase variant="default" icon="search" />
-                <ButtonBase variant="primary" icon="add" />
-                <ButtonBase variant="secondary" icon="edit" />
-                <ButtonBase variant="danger" icon="delete" />
-                <ButtonBase variant="ghost" icon="more_vert" />
-                <ButtonBase variant="ghost" icon="close" />
-            </div>
-        </CardBase>
+    <Section title="Small with Icons">
+        <Case title="Small Icon Buttons" layout="row">
+            <ButtonBase variant="primary" size="small" icon="save" label="Save" />
+            <ButtonBase variant="secondary" size="small" icon="content_copy" label="Copy" />
+            <ButtonBase variant="ghost" size="small" icon="refresh" />
+        </Case>
+    </Section>
 
-        <CardBase title="Small with Icons">
-            <div class="demo-row">
-                <ButtonBase variant="primary" size="small" icon="save" label="Save" />
-                <ButtonBase variant="secondary" size="small" icon="content_copy" label="Copy" />
-                <ButtonBase variant="ghost" size="small" icon="refresh" />
-            </div>
-        </CardBase>
+    <Section title="Disabled">
+        <Case title="Disabled States" layout="row">
+            <ButtonBase variant="primary" label="Primary" is-disabled />
+            <ButtonBase variant="secondary" label="Secondary" is-disabled />
+            <ButtonBase variant="danger" label="Danger" is-disabled />
+            <ButtonBase variant="ghost" label="Ghost" is-disabled />
+        </Case>
+    </Section>
 
-        <CardBase title="Disabled">
-            <div class="demo-row">
-                <ButtonBase variant="primary" label="Primary" is-disabled />
-                <ButtonBase variant="secondary" label="Secondary" is-disabled />
-                <ButtonBase variant="danger" label="Danger" is-disabled />
-                <ButtonBase variant="ghost" label="Ghost" is-disabled />
-            </div>
-        </CardBase>
-
-        <CardBase title="As Link">
-            <div class="demo-row">
-                <ButtonBase variant="primary" label="External Link" href="#" />
-            </div>
-        </CardBase>
-    </div>
+    <Section title="As Link">
+        <Case title="Link Button" layout="row">
+            <ButtonBase variant="primary" label="External Link" href="#" />
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.demo-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    align-items: center;
-}
-</style>

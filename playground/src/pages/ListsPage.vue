@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import { ListBase, BadgeBase, CardBase } from '@lib'
+import { ListBase, BadgeBase } from '@lib'
 import type { TableRow, BadgeVariant } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'States'] })
 
 const items: TableRow[] = [
     { id: 1, label: 'Dashboard Settings' },
@@ -25,17 +30,14 @@ const statusBadgeMap: Record<string, BadgeVariant> = {
 </script>
 
 <template>
-    <div class="page" data-testid="page-lists">
-        <h1>Lists</h1>
-
-        <CardBase title="Basic List">
+    <Section title="Variants" :full-width="true">
+        <Case title="Basic List" layout="columns">
             <ListBase :rows="items" />
-        </CardBase>
-
-        <CardBase title="Custom Item Slot">
+        </Case>
+        <Case title="Custom Item Slot" layout="columns">
             <ListBase :rows="itemsWithStatus">
                 <template #item="{ row }">
-                    <div class="list-item-custom">
+                    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <span>{{ row.label }}</span>
                         <BadgeBase
                             :variant="statusBadgeMap[String(row.status)] ?? 'pending'"
@@ -44,19 +46,12 @@ const statusBadgeMap: Record<string, BadgeVariant> = {
                     </div>
                 </template>
             </ListBase>
-        </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="Empty List">
+    <Section title="States" :full-width="true">
+        <Case title="Empty List" layout="columns">
             <ListBase :rows="[]" empty-text="No items to display." />
-        </CardBase>
-    </div>
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.list-item-custom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-</style>

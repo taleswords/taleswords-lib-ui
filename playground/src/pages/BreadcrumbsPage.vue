@@ -1,33 +1,40 @@
 <script setup lang="ts">
-import { Breadcrumbs, CardBase } from '@lib'
+import { Breadcrumbs } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'Accessibility'], isInteractive: true })
 </script>
 
 <template>
-    <div class="page" data-testid="page-breadcrumbs">
-        <h1>Breadcrumbs</h1>
-
-        <CardBase title="Basic Breadcrumbs">
+    <Section title="Variants" :full-width="true">
+        <Case title="Full Path" layout="columns">
             <Breadcrumbs :items="[
                 { label: 'Home' },
                 { label: 'Products' },
                 { label: 'Category' },
                 { label: 'Item Details' },
             ]" />
-        </CardBase>
-
-        <CardBase title="With Links">
+        </Case>
+        <Case title="With Links" layout="columns">
             <Breadcrumbs :items="[
                 { label: 'Home', href: '#' },
                 { label: 'Settings', href: '#' },
                 { label: 'Account' },
             ]" />
-        </CardBase>
-
-        <CardBase title="Short (2 Items)">
+        </Case>
+        <Case title="Short (2 Items)" layout="columns">
             <Breadcrumbs :items="[
                 { label: 'Home' },
                 { label: 'Current Page' },
             ]" />
-        </CardBase>
-    </div>
+        </Case>
+    </Section>
+
+    <Section title="Accessibility">
+        <Case title="Navigation Landmark" layout="columns">
+            <p>Breadcrumbs use a nav element with aria-label "Breadcrumb". The current page is marked with aria-current="page". Links are keyboard-focusable.</p>
+        </Case>
+    </Section>
 </template>

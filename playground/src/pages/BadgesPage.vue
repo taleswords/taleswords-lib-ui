@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import { BadgeBase, CardBase } from '@lib'
+import { BadgeBase } from '@lib'
 import type { BadgeVariant } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants'] })
 
 const variants: BadgeVariant[] = [
     'visitor', 'guest', 'guest-editor',
@@ -11,27 +16,14 @@ const variants: BadgeVariant[] = [
 </script>
 
 <template>
-    <div class="page" data-testid="page-badges">
-        <h1>Badges</h1>
-
-        <CardBase title="All Variants">
-            <div class="demo-row">
-                <BadgeBase
-                    v-for="v in variants"
-                    :key="v"
-                    :variant="v"
-                    :label="v"
-                />
-            </div>
-        </CardBase>
-    </div>
+    <Section title="Variants">
+        <Case title="All Variants" layout="row">
+            <BadgeBase
+                v-for="v in variants"
+                :key="v"
+                :variant="v"
+                :label="v"
+            />
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.demo-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: center;
-}
-</style>

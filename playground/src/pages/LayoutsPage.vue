@@ -1,23 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { LayoutBase, Breadcrumbs, ButtonBase, CardBase } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { usePlaygroundControls } from '../composables/usePlaygroundControls'
+import { definePlaygroundPage } from '../composables/usePageContract'
 
-const isLoading = ref(false)
+definePlaygroundPage({ sections: ['Variants', 'States'] })
+
+const { isLoading } = usePlaygroundControls()
 </script>
 
 <template>
-    <div class="page" data-testid="page-layouts">
-        <h1>Layouts</h1>
-
-        <CardBase title="Basic Layout">
+    <Section title="Variants" :full-width="true">
+        <Case title="Basic Layout" layout="columns">
             <LayoutBase title="Page Title" description="This is a page-level layout wrapper.">
                 <CardBase>
                     <p>Content inside the layout.</p>
                 </CardBase>
             </LayoutBase>
-        </CardBase>
-
-        <CardBase title="Layout with Breadcrumbs">
+        </Case>
+        <Case title="Layout with Breadcrumbs" layout="columns">
             <LayoutBase title="User Settings">
                 <template #breadcrumbs>
                     <Breadcrumbs :items="[
@@ -30,9 +32,8 @@ const isLoading = ref(false)
                     <p>Layout with breadcrumb navigation above the title.</p>
                 </CardBase>
             </LayoutBase>
-        </CardBase>
-
-        <CardBase title="Layout with Actions">
+        </Case>
+        <Case title="Layout with Actions" layout="columns">
             <LayoutBase title="Projects" description="Manage your team projects">
                 <template #actions>
                     <ButtonBase variant="primary" size="small" label="New Project" />
@@ -41,22 +42,16 @@ const isLoading = ref(false)
                     <p>Layout with action buttons in the header area.</p>
                 </CardBase>
             </LayoutBase>
-        </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="Loading Layout">
+    <Section title="States" :full-width="true">
+        <Case title="Loading Layout" layout="columns">
             <LayoutBase title="Dashboard" :is-loading="isLoading">
                 <CardBase>
-                    <p>Toggle loading state on the layout.</p>
+                    <p>This layout responds to the global loading toggle in the right sidebar.</p>
                 </CardBase>
-                <template #actions>
-                    <ButtonBase
-                        size="small"
-                        :variant="isLoading ? 'danger' : 'secondary'"
-                        :label="isLoading ? 'Stop' : 'Load'"
-                        @click="isLoading = !isLoading"
-                    />
-                </template>
             </LayoutBase>
-        </CardBase>
-    </div>
+        </Case>
+    </Section>
 </template>

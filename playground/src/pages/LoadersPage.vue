@@ -1,59 +1,40 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { LoaderIcon, LoaderBase, CardBase, ButtonBase } from '@lib'
+import { LoaderIcon, LoaderBase, CardBase } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'States'] })
 
 const showOverlay = ref(false)
 </script>
 
 <template>
-    <div class="page" data-testid="page-loaders">
-        <h1>Loaders</h1>
+    <Section title="Variants">
+        <Case title="LoaderIcon Sizes" layout="row">
+            <LoaderIcon size="small" />
+            <LoaderIcon size="medium" />
+            <LoaderIcon size="large" />
+        </Case>
+        <Case title="Spinner" layout="row">
+            <LoaderBase variant="spinner" size="small" label="Loading..." />
+            <LoaderBase variant="spinner" size="medium" label="Loading..." />
+            <LoaderBase variant="spinner" size="large" label="Loading..." />
+        </Case>
+        <Case title="Dots" layout="row">
+            <LoaderBase variant="dots" size="small" label="Loading..." />
+            <LoaderBase variant="dots" size="medium" label="Loading..." />
+            <LoaderBase variant="dots" size="large" label="Loading..." />
+        </Case>
+    </Section>
 
-        <CardBase title="LoaderIcon Sizes">
-            <div class="demo-row">
-                <LoaderIcon size="small" />
-                <LoaderIcon size="medium" />
-                <LoaderIcon size="large" />
-            </div>
-        </CardBase>
-
-        <CardBase title="LoaderBase — Spinner">
-            <div class="demo-row">
-                <LoaderBase variant="spinner" size="small" label="Loading..." />
-                <LoaderBase variant="spinner" size="medium" label="Loading..." />
-                <LoaderBase variant="spinner" size="large" label="Loading..." />
-            </div>
-        </CardBase>
-
-        <CardBase title="LoaderBase — Dots">
-            <div class="demo-row">
-                <LoaderBase variant="dots" size="small" label="Loading..." />
-                <LoaderBase variant="dots" size="medium" label="Loading..." />
-                <LoaderBase variant="dots" size="large" label="Loading..." />
-            </div>
-        </CardBase>
-
-        <CardBase title="Overlay Demo">
-            <ButtonBase
-                :variant="showOverlay ? 'danger' : 'primary'"
-                :label="showOverlay ? 'Hide Overlay' : 'Show Overlay'"
-                icon="layers"
-                @click="showOverlay = !showOverlay"
-            />
-        </CardBase>
-
-        <CardBase :is-loading="showOverlay">
-            <p>This card shows a loader overlay when toggled.</p>
-            <p>Content is still here underneath the overlay.</p>
-        </CardBase>
-    </div>
+    <Section title="States" :full-width="true">
+        <Case title="Overlay" layout="columns">
+            <CardBase :is-loading="showOverlay" @click="showOverlay = !showOverlay">
+                <p>Click this card to toggle the loader overlay. Content remains underneath.</p>
+                <p>Overlay is currently {{ showOverlay ? 'visible' : 'hidden' }}.</p>
+            </CardBase>
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.demo-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    align-items: center;
-}
-</style>

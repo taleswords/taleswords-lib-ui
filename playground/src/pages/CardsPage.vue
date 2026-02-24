@@ -1,69 +1,64 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { CardBase, ButtonBase } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { usePlaygroundControls } from '../composables/usePlaygroundControls'
+import { definePlaygroundPage } from '../composables/usePageContract'
 
-const isLoading = ref(false)
+definePlaygroundPage({ sections: ['Variants', 'States'] })
+
+const { isLoading } = usePlaygroundControls()
+const localLoading = ref(false)
 </script>
 
 <template>
-    <div class="page" data-testid="page-cards">
-        <h1>Cards</h1>
+    <Section title="Variants" :full-width="true">
+        <Case title="Basic Card" layout="columns">
+            <CardBase title="Basic Card" description="A card with title and description">
+                <p>This is the card content area. You can put any content here.</p>
+            </CardBase>
+        </Case>
+        <Case title="Card with Actions" layout="columns">
+            <CardBase title="Card with Actions">
+                <p>This card has action buttons in the header.</p>
+                <template #actions>
+                    <ButtonBase variant="ghost" size="small" label="Edit" />
+                    <ButtonBase variant="primary" size="small" label="Save" />
+                </template>
+            </CardBase>
+        </Case>
+        <Case title="Custom Header Slot" layout="columns">
+            <CardBase>
+                <template #header>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem;">
+                        <h3 style="margin: 0; font-size: 1rem;">Custom Header Slot</h3>
+                        <span style="font-size: 0.6875rem; font-weight: 600; padding: 0.125rem 0.5rem; border-radius: 1rem; background: var(--button-primary-bg); color: var(--button-primary-text);">New</span>
+                    </div>
+                </template>
+                <p>This card uses a custom header slot instead of the title prop.</p>
+            </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="Basic Card" description="A card with title and description">
-            <p>This is the card content area. You can put any content here.</p>
-        </CardBase>
-
-        <CardBase title="Card with Actions">
-            <p>This card has action buttons in the header.</p>
-            <template #actions>
-                <ButtonBase variant="ghost" size="small" label="Edit" />
-                <ButtonBase variant="primary" size="small" label="Save" />
-            </template>
-        </CardBase>
-
-        <CardBase>
-            <template #header>
-                <div class="custom-card-header">
-                    <h3>Custom Header Slot</h3>
-                    <span class="custom-card-header__badge">New</span>
-                </div>
-            </template>
-            <p>This card uses a custom header slot instead of the title prop.</p>
-        </CardBase>
-
-        <CardBase title="Loading Card" :is-loading="isLoading">
-            <p>Toggle the loading state to see the overlay.</p>
-            <template #actions>
-                <ButtonBase
-                    size="small"
-                    :variant="isLoading ? 'danger' : 'secondary'"
-                    :label="isLoading ? 'Stop' : 'Load'"
-                    @click="isLoading = !isLoading"
-                />
-            </template>
-        </CardBase>
-    </div>
+    <Section title="States" :full-width="true">
+        <Case title="Loading (Global Toggle)" layout="columns">
+            <CardBase title="Loading Card" :is-loading="isLoading">
+                <p>This card responds to the global loading toggle in the right sidebar.</p>
+            </CardBase>
+        </Case>
+        <Case title="Loading (Local Toggle)" layout="columns">
+            <CardBase title="Local Loading" :is-loading="localLoading">
+                <p>Toggle the loading state locally.</p>
+                <template #actions>
+                    <ButtonBase
+                        size="small"
+                        :variant="localLoading ? 'danger' : 'secondary'"
+                        :label="localLoading ? 'Stop' : 'Load'"
+                        @click="localLoading = !localLoading"
+                    />
+                </template>
+            </CardBase>
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.custom-card-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
-}
-
-.custom-card-header h3 {
-    margin: 0;
-    font-size: 1rem;
-}
-
-.custom-card-header__badge {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    padding: 0.125rem 0.5rem;
-    border-radius: 1rem;
-    background: var(--button-primary-bg);
-    color: var(--button-primary-text);
-}
-</style>

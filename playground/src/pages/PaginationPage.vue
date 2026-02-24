@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { Pagination, CardBase } from '@lib'
+import { Pagination } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'States', 'Accessibility'], isInteractive: true })
 
 const basicPage = ref(1)
 const manyPage = ref(1)
@@ -13,52 +18,52 @@ const computedTotalPages = computed(() => Math.ceil(totalItems / perPage))
 </script>
 
 <template>
-    <div class="page" data-testid="page-pagination">
-        <h1>Pagination</h1>
-
-        <CardBase title="Basic (10 Pages)">
-            <p class="demo-value">Current page: {{ basicPage }}</p>
+    <Section title="Variants" :full-width="true">
+        <Case title="Basic (10 Pages)" layout="columns">
             <Pagination
                 :current-page="basicPage"
                 :total-pages="10"
                 @page-changed="basicPage = $event"
             />
-        </CardBase>
-
-        <CardBase title="Many Pages (50) with Ellipsis">
-            <p class="demo-value">Current page: {{ manyPage }}</p>
+        </Case>
+        <Case title="Many Pages (50) with Ellipsis" layout="columns">
             <Pagination
                 :current-page="manyPage"
                 :total-pages="50"
                 @page-changed="manyPage = $event"
             />
-        </CardBase>
-
-        <CardBase title="Few Pages (3)">
-            <p class="demo-value">Current page: {{ fewPage }}</p>
+        </Case>
+        <Case title="Few Pages (3)" layout="columns">
             <Pagination
                 :current-page="fewPage"
                 :total-pages="3"
                 @page-changed="fewPage = $event"
             />
-        </CardBase>
-
-        <CardBase title="Computed from Items">
-            <p class="demo-value">{{ totalItems }} items, {{ perPage }} per page = {{ computedTotalPages }} pages. Current: {{ computedPage }}</p>
+        </Case>
+        <Case title="Computed from Items" layout="columns">
+            <p style="margin-bottom: 0.5rem; font-size: 0.8125rem; color: var(--form-field-description-color);">{{ totalItems }} items, {{ perPage }} per page = {{ computedTotalPages }} pages</p>
             <Pagination
                 :current-page="computedPage"
                 :total-items="totalItems"
                 :per-page="perPage"
                 @page-changed="computedPage = $event"
             />
-        </CardBase>
-    </div>
-</template>
+        </Case>
+    </Section>
 
-<style scoped>
-.demo-value {
-    margin-bottom: 0.5rem;
-    font-size: 0.8125rem;
-    color: var(--form-field-description-color);
-}
-</style>
+    <Section title="States" :full-width="true">
+        <Case title="Active and Disabled" layout="columns">
+            <p style="margin-bottom: 0.5rem; font-size: 0.8125rem; color: var(--form-field-description-color);">First and last page buttons are disabled at boundaries. Active page is highlighted.</p>
+            <Pagination
+                :current-page="1"
+                :total-pages="5"
+            />
+        </Case>
+    </Section>
+
+    <Section title="Accessibility">
+        <Case title="Keyboard Navigation" layout="columns">
+            <p>Tab navigates between page buttons. Enter/Space activates. Current page is announced via aria-current. Disabled buttons use aria-disabled.</p>
+        </Case>
+    </Section>
+</template>

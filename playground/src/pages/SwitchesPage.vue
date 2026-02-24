@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Switch, CardBase } from '@lib'
+import { Switch } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Sizes', 'States', 'Accessibility'], isInteractive: true })
 
 const sm = ref(false)
 const md = ref(true)
@@ -10,30 +15,24 @@ const disabledOn = ref(true)
 </script>
 
 <template>
-    <div class="page" data-testid="page-switches">
-        <h1>Switches</h1>
+    <Section title="Sizes">
+        <Case title="All Sizes" layout="columns">
+            <Switch v-model="sm" size="small" label="Small switch" />
+            <Switch v-model="md" size="medium" label="Medium switch" />
+            <Switch v-model="lg" size="large" label="Large switch" />
+        </Case>
+    </Section>
 
-        <CardBase title="Sizes">
-            <div class="demo-stack">
-                <Switch v-model="sm" size="small" label="Small switch" />
-                <Switch v-model="md" size="medium" label="Medium switch" />
-                <Switch v-model="lg" size="large" label="Large switch" />
-            </div>
-        </CardBase>
+    <Section title="States">
+        <Case title="Disabled" layout="columns">
+            <Switch v-model="disabledOff" label="Disabled (off)" is-disabled />
+            <Switch v-model="disabledOn" label="Disabled (on)" is-disabled />
+        </Case>
+    </Section>
 
-        <CardBase title="Disabled">
-            <div class="demo-stack">
-                <Switch v-model="disabledOff" label="Disabled (off)" is-disabled />
-                <Switch v-model="disabledOn" label="Disabled (on)" is-disabled />
-            </div>
-        </CardBase>
-    </div>
+    <Section title="Accessibility">
+        <Case title="Keyboard Navigation" layout="columns">
+            <p>Tab to focus, Space to toggle. The switch role is announced by screen readers. Disabled switches are skipped in tab order.</p>
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.demo-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-</style>

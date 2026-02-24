@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ProgressBar, CardBase, ButtonBase } from '@lib'
+import { ProgressBar, ButtonBase } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'States', 'Accessibility'], isInteractive: true })
 
 const dynamicValue = ref(45)
 
@@ -10,48 +15,31 @@ function randomize(): void {
 </script>
 
 <template>
-    <div class="page" data-testid="page-progress">
-        <h1>Progress Bars</h1>
+    <Section title="Variants">
+        <Case title="Color Variants" layout="columns">
+            <ProgressBar :value="25" variant="default" />
+            <ProgressBar :value="50" variant="success" />
+            <ProgressBar :value="75" variant="warning" />
+            <ProgressBar :value="100" variant="danger" />
+        </Case>
+        <Case title="With Labels" layout="columns">
+            <ProgressBar :value="33" show-label />
+            <ProgressBar :value="66" variant="success" show-label />
+            <ProgressBar :value="100" variant="danger" show-label />
+        </Case>
+    </Section>
 
-        <CardBase title="Variants">
-            <div class="demo-stack">
-                <ProgressBar :value="25" variant="default" />
-                <ProgressBar :value="50" variant="success" />
-                <ProgressBar :value="75" variant="warning" />
-                <ProgressBar :value="100" variant="danger" />
-            </div>
-        </CardBase>
-
-        <CardBase title="With Labels">
-            <div class="demo-stack">
-                <ProgressBar :value="33" show-label />
-                <ProgressBar :value="66" variant="success" show-label />
-                <ProgressBar :value="100" variant="danger" show-label />
-            </div>
-        </CardBase>
-
-        <CardBase title="Custom Aria Label">
-            <ProgressBar :value="60" aria-label="File upload progress" show-label />
-        </CardBase>
-
-        <CardBase title="Interactive">
+    <Section title="States" :full-width="true">
+        <Case title="Interactive Value" layout="columns">
             <ProgressBar :value="dynamicValue" variant="success" show-label />
-            <div class="demo-row" style="margin-top: 0.75rem;">
-                <ButtonBase variant="secondary" size="small" label="Randomize" @click="randomize" />
-            </div>
-        </CardBase>
-    </div>
+            <ButtonBase variant="secondary" size="small" label="Randomize" @click="randomize" />
+        </Case>
+    </Section>
+
+    <Section title="Accessibility">
+        <Case title="Aria Label" layout="columns">
+            <ProgressBar :value="60" aria-label="File upload progress" show-label />
+            <p>Custom aria-label for screen readers: "File upload progress".</p>
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.demo-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.demo-row {
-    display: flex;
-    gap: 0.75rem;
-}
-</style>

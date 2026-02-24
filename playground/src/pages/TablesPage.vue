@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { TableBase, BadgeBase, Pagination, CardBase, ButtonBase } from '@lib'
+import { TableBase, BadgeBase, Pagination } from '@lib'
 import type { TableColumn, TableRow, TableSort, TablePagination, RowId, BadgeVariant } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { usePlaygroundControls } from '../composables/usePlaygroundControls'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Accessibility'], isInteractive: true })
+
+const { isLoading } = usePlaygroundControls()
 
 const columns: TableColumn[] = [
     { key: 'name', label: 'Name', isSortable: true },
@@ -28,7 +36,6 @@ const statusBadgeMap: Record<string, BadgeVariant> = {
     declined: 'declined',
 }
 
-// Sortable demo
 const sort = ref<TableSort | null>(null)
 
 const sortedRows = computed(() => {
@@ -42,10 +49,8 @@ const sortedRows = computed(() => {
     })
 })
 
-// Selectable demo
 const selectedIds = ref<RowId[]>([])
 
-// Paginated demo
 const paginationState = ref<TablePagination>({
     currentPage: 1,
     pageSize: 3,
@@ -64,59 +69,14 @@ const totalPages = computed(() =>
 function onPageChanged(page: number): void {
     paginationState.value = { ...paginationState.value, currentPage: page }
 }
-
-// Loading demo
-const isLoading = ref(false)
 </script>
 
 <template>
-    <div class="page" data-testid="page-tables">
-        <h1>Tables</h1>
-
-        <CardBase title="Basic Table">
+    <Section title="Variants" :full-width="true">
+        <Case title="Basic Table" layout="columns">
             <TableBase :columns="columns" :rows="allRows" />
-        </CardBase>
-
-        <CardBase title="Sortable">
-            <TableBase
-                :columns="columns"
-                :rows="sortedRows"
-                :sort="sort"
-                test-id="table-sortable"
-                @update:sort="sort = $event"
-            />
-        </CardBase>
-
-        <CardBase title="Selectable">
-            <p class="demo-value">Selected: {{ selectedIds.length }} row(s)</p>
-            <TableBase
-                :columns="columns"
-                :rows="allRows"
-                is-selectable
-                :selected-ids="selectedIds"
-                test-id="table-selectable"
-                @update:selected-ids="selectedIds = $event"
-            />
-        </CardBase>
-
-        <CardBase title="With Pagination">
-            <TableBase
-                :columns="columns"
-                :rows="paginatedRows"
-                :sort="sort"
-                test-id="table-paginated"
-                @update:sort="sort = $event"
-            />
-            <div style="margin-top: 1rem;">
-                <Pagination
-                    :current-page="paginationState.currentPage"
-                    :total-pages="totalPages"
-                    @page-changed="onPageChanged"
-                />
-            </div>
-        </CardBase>
-
-        <CardBase title="Custom Cells (Badge for Status)">
+        </Case>
+        <Case title="Custom Cells (Badge for Status)" layout="columns">
             <TableBase :columns="columns" :rows="allRows" test-id="table-custom-cells">
                 <template #cell="{ column, value }">
                     <BadgeBase
@@ -127,31 +87,58 @@ const isLoading = ref(false)
                     <template v-else>{{ value }}</template>
                 </template>
             </TableBase>
-        </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="Empty State">
-            <TableBase :columns="columns" :rows="[]" empty-text="No users found." />
-        </CardBase>
-
-        <CardBase title="Loading State">
+    <Section title="States" :full-width="true">
+        <Case title="Sortable" layout="columns">
+            <TableBase
+                :columns="columns"
+                :rows="sortedRows"
+                :sort="sort"
+                test-id="table-sortable"
+                @update:sort="sort = $event"
+            />
+        </Case>
+        <Case title="Selectable" layout="columns">
+            <p style="margin-bottom: 0.5rem; font-size: 0.8125rem; color: var(--form-field-description-color);">Selected: {{ selectedIds.length }} row(s)</p>
+            <TableBase
+                :columns="columns"
+                :rows="allRows"
+                is-selectable
+                :selected-ids="selectedIds"
+                test-id="table-selectable"
+                @update:selected-ids="selectedIds = $event"
+            />
+        </Case>
+        <Case title="Loading" layout="columns">
             <TableBase :columns="columns" :rows="allRows" :is-loading="isLoading" />
-            <template #actions>
-                <ButtonBase
-                    size="small"
-                    :variant="isLoading ? 'danger' : 'secondary'"
-                    :icon="isLoading ? 'stop' : 'sync'"
-                    :label="isLoading ? 'Stop Loading' : 'Start Loading'"
-                    @click="isLoading = !isLoading"
-                />
-            </template>
-        </CardBase>
-    </div>
-</template>
+        </Case>
+        <Case title="Empty" layout="columns">
+            <TableBase :columns="columns" :rows="[]" empty-text="No users found." />
+        </Case>
+    </Section>
 
-<style scoped>
-.demo-value {
-    margin-bottom: 0.5rem;
-    font-size: 0.8125rem;
-    color: var(--form-field-description-color);
-}
-</style>
+    <Section title="Composition" :full-width="true">
+        <Case title="With Pagination" layout="columns">
+            <TableBase
+                :columns="columns"
+                :rows="paginatedRows"
+                :sort="sort"
+                test-id="table-paginated"
+                @update:sort="sort = $event"
+            />
+            <Pagination
+                :current-page="paginationState.currentPage"
+                :total-pages="totalPages"
+                @page-changed="onPageChanged"
+            />
+        </Case>
+    </Section>
+
+    <Section title="Accessibility">
+        <Case title="Keyboard Navigation" layout="columns">
+            <p>Tables use native table semantics. Sortable columns are clickable. Selection uses native checkbox inputs. Tab navigates between interactive elements within the table.</p>
+        </Case>
+    </Section>
+</template>

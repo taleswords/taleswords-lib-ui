@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ModalBase, ButtonBase, CardBase } from '@lib'
+import { ModalBase, ButtonBase } from '@lib'
+import Section from '../components/Section.vue'
+import Case from '../components/Case.vue'
+import { definePlaygroundPage } from '../composables/usePageContract'
+
+definePlaygroundPage({ sections: ['Variants', 'Sizes', 'States', 'Composition', 'Accessibility'], isInteractive: true })
 
 const showBasic = ref(false)
 const showSmall = ref(false)
@@ -17,10 +22,8 @@ async function confirmClose(): Promise<boolean> {
 </script>
 
 <template>
-    <div class="page" data-testid="page-modals">
-        <h1>Modals</h1>
-
-        <CardBase title="Basic Modal">
+    <Section title="Variants">
+        <Case title="Basic Modal" layout="row">
             <ButtonBase
                 variant="primary"
                 icon="open_in_new"
@@ -35,14 +38,14 @@ async function confirmClose(): Promise<boolean> {
                     <ButtonBase variant="primary" label="Confirm" @click="close" />
                 </template>
             </ModalBase>
-        </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="Sizes">
-            <div class="demo-row">
-                <ButtonBase variant="secondary" icon="crop_square" label="Small" @click="showSmall = true" />
-                <ButtonBase variant="secondary" icon="aspect_ratio" label="Large" @click="showLarge = true" />
-                <ButtonBase variant="secondary" icon="fullscreen" label="Fullscreen" @click="showFull = true" />
-            </div>
+    <Section title="Sizes">
+        <Case title="Small, Large, Fullscreen" layout="row">
+            <ButtonBase variant="secondary" icon="crop_square" label="Small" @click="showSmall = true" />
+            <ButtonBase variant="secondary" icon="aspect_ratio" label="Large" @click="showLarge = true" />
+            <ButtonBase variant="secondary" icon="fullscreen" label="Fullscreen" @click="showFull = true" />
 
             <ModalBase v-model="showSmall" size="small" title="Small Modal">
                 <p>This is a small modal.</p>
@@ -63,9 +66,11 @@ async function confirmClose(): Promise<boolean> {
                     <ButtonBase variant="secondary" label="Close" @click="close" />
                 </template>
             </ModalBase>
-        </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="Before Close (Confirm)">
+    <Section title="States">
+        <Case title="Before Close (Confirm Dialog)" layout="row">
             <ButtonBase
                 variant="danger"
                 icon="warning"
@@ -84,9 +89,11 @@ async function confirmClose(): Promise<boolean> {
                     <ButtonBase variant="primary" label="Save Changes" @click="close" />
                 </template>
             </ModalBase>
-        </CardBase>
+        </Case>
+    </Section>
 
-        <CardBase title="Nested Modals">
+    <Section title="Composition">
+        <Case title="Nested Modals" layout="row">
             <ButtonBase
                 variant="primary"
                 icon="layers"
@@ -112,9 +119,8 @@ async function confirmClose(): Promise<boolean> {
                     <ButtonBase variant="primary" label="Done" @click="close" />
                 </template>
             </ModalBase>
-        </CardBase>
-
-        <CardBase title="Custom Slots">
+        </Case>
+        <Case title="Custom Header and Footer Slots" layout="row">
             <ButtonBase
                 variant="secondary"
                 icon="tune"
@@ -123,52 +129,25 @@ async function confirmClose(): Promise<boolean> {
             />
             <ModalBase v-model="showCustomSlots">
                 <template #header="{ close }">
-                    <div class="custom-header">
-                        <h3>Custom Header</h3>
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; border-bottom: 1px solid var(--general-card-border);">
+                        <h3 style="margin: 0; font-size: 1.125rem;">Custom Header</h3>
                         <ButtonBase variant="ghost" icon="close" @click="close" />
                     </div>
                 </template>
                 <p>Modal with custom header and footer slots.</p>
                 <template #footer="{ close }">
-                    <div class="custom-footer">
-                        <span class="custom-footer__hint">Step 1 of 3</span>
+                    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="font-size: 0.8125rem; color: var(--form-field-description-color);">Step 1 of 3</span>
                         <ButtonBase variant="primary" label="Next" @click="close" />
                     </div>
                 </template>
             </ModalBase>
-        </CardBase>
-    </div>
+        </Case>
+    </Section>
+
+    <Section title="Accessibility">
+        <Case title="Focus Trap" layout="columns">
+            <p>Modals implement focus trapping. Tab cycles through focusable elements within the modal. Escape closes the modal. Focus returns to the trigger element on close.</p>
+        </Case>
+    </Section>
 </template>
-
-<style scoped>
-.demo-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-}
-
-.custom-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    border-bottom: 1px solid var(--general-card-border);
-}
-
-.custom-header h3 {
-    margin: 0;
-    font-size: 1.125rem;
-}
-
-.custom-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.custom-footer__hint {
-    font-size: 0.8125rem;
-    color: var(--form-field-description-color);
-}
-</style>
