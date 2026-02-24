@@ -58,6 +58,7 @@ async function confirmClose(): Promise<boolean> {
             <ButtonBase
                 variant="danger"
                 label="Open with Confirm"
+                data-testid="open-confirm-modal"
                 @click="showBeforeClose = true"
             />
             <ModalBase
@@ -73,6 +74,7 @@ async function confirmClose(): Promise<boolean> {
             <ButtonBase
                 variant="primary"
                 label="Open Outer Modal"
+                data-testid="open-nested-modal"
                 @click="showNested = true"
             />
             <ModalBase v-model="showNested" title="Outer Modal">

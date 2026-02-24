@@ -82,6 +82,7 @@ const isLoading = ref(false)
                 :columns="columns"
                 :rows="sortedRows"
                 :sort="sort"
+                test-id="table-sortable"
                 @update:sort="sort = $event"
             />
         </CardBase>
@@ -93,6 +94,7 @@ const isLoading = ref(false)
                 :rows="allRows"
                 is-selectable
                 :selected-ids="selectedIds"
+                test-id="table-selectable"
                 @update:selected-ids="selectedIds = $event"
             />
         </CardBase>
@@ -102,6 +104,7 @@ const isLoading = ref(false)
                 :columns="columns"
                 :rows="paginatedRows"
                 :sort="sort"
+                test-id="table-paginated"
                 @update:sort="sort = $event"
             />
             <div style="margin-top: 1rem;">
@@ -114,7 +117,7 @@ const isLoading = ref(false)
         </CardBase>
 
         <CardBase title="Custom Cells (Badge for Status)">
-            <TableBase :columns="columns" :rows="allRows">
+            <TableBase :columns="columns" :rows="allRows" test-id="table-custom-cells">
                 <template #cell="{ column, value }">
                     <BadgeBase
                         v-if="column.key === 'status'"

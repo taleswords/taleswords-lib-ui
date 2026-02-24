@@ -28,6 +28,8 @@ const state = reactive<{ toasts: ToastEntry[] }>({
 })
 
 const timers = new Map<number, ReturnType<typeof setTimeout>>()
+const startTimes = new Map<number, number>()
+const durations = new Map<number, number>()
 
 // ── API ────────────────────────────────────────────
 
@@ -40,6 +42,9 @@ function addToast(options: ToastOptions): number {
     state.toasts.push({ id, message: options.message, variant, isDismissible })
 
     if (!options.isPersistent && duration > 0) {
+        startTimes.set(id, Date.now())
+        durations.set(id, duration)
+
         const timer = setTimeout(() => {
             removeToast(id)
         }, duration)
@@ -55,8 +60,39 @@ function removeToast(id: number): void {
         clearTimeout(timer)
         timers.delete(id)
     }
+    startTimes.delete(id)
+    durations.delete(id)
     const index = state.toasts.findIndex((t) => t.id === id)
     if (index !== -1) state.toasts.splice(index, 1)
+}
+
+function pauseTimer(id: number): void {
+    const timer = timers.get(id)
+    if (!timer) return
+
+    clearTimeout(timer)
+    timers.delete(id)
+
+    const start = startTimes.get(id)
+    const total = durations.get(id)
+    if (start != null && total != null) {
+        const elapsed = Date.now() - start
+        const remaining = Math.max(total - elapsed, 0)
+        durations.set(id, remaining)
+    }
+}
+
+function resumeTimer(id: number): void {
+    // Only resume if this toast has a remaining duration and no active timer
+    const remaining = durations.get(id)
+    if (remaining == null || timers.has(id)) return
+
+    startTimes.set(id, Date.now())
+
+    const timer = setTimeout(() => {
+        removeToast(id)
+    }, remaining)
+    timers.set(id, timer)
 }
 
 function clearAll(): void {
@@ -64,6 +100,8 @@ function clearAll(): void {
         clearTimeout(timer)
     }
     timers.clear()
+    startTimes.clear()
+    durations.clear()
     state.toasts.splice(0, state.toasts.length)
     nextId = 1
 }
@@ -75,6 +113,8 @@ export function useToast() {
         toasts: state.toasts,
         addToast,
         removeToast,
+        pauseTimer,
+        resumeTimer,
         clearAll,
     }
 }

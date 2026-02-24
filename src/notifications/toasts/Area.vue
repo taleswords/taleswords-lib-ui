@@ -10,7 +10,7 @@ withDefaults(defineProps<ToastAreaProps>(), {
     testId: 'toast-area',
 })
 
-const { toasts, removeToast } = useToast()
+const { toasts, removeToast, pauseTimer, resumeTimer } = useToast()
 </script>
 
 <template>
@@ -29,6 +29,8 @@ const { toasts, removeToast } = useToast()
                     :message="toast.message"
                     :is-dismissible="toast.isDismissible"
                     @dismiss="removeToast"
+                    @mouseenter="pauseTimer(toast.id)"
+                    @mouseleave="resumeTimer(toast.id)"
                 />
             </TransitionGroup>
         </div>

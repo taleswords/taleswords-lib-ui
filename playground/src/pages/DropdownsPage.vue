@@ -43,6 +43,7 @@ const customOptions: DropdownOption<string>[] = [
                 v-model="basicValue"
                 :options="basicOptions"
                 placeholder="Choose a fruit..."
+                test-id="dropdown-basic"
             />
             <p class="demo-value">Selected: {{ basicValue ?? 'none' }}</p>
         </CardBase>
@@ -84,6 +85,7 @@ const customOptions: DropdownOption<string>[] = [
                 v-model="customValue"
                 :options="customOptions"
                 placeholder="Select user..."
+                test-id="dropdown-custom"
             >
                 <template #trigger="{ selectedLabel, isOpen }">
                     <ButtonBase

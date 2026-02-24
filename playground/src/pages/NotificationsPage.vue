@@ -32,29 +32,29 @@ function fireDontShowAgainBanner(): void {
         <CardBase title="Toast Triggers">
             <p class="demo-hint">Toasts appear in the top-right corner (via ToastArea in App.vue).</p>
             <div class="demo-row">
-                <ButtonBase variant="secondary" label="Info Toast" @click="fireToast('info')" />
-                <ButtonBase variant="primary" label="Success Toast" @click="fireToast('success')" />
-                <ButtonBase variant="ghost-danger" label="Warning Toast" @click="fireToast('warning')" />
-                <ButtonBase variant="danger" label="Error Toast" @click="fireToast('error')" />
+                <ButtonBase variant="secondary" label="Info Toast" data-testid="toast-info" @click="fireToast('info')" />
+                <ButtonBase variant="primary" label="Success Toast" data-testid="toast-success" @click="fireToast('success')" />
+                <ButtonBase variant="ghost-danger" label="Warning Toast" data-testid="toast-warning" @click="fireToast('warning')" />
+                <ButtonBase variant="danger" label="Error Toast" data-testid="toast-error" @click="fireToast('error')" />
             </div>
         </CardBase>
 
         <CardBase title="Persistent Toast">
             <p class="demo-hint">This toast won't auto-dismiss.</p>
-            <ButtonBase variant="secondary" label="Add Persistent Toast" @click="firePersistentToast" />
+            <ButtonBase variant="secondary" label="Add Persistent Toast" data-testid="toast-persistent" @click="firePersistentToast" />
         </CardBase>
 
         <CardBase title="Banner Triggers">
             <div class="demo-row">
-                <ButtonBase variant="secondary" label="Info Banner" @click="fireBanner('info')" />
-                <ButtonBase variant="primary" label="Success Banner" @click="fireBanner('success')" />
-                <ButtonBase variant="ghost-danger" label="Warning Banner" @click="fireBanner('warning')" />
-                <ButtonBase variant="danger" label="Error Banner" @click="fireBanner('error')" />
+                <ButtonBase variant="secondary" label="Info Banner" data-testid="banner-info" @click="fireBanner('info')" />
+                <ButtonBase variant="primary" label="Success Banner" data-testid="banner-success" @click="fireBanner('success')" />
+                <ButtonBase variant="ghost-danger" label="Warning Banner" data-testid="banner-warning" @click="fireBanner('warning')" />
+                <ButtonBase variant="danger" label="Error Banner" data-testid="banner-error" @click="fireBanner('error')" />
             </div>
         </CardBase>
 
         <CardBase title="Don't Show Again Banner">
-            <ButtonBase variant="secondary" label="Add Banner with Don't Show Again" @click="fireDontShowAgainBanner" />
+            <ButtonBase variant="secondary" label="Add Banner with Don't Show Again" data-testid="banner-dont-show" @click="fireDontShowAgainBanner" />
         </CardBase>
 
         <CardBase title="Banner Area (Inline)">
