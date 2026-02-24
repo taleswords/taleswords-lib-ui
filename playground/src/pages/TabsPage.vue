@@ -13,9 +13,9 @@ const basicTabs: TabItem[] = [
 ]
 
 const iconTabs: TabItem[] = [
-    { id: 'home', label: 'Home', icon: 'icon-home' },
-    { id: 'profile', label: 'Profile', icon: 'icon-user' },
-    { id: 'messages', label: 'Messages', icon: 'icon-chat' },
+    { id: 'home', label: 'Home', icon: 'home' },
+    { id: 'profile', label: 'Profile', icon: 'person' },
+    { id: 'messages', label: 'Messages', icon: 'chat' },
 ]
 
 const disabledTabs: TabItem[] = [

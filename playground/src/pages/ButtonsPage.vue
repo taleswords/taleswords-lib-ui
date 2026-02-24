@@ -27,9 +27,9 @@ import { ButtonBase, CardBase } from '@lib'
 
         <CardBase title="With Icons">
             <div class="demo-row">
-                <ButtonBase variant="primary" icon="icon-plus" label="Add Item" />
-                <ButtonBase variant="secondary" icon="icon-download" icon-position="right" label="Download" />
-                <ButtonBase variant="ghost" icon="icon-cog" />
+                <ButtonBase variant="primary" icon="add" label="Add Item" />
+                <ButtonBase variant="secondary" icon="download" icon-position="right" label="Download" />
+                <ButtonBase variant="ghost" icon="settings" />
             </div>
         </CardBase>
 

@@ -40,11 +40,10 @@ defineEmits<{
         >
             {{ selectedLabel || placeholder }}
         </span>
-        <i
-            class="dropdown-trigger__icon"
-            :class="isOpen ? 'icon-up-dir' : 'icon-down-dir'"
+        <span
+            class="material-symbols-rounded dropdown-trigger__icon"
             aria-hidden="true"
-        />
+        >{{ isOpen ? 'expand_less' : 'expand_more' }}</span>
     </button>
 </template>
 
@@ -103,12 +102,7 @@ defineEmits<{
 
 .dropdown-trigger__icon {
     flex-shrink: 0;
-    font-size: 0.75em;
+    font-size: 1.25em;
     color: var(--textbox-placeholder);
-}
-
-.dropdown-trigger__icon::before {
-    margin: 0;
-    width: auto;
 }
 </style>

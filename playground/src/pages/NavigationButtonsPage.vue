@@ -14,10 +14,10 @@ const basicItems: NavItem[] = [
 ]
 
 const iconItems: NavItem[] = [
-    { id: 'home', label: 'Home', icon: 'icon-home' },
-    { id: 'users', label: 'Users', icon: 'icon-user' },
-    { id: 'files', label: 'Files', icon: 'icon-doc' },
-    { id: 'config', label: 'Config', icon: 'icon-cog' },
+    { id: 'home', label: 'Home', icon: 'home' },
+    { id: 'users', label: 'Users', icon: 'group' },
+    { id: 'files', label: 'Files', icon: 'description' },
+    { id: 'config', label: 'Config', icon: 'settings' },
 ]
 
 const disabledItems: NavItem[] = [

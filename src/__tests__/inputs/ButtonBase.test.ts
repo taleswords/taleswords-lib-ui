@@ -39,23 +39,31 @@ describe('ButtonBase', () => {
     })
 
     it('renders icon on the left by default', () => {
-        const wrapper = mount(ButtonBase, { props: { icon: 'ok', label: 'Save' } })
+        const wrapper = mount(ButtonBase, { props: { icon: 'check', label: 'Save' } })
         const icons = wrapper.findAll('.button__icon')
         expect(icons).toHaveLength(1)
         expect(icons[0].classes()).toContain('button__icon--left')
-        expect(icons[0].classes()).toContain('icon-ok')
+        expect(icons[0].classes()).toContain('material-symbols-rounded')
+        expect(icons[0].text()).toBe('check')
     })
 
     it('renders icon on the right when iconPosition is right', () => {
-        const wrapper = mount(ButtonBase, { props: { icon: 'right', iconPosition: 'right', label: 'Next' } })
+        const wrapper = mount(ButtonBase, { props: { icon: 'arrow_forward', iconPosition: 'right', label: 'Next' } })
         const icons = wrapper.findAll('.button__icon')
         expect(icons).toHaveLength(1)
         expect(icons[0].classes()).toContain('button__icon--right')
+        expect(icons[0].classes()).toContain('material-symbols-rounded')
     })
 
     it('applies icon-only class when icon provided without label', () => {
-        const wrapper = mount(ButtonBase, { props: { icon: 'ok' } })
+        const wrapper = mount(ButtonBase, { props: { icon: 'check' } })
         expect(wrapper.classes()).toContain('button--icon-only')
+    })
+
+    it('icon span has aria-hidden', () => {
+        const wrapper = mount(ButtonBase, { props: { icon: 'check', label: 'Save' } })
+        const icon = wrapper.find('.button__icon')
+        expect(icon.attributes('aria-hidden')).toBe('true')
     })
 
     it('renders as anchor when href is provided', () => {

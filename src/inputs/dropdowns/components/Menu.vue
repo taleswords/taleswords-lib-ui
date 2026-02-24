@@ -84,14 +84,13 @@ function isSelected(option: DropdownMenuOption): boolean {
                     :class="{ 'dropdown-menu__checkbox--checked': isSelected(option) }"
                     aria-hidden="true"
                 >
-                    <i v-if="isSelected(option)" class="icon-ok" />
+                    <span v-if="isSelected(option)" class="material-symbols-rounded" aria-hidden="true">check</span>
                 </span>
-                <i
+                <span
                     v-if="option.icon"
-                    class="dropdown-menu__option-icon"
-                    :class="`icon-${option.icon}`"
+                    class="material-symbols-rounded dropdown-menu__option-icon"
                     aria-hidden="true"
-                />
+                >{{ option.icon }}</span>
                 <slot name="option" :option="option" :is-selected="isSelected(option)">
                     <span class="dropdown-menu__option-label">{{ option.label }}</span>
                 </slot>
@@ -128,7 +127,7 @@ function isSelected(option: DropdownMenuOption): boolean {
                         :class="{ 'dropdown-menu__checkbox--checked': isSelected(option) }"
                         aria-hidden="true"
                     >
-                        <i v-if="isSelected(option)" class="icon-ok" />
+                        <span v-if="isSelected(option)" class="material-symbols-rounded" aria-hidden="true">check</span>
                     </span>
                     <i
                         v-if="option.icon"
@@ -196,12 +195,7 @@ function isSelected(option: DropdownMenuOption): boolean {
 
 .dropdown-menu__option-icon {
     flex-shrink: 0;
-    font-size: 0.875em;
-}
-
-.dropdown-menu__option-icon::before {
-    margin: 0;
-    width: auto;
+    font-size: 1.125em;
 }
 
 .dropdown-menu__option-label {

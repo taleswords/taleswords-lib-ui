@@ -53,7 +53,7 @@ function handleClick(item: NavItem): void {
                     :aria-current="item.id === activeId ? 'page' : undefined"
                     @click="handleClick(item)"
                 >
-                    <i v-if="item.icon" :class="item.icon" class="nav-buttons__icon" aria-hidden="true" />
+                    <span v-if="item.icon" class="material-symbols-rounded nav-buttons__icon" aria-hidden="true">{{ item.icon }}</span>
                     <span>{{ item.label }}</span>
                 </component>
             </li>

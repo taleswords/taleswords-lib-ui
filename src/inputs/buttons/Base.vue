@@ -44,20 +44,18 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
         data-testid="button-base"
         @click="$emit('click', $event)"
     >
-        <i
+        <span
             v-if="props.icon && props.iconPosition === 'left'"
-            class="button__icon button__icon--left"
-            :class="`icon-${props.icon}`"
+            class="material-symbols-rounded button__icon button__icon--left"
             aria-hidden="true"
-        />
+        >{{ props.icon }}</span>
         <span v-if="props.label" class="button__label">{{ props.label }}</span>
         <slot v-else />
-        <i
+        <span
             v-if="props.icon && props.iconPosition === 'right'"
-            class="button__icon button__icon--right"
-            :class="`icon-${props.icon}`"
+            class="material-symbols-rounded button__icon button__icon--right"
             aria-hidden="true"
-        />
+        >{{ props.icon }}</span>
     </component>
 </template>
 
@@ -187,11 +185,7 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
 /* Icon */
 .button__icon {
     line-height: 1;
-}
-
-.button__icon::before {
-    margin: 0;
-    width: auto;
+    font-size: 1.25em;
 }
 
 .button__icon--left {

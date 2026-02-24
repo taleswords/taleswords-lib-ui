@@ -24,7 +24,7 @@ function onInput(event: Event): void {
 <template>
     <div v-if="props.hasSearch" class="dropdown-header">
         <div class="dropdown-header__search">
-            <i class="dropdown-header__search-icon icon-search" aria-hidden="true" />
+            <span class="material-symbols-rounded dropdown-header__search-icon" aria-hidden="true">search</span>
             <input
                 class="dropdown-header__search-input"
                 type="text"
@@ -59,13 +59,8 @@ function onInput(event: Event): void {
 
 .dropdown-header__search-icon {
     color: var(--textbox-placeholder);
-    font-size: 0.875em;
+    font-size: 1.125em;
     flex-shrink: 0;
-}
-
-.dropdown-header__search-icon::before {
-    margin: 0;
-    width: auto;
 }
 
 .dropdown-header__search-input {

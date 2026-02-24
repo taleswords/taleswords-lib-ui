@@ -19,10 +19,12 @@ defineEmits<{
         <button
             v-if="hasCloseButton"
             type="button"
-            class="modal-header__close icon-cancel"
+            class="modal-header__close"
             aria-label="Close"
             @click="$emit('close')"
-        />
+        >
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+        </button>
     </div>
 </template>
 
@@ -68,8 +70,7 @@ defineEmits<{
     box-shadow: 0 0 0 2px var(--general-focus-ring);
 }
 
-.modal-header__close::before {
-    margin: 0;
-    width: auto;
+.modal-header__close .material-symbols-rounded {
+    font-size: 1.25em;
 }
 </style>

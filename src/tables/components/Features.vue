@@ -24,7 +24,7 @@ function onInput(event: Event): void {
 <template>
     <div class="table-features">
         <div v-if="hasSearch" class="table-features__search">
-            <i class="table-features__search-icon icon-search" aria-hidden="true" />
+            <span class="material-symbols-rounded table-features__search-icon" aria-hidden="true">search</span>
             <input
                 class="table-features__search-input"
                 type="text"
@@ -66,13 +66,8 @@ function onInput(event: Event): void {
 
 .table-features__search-icon {
     color: var(--textbox-placeholder);
-    font-size: 0.875em;
+    font-size: 1.125em;
     flex-shrink: 0;
-}
-
-.table-features__search-icon::before {
-    margin: 0;
-    width: auto;
 }
 
 .table-features__search-input {

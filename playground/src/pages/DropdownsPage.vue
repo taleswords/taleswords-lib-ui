@@ -91,7 +91,7 @@ const customOptions: DropdownOption<string>[] = [
                     <ButtonBase
                         :variant="isOpen ? 'primary' : 'secondary'"
                         :label="selectedLabel || 'Pick a user'"
-                        icon="icon-user"
+                        icon="person"
                     />
                 </template>
                 <template #option="{ option, isSelected }">

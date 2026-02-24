@@ -52,7 +52,7 @@ function goToNext(): void {
                 aria-label="Previous page"
                 @click="goToPrev"
             >
-                <i class="icon-left-open" aria-hidden="true" />
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_left</span>
                 Prev
             </button>
             <button
@@ -64,7 +64,7 @@ function goToNext(): void {
                 @click="goToNext"
             >
                 Next
-                <i class="icon-right-open" aria-hidden="true" />
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_right</span>
             </button>
         </nav>
     </div>
@@ -117,8 +117,7 @@ function goToNext(): void {
     opacity: 0.65;
 }
 
-.table-footer__btn i::before {
-    margin: 0;
-    width: auto;
+.table-footer__btn .material-symbols-rounded {
+    font-size: 1.125em;
 }
 </style>

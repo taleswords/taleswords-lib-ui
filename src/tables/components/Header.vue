@@ -21,15 +21,11 @@ const emit = defineEmits<{
     'toggle-all': []
 }>()
 
-function getSortIcon(key: string): string {
+function getSortIcon(key: string): string | null {
     if (!props.sort || props.sort.key !== key || props.sort.direction === null) {
-        return '\u2013'
+        return null
     }
-    return props.sort.direction === 'asc' ? 'icon-up-dir' : 'icon-down-dir'
-}
-
-function isSortIconClass(key: string): boolean {
-    return Boolean(props.sort && props.sort.key === key && props.sort.direction !== null)
+    return props.sort.direction === 'asc' ? 'arrow_upward' : 'arrow_downward'
 }
 </script>
 
@@ -68,8 +64,8 @@ function isSortIconClass(key: string): boolean {
                     class="table-header__sort-icon"
                     aria-hidden="true"
                 >
-                    <i v-if="isSortIconClass(column.key)" :class="getSortIcon(column.key)" />
-                    <template v-else>{{ getSortIcon(column.key) }}</template>
+                    <span v-if="getSortIcon(column.key)" class="material-symbols-rounded">{{ getSortIcon(column.key) }}</span>
+                    <template v-else>&#8211;</template>
                 </span>
             </th>
         </tr>
@@ -109,8 +105,7 @@ function isSortIconClass(key: string): boolean {
     opacity: 0.6;
 }
 
-.table-header__sort-icon i::before {
-    margin: 0;
-    width: auto;
+.table-header__sort-icon .material-symbols-rounded {
+    font-size: 1.25em;
 }
 </style>

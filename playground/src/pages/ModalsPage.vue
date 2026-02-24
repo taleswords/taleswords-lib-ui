@@ -100,7 +100,7 @@ async function confirmClose(): Promise<boolean> {
                 <template #header="{ close }">
                     <div class="custom-header">
                         <h3>Custom Header</h3>
-                        <ButtonBase variant="ghost" icon="icon-cancel" @click="close" />
+                        <ButtonBase variant="ghost" icon="close" @click="close" />
                     </div>
                 </template>
                 <p>Modal with custom header and footer slots.</p>

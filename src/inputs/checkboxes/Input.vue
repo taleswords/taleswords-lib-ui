@@ -23,7 +23,7 @@ withDefaults(defineProps<CheckboxInputProps>(), {
         aria-hidden="true"
         data-testid="checkbox-input"
     >
-        <i v-if="isChecked" class="checkbox-input__check icon-ok" />
+        <span v-if="isChecked" class="material-symbols-rounded checkbox-input__check" aria-hidden="true">check</span>
     </span>
 </template>
 
@@ -57,13 +57,8 @@ withDefaults(defineProps<CheckboxInputProps>(), {
 }
 
 .checkbox-input__check {
-    font-size: 0.75em;
+    font-size: 0.875em;
     line-height: 1;
     color: var(--general-text-color);
-}
-
-.checkbox-input__check::before {
-    margin: 0;
-    width: auto;
 }
 </style>

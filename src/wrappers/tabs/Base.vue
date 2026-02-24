@@ -143,7 +143,7 @@ function selectTab(tab: TabItem): void {
                 }"
                 @click="selectTab(tab)"
             >
-                <i v-if="tab.icon" :class="tab.icon" class="tabs-base__icon" aria-hidden="true" />
+                <span v-if="tab.icon" class="material-symbols-rounded tabs-base__icon" aria-hidden="true">{{ tab.icon }}</span>
                 {{ tab.label }}
             </button>
             <span class="tabs-base__indicator" :style="indicatorStyle" />
@@ -201,7 +201,7 @@ function selectTab(tab: TabItem): void {
 }
 
 .tabs-base__icon {
-    font-size: 1em;
+    font-size: 1.25em;
 }
 
 .tabs-base__indicator {

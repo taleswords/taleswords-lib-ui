@@ -75,12 +75,13 @@ describe('NavigationButtons', () => {
 
     it('renders icon when provided', () => {
         const itemsWithIcon: NavItem[] = [
-            { id: 'x', label: 'X', icon: 'icon-home' },
+            { id: 'x', label: 'X', icon: 'home' },
         ]
         const wrapper = mount(NavigationButtons, { props: { items: itemsWithIcon } })
         const icon = wrapper.find('.nav-buttons__icon')
         expect(icon.exists()).toBe(true)
-        expect(icon.classes()).toContain('icon-home')
+        expect(icon.classes()).toContain('material-symbols-rounded')
+        expect(icon.text()).toBe('home')
         expect(icon.attributes('aria-hidden')).toBe('true')
     })
 
