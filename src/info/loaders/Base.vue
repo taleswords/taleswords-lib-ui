@@ -107,8 +107,8 @@ withDefaults(defineProps<LoaderBaseProps>(), {
 }
 
 .loader__label {
-    font-family: var(--font-heading);
-    font-size: 0.875em;
+    font-family: var(--loader-label-font);
+    font-size: var(--loader-label-size);
     color: var(--loader-label-color);
 }
 </style>

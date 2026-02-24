@@ -53,9 +53,9 @@ defineEmits<{
 }
 
 .dropdown-footer__btn {
-    font-family: var(--font-heading);
-    font-weight: 500;
-    font-size: 0.8125em;
+    font-family: var(--label-font);
+    font-weight: var(--label-weight);
+    font-size: var(--description-size);
     padding: 0.375em 0.75em;
     border-radius: var(--button-border-radius);
     border: 1px solid transparent;

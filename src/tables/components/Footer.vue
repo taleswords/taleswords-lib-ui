@@ -76,8 +76,8 @@ function goToNext(): void {
     align-items: center;
     justify-content: space-between;
     padding: 0.75em 1em;
-    font-family: var(--font-ui);
-    font-size: 0.875em;
+    font-family: var(--table-cell-font);
+    font-size: var(--description-size);
 }
 
 .table-footer__info {
@@ -95,9 +95,9 @@ function goToNext(): void {
     align-items: center;
     gap: 0.375em;
     padding: 0.375em 0.75em;
-    font-family: var(--font-heading);
-    font-weight: 500;
-    font-size: 0.8125em;
+    font-family: var(--label-font);
+    font-weight: var(--label-weight);
+    font-size: var(--description-size);
     color: var(--pagination-btn-color);
     background-color: var(--pagination-btn-bg);
     border: 1px solid var(--pagination-btn-border);

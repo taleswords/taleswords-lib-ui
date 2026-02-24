@@ -167,8 +167,8 @@ function isSelected(option: DropdownMenuOption): boolean {
     gap: 0.5em;
     padding: 0.5em 0.75em;
     cursor: pointer;
-    font-family: var(--font-ui);
-    font-size: 0.9375em;
+    font-family: var(--dropdown-font);
+    font-size: var(--dropdown-size);
     color: var(--dropdown-item-color);
     transition: background-color 0.15s;
     user-select: none;
@@ -227,9 +227,9 @@ function isSelected(option: DropdownMenuOption): boolean {
 
 .dropdown-menu__group-label {
     padding: 0.5em 0.75em 0.25em;
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 0.75em;
+    font-family: var(--label-font);
+    font-weight: var(--dropdown-group-weight);
+    font-size: var(--dropdown-group-size);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: var(--form-field-description-color);
@@ -238,8 +238,8 @@ function isSelected(option: DropdownMenuOption): boolean {
 .dropdown-menu__empty {
     padding: 1em;
     text-align: center;
-    font-family: var(--font-ui);
-    font-size: 0.875em;
+    font-family: var(--dropdown-font);
+    font-size: var(--description-size);
     color: var(--form-field-description-color);
 }
 </style>

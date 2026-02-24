@@ -289,4 +289,130 @@
        ────────────────────────────────────────── */
     --accordion-border: var(--color-neutral-400);
     --accordion-trigger-hover-bg: var(--color-neutral-200);
+
+    /* ──────────────────────────────────────────
+       Typography — Body
+       ────────────────────────────────────────── */
+    --body-font: var(--font-ui);
+    --body-size: var(--text-lg);
+    --body-weight: var(--weight-regular);
+    --body-leading: var(--leading-relaxed);
+
+    /* ──────────────────────────────────────────
+       Typography — Headings
+       ────────────────────────────────────────── */
+    --heading-font: var(--font-ui);
+    --heading-h1-size: var(--text-6xl);
+    --heading-h1-weight: var(--weight-bold);
+    --heading-h1-leading: var(--leading-tight);
+    --heading-h1-tracking: var(--tracking-wide);
+    --heading-h2-size: var(--text-5xl);
+    --heading-h2-weight: var(--weight-semi);
+    --heading-h2-leading: var(--leading-tight);
+    --heading-h2-tracking: var(--tracking-normal);
+    --heading-h3-size: var(--text-4xl);
+    --heading-h3-weight: var(--weight-medium);
+    --heading-h3-leading: var(--leading-normal);
+    --heading-h4-size: var(--text-3xl);
+    --heading-h4-weight: var(--weight-regular);
+    --heading-h4-leading: var(--leading-normal);
+    --heading-h5-size: var(--text-2xl);
+    --heading-h5-weight: var(--weight-regular);
+    --heading-h5-leading: var(--leading-normal);
+    --heading-h5-tracking: var(--tracking-wider);
+
+    /* ──────────────────────────────────────────
+       Typography — Components
+       ────────────────────────────────────────── */
+    --button-font: var(--font-ui);
+    --button-size: var(--text-lg);
+    --button-weight: var(--weight-medium);
+    --button-leading: var(--leading-snug);
+    --button-size-sm: var(--text-base);
+
+    --textbox-font: var(--font-ui);
+    --textbox-size: var(--text-lg);
+
+    --label-font: var(--font-ui);
+    --label-size: var(--text-md);
+    --label-weight: var(--weight-medium);
+
+    --description-size: var(--text-sm);
+    --description-weight: var(--weight-regular);
+
+    --error-size: var(--text-sm);
+
+    --badge-font: var(--font-ui);
+    --badge-size: var(--text-base);
+    --badge-weight: var(--weight-semi);
+
+    --table-header-font: var(--font-ui);
+    --table-header-size: var(--text-sm);
+    --table-header-weight: var(--weight-semi);
+    --table-cell-font: var(--font-ui);
+    --table-cell-size: var(--text-md);
+
+    --tab-font: var(--font-ui);
+    --tab-size: var(--text-base);
+    --tab-weight: var(--weight-medium);
+    --tab-weight-active: var(--weight-semi);
+
+    --dropdown-font: var(--font-ui);
+    --dropdown-size: var(--text-md);
+    --dropdown-group-size: var(--text-xs);
+    --dropdown-group-weight: var(--weight-semi);
+
+    --modal-title-font: var(--font-ui);
+    --modal-title-size: var(--text-xl);
+    --modal-title-weight: var(--weight-semi);
+    --modal-body-font: var(--font-ui);
+
+    --toast-font: var(--font-ui);
+    --toast-size: var(--text-base);
+    --banner-font: var(--font-ui);
+    --banner-size: var(--text-base);
+    --banner-action-size: var(--text-sm);
+    --banner-action-weight: var(--weight-medium);
+
+    --nav-btn-font: var(--font-ui);
+    --nav-btn-size: var(--text-base);
+    --nav-btn-weight: var(--weight-medium);
+
+    --breadcrumb-font: var(--font-ui);
+    --breadcrumb-size: var(--text-base);
+    --breadcrumb-weight-active: var(--weight-medium);
+
+    --pagination-font: var(--font-ui);
+    --pagination-size: var(--text-base);
+    --pagination-weight: var(--weight-medium);
+    --pagination-weight-active: var(--weight-semi);
+
+    --accordion-font: var(--font-ui);
+    --accordion-size: var(--text-md);
+    --accordion-weight: var(--weight-semi);
+
+    --progress-font: var(--font-ui);
+    --progress-size: var(--text-sm);
+    --progress-weight: var(--weight-semi);
+
+    --loader-label-font: var(--font-ui);
+    --loader-label-size: var(--text-base);
+
+    --row-expand-font: var(--font-ui);
+    --row-expand-size: var(--text-sm);
+    --row-expand-weight: var(--weight-medium);
+
+    --title-desc-heading-font: var(--font-ui);
+    --title-desc-heading-size: var(--text-3xl);
+    --title-desc-heading-weight: var(--weight-semi);
+    --title-desc-body-font: var(--font-ui);
+    --title-desc-body-size: var(--text-base);
+
+    /* ──────────────────────────────────────────
+       Typography — Narrative
+       ────────────────────────────────────────── */
+    --narrative-font: var(--font-narrative);
+    --narrative-size: var(--text-lg);
+    --narrative-weight: var(--weight-regular);
+    --narrative-leading: var(--leading-relaxed);
 }

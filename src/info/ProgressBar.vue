@@ -86,9 +86,9 @@ const fillStyle = computed(() => ({
 }
 
 .progress__label {
-    font-family: var(--font-ui);
-    font-size: 0.8125em;
-    font-weight: 600;
+    font-family: var(--progress-font);
+    font-size: var(--progress-size);
+    font-weight: var(--progress-weight);
     color: var(--progress-text-color);
     white-space: nowrap;
     min-width: 3em;

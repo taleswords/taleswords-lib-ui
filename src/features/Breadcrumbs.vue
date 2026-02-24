@@ -71,8 +71,8 @@ function handleClick(item: BreadcrumbItem, index: number): void {
     list-style: none;
     margin: 0;
     padding: 0;
-    font-family: var(--font-ui);
-    font-size: 0.875rem;
+    font-family: var(--breadcrumb-font);
+    font-size: var(--breadcrumb-size);
     gap: 0.25rem;
 }
 
@@ -99,6 +99,6 @@ function handleClick(item: BreadcrumbItem, index: number): void {
 
 .breadcrumbs__current {
     color: var(--general-text-color);
-    font-weight: 500;
+    font-weight: var(--breadcrumb-weight-active);
 }
 </style>

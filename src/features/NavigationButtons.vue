@@ -77,9 +77,9 @@ function handleClick(item: NavItem): void {
     gap: 0.5rem;
     width: 100%;
     padding: 0.5rem 0.75rem;
-    font-family: var(--font-ui);
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-family: var(--nav-btn-font);
+    font-size: var(--nav-btn-size);
+    font-weight: var(--nav-btn-weight);
     color: var(--nav-btn-color);
     background: none;
     border: none;

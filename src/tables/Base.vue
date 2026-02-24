@@ -256,16 +256,16 @@ defineExpose({ clearSelection })
 .table-base__table {
     width: 100%;
     border-collapse: collapse;
-    font-family: var(--font-ui);
-    font-size: 0.9375em;
+    font-family: var(--table-cell-font);
+    font-size: var(--table-cell-size);
 }
 
 /* Header cell styles (deep because Header.vue is scoped) */
 .table-base__table :deep(.table-header__cell) {
     padding: 0.75em 1em;
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 0.8125em;
+    font-family: var(--table-header-font);
+    font-weight: var(--table-header-weight);
+    font-size: var(--table-header-size);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: var(--general-text-color);
@@ -296,7 +296,7 @@ defineExpose({ clearSelection })
     padding: 2em;
     text-align: center;
     color: var(--form-field-description-color);
-    font-family: var(--font-ui);
+    font-family: var(--table-cell-font);
 }
 
 .table-base__loading {
@@ -309,8 +309,8 @@ defineExpose({ clearSelection })
 }
 
 .table-base__loading-text {
-    font-family: var(--font-heading);
-    font-weight: 500;
+    font-family: var(--table-header-font);
+    font-weight: var(--table-header-weight);
     color: var(--general-text-color);
 }
 </style>

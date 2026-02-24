@@ -79,9 +79,9 @@ const hasError = computed(() => errorMessages.value.length > 0)
 
 .form-field__label {
     display: block;
-    font-family: var(--font-heading);
-    font-weight: 500;
-    font-size: 0.9375em;
+    font-family: var(--label-font);
+    font-weight: var(--label-weight);
+    font-size: var(--label-size);
     color: var(--form-field-label-color);
     cursor: pointer;
     transition: color 0.3s;
@@ -105,7 +105,7 @@ const hasError = computed(() => errorMessages.value.length > 0)
 
 .form-field__description {
     margin: 0;
-    font-size: 0.8125em;
+    font-size: var(--description-size);
     color: var(--form-field-description-color);
     line-height: 1.4;
 }
@@ -121,7 +121,7 @@ const hasError = computed(() => errorMessages.value.length > 0)
 }
 
 .form-field__error {
-    font-size: 0.8125em;
+    font-size: var(--error-size);
     color: var(--form-field-error-color);
     line-height: 1.4;
 }

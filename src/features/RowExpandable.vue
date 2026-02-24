@@ -84,9 +84,9 @@ function toggle(): void {
     display: inline-block;
     margin-top: 0.25rem;
     padding: 0;
-    font-family: var(--font-ui);
-    font-size: 0.8125rem;
-    font-weight: 500;
+    font-family: var(--row-expand-font);
+    font-size: var(--row-expand-size);
+    font-weight: var(--row-expand-weight);
     color: var(--link-color);
     background: none;
     border: none;

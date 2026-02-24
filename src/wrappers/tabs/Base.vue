@@ -172,9 +172,9 @@ function selectTab(tab: TabItem): void {
 .tabs-base__tab {
     position: relative;
     padding: 0.625rem 1rem;
-    font-family: var(--font-ui);
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-family: var(--tab-font);
+    font-size: var(--tab-size);
+    font-weight: var(--tab-weight);
     color: var(--tabs-tab-color);
     background: none;
     border: none;
@@ -192,7 +192,7 @@ function selectTab(tab: TabItem): void {
 
 .tabs-base__tab--active {
     color: var(--tabs-tab-active-color);
-    font-weight: 600;
+    font-weight: var(--tab-weight-active);
 }
 
 .tabs-base__tab--disabled {

@@ -3,7 +3,6 @@
 // Font imports
 import '@fontsource/source-sans-pro'
 import '@fontsource-variable/lora'
-import '@fontsource-variable/raleway'
 
 // Styles (order matters: palette → tokens → dark → fonts → base → icons)
 import './styles/palette.css'

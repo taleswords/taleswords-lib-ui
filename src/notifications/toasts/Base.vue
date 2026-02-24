@@ -55,8 +55,8 @@ const emit = defineEmits<{
     box-shadow: var(--toast-shadow);
     min-width: 280px;
     max-width: 420px;
-    font-family: var(--font-ui);
-    font-size: 0.875rem;
+    font-family: var(--toast-font);
+    font-size: var(--toast-size);
 }
 
 .toast--info {

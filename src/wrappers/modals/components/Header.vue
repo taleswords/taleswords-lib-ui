@@ -40,9 +40,9 @@ defineEmits<{
 
 .modal-header__title {
     margin: 0;
-    font-family: var(--font-heading);
-    font-size: 1.125em;
-    font-weight: 600;
+    font-family: var(--modal-title-font);
+    font-size: var(--modal-title-size);
+    font-weight: var(--modal-title-weight);
     color: var(--general-text-color);
     line-height: 1.3;
 }

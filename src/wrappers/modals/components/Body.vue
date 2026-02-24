@@ -13,6 +13,6 @@
     overflow-y: auto;
     flex: 1;
     color: var(--general-text-color);
-    font-family: var(--font-ui);
+    font-family: var(--modal-body-font);
 }
 </style>

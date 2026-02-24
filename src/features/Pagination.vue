@@ -136,9 +136,9 @@ function goToPage(page: number): void {
     min-width: 2rem;
     height: 2rem;
     padding: 0 0.375rem;
-    font-family: var(--font-ui);
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-family: var(--pagination-font);
+    font-size: var(--pagination-size);
+    font-weight: var(--pagination-weight);
     color: var(--pagination-btn-color);
     background: var(--pagination-btn-bg);
     border: 1px solid var(--pagination-btn-border);

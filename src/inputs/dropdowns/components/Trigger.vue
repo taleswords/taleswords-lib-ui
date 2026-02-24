@@ -54,8 +54,8 @@ defineEmits<{
     justify-content: space-between;
     width: 100%;
     padding: 10px 1em;
-    font-family: var(--font-ui);
-    font-size: 1em;
+    font-family: var(--dropdown-font);
+    font-size: var(--dropdown-size);
     color: var(--textbox-text);
     background-color: var(--textbox-bg);
     border: 1px solid var(--textbox-border);

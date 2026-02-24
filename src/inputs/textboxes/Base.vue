@@ -74,8 +74,8 @@ function onInput(event: Event): void {
 .textbox__input {
     width: 100%;
     padding: 10px 1em;
-    font-family: var(--font-ui);
-    font-size: 1em;
+    font-family: var(--textbox-font);
+    font-size: var(--textbox-size);
     color: var(--textbox-text);
     background-color: var(--textbox-bg);
     border: 1px solid var(--textbox-border);

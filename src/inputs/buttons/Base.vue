@@ -64,10 +64,10 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-heading);
-    font-weight: 500;
-    font-size: 1em;
-    line-height: 1.25;
+    font-family: var(--button-font);
+    font-weight: var(--button-weight);
+    font-size: var(--button-size);
+    line-height: var(--button-leading);
     padding-block: 10px;
     padding-inline: 1em;
     min-width: 8em;
@@ -94,7 +94,7 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
 .button--small {
     padding-block: 6px;
     padding-inline: 0.75em;
-    font-size: 0.875em;
+    font-size: var(--button-size-sm);
     min-width: 6em;
 }
 

@@ -44,9 +44,9 @@ withDefaults(defineProps<TitleDescActionProps>(), {
 }
 
 .title-desc-action__heading {
-    font-family: var(--font-heading);
-    font-size: 1.5em;
-    font-weight: 600;
+    font-family: var(--title-desc-heading-font);
+    font-size: var(--title-desc-heading-size);
+    font-weight: var(--title-desc-heading-weight);
     color: var(--general-text-color);
     margin: 0;
 }
@@ -60,8 +60,8 @@ withDefaults(defineProps<TitleDescActionProps>(), {
 
 .title-desc-action__description {
     margin: 0.25rem 0 0;
-    font-family: var(--font-ui);
-    font-size: 0.875em;
+    font-family: var(--title-desc-body-font);
+    font-size: var(--title-desc-body-size);
     color: var(--form-field-description-color);
 }
 </style>

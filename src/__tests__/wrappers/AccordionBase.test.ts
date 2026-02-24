@@ -7,15 +7,15 @@ import AccordionItem from '../../wrappers/accordions/components/Item.vue'
 function createAccordion(props = {}) {
     return mount(AccordionBase, {
         props: { ...props },
+        global: {
+            components: { AccordionItem },
+        },
         slots: {
-            default: {
-                components: { AccordionItem },
-                template: `
-                    <AccordionItem id="a" title="Section A">Content A</AccordionItem>
-                    <AccordionItem id="b" title="Section B">Content B</AccordionItem>
-                    <AccordionItem id="c" title="Section C" :is-disabled="true">Content C</AccordionItem>
-                `,
-            },
+            default: `
+                <AccordionItem id="a" title="Section A">Content A</AccordionItem>
+                <AccordionItem id="b" title="Section B">Content B</AccordionItem>
+                <AccordionItem id="c" title="Section C" :is-disabled="true">Content C</AccordionItem>
+            `,
         },
     })
 }

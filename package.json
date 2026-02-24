@@ -26,7 +26,7 @@
   "scripts": {
     "dev": "vite --config vite.config.ts playground",
     "clean": "del ./dist/",
-    "build": "npm run clean && vite build && vue-tsc -p tsconfig-build.json && cat src/styles/palette.css src/styles/tokens.css src/styles/tokens-dark.css > dist/variables.css && cp src/styles/base.css dist/ && cp src/styles/icons.css dist/ && cp src/globals.d.ts dist/",
+    "build": "npm run clean && vite build && vue-tsc -p tsconfig-build.json && cat src/styles/palette.css src/styles/fonts.css src/styles/tokens.css src/styles/tokens-dark.css > dist/variables.css && cp src/styles/base.css dist/ && cp src/styles/icons.css dist/ && cp src/globals.d.ts dist/",
     "test": "vitest",
     "test:run": "vitest run",
     "typecheck": "vue-tsc --noEmit",
@@ -76,7 +76,6 @@
   },
   "dependencies": {
     "@fontsource-variable/lora": "^5.2.8",
-    "@fontsource-variable/raleway": "^5.2.8",
     "@fontsource/source-sans-pro": "^5.2.5",
     "@material-symbols/font-400": "^0.40.2"
   }

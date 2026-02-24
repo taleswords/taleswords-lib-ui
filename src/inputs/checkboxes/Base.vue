@@ -84,8 +84,8 @@ function onChange(event: Event): void {
 }
 
 .checkbox__label {
-    font-family: var(--font-heading);
-    font-weight: 500;
+    font-family: var(--label-font);
+    font-weight: var(--label-weight);
     color: var(--form-field-label-color);
 }
 </style>

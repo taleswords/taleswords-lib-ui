@@ -142,9 +142,9 @@ function onAfterLeave(el: Element): void {
     justify-content: space-between;
     width: 100%;
     padding: 0.75rem 1rem;
-    font-family: var(--font-ui);
-    font-size: 0.9375rem;
-    font-weight: 600;
+    font-family: var(--accordion-font);
+    font-size: var(--accordion-size);
+    font-weight: var(--accordion-weight);
     color: var(--general-text-color);
     background: var(--general-card-bg);
     border: none;

@@ -26,9 +26,9 @@ const props = defineProps<BadgeBaseProps>()
     display: inline-block;
     padding-inline: 0.5em;
     padding-block: 0.125em;
-    font-family: var(--font-ui);
-    font-weight: 600;
-    font-size: 0.875em;
+    font-family: var(--badge-font);
+    font-weight: var(--badge-weight);
+    font-size: var(--badge-size);
     border-radius: var(--badge-border-radius);
     text-transform: uppercase;
     text-align: center;

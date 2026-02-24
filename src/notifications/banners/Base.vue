@@ -64,8 +64,8 @@ const emit = defineEmits<{
     padding: 0.75rem 1rem;
     border-radius: var(--button-border-radius);
     border-left: 4px solid;
-    font-family: var(--font-ui);
-    font-size: 0.875rem;
+    font-family: var(--banner-font);
+    font-size: var(--banner-size);
 }
 
 .banner--info {
@@ -105,9 +105,9 @@ const emit = defineEmits<{
 }
 
 .banner__action-btn {
-    font-family: var(--font-ui);
-    font-size: 0.8125rem;
-    font-weight: 500;
+    font-family: var(--banner-font);
+    font-size: var(--banner-action-size);
+    font-weight: var(--banner-action-weight);
     color: inherit;
     background: none;
     border: none;

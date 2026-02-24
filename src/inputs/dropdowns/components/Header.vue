@@ -68,8 +68,8 @@ function onInput(event: Event): void {
     outline: none;
     background: transparent;
     color: var(--textbox-text);
-    font-family: var(--font-ui);
-    font-size: 0.875em;
+    font-family: var(--dropdown-font);
+    font-size: var(--dropdown-size);
     width: 100%;
     padding: 0;
 }
