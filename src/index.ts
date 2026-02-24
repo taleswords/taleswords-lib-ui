@@ -30,6 +30,18 @@ export { default as ProgressBar } from './info/ProgressBar.vue'
 // Foundation — Forms
 export { default as FormField } from './forms/Field.vue'
 
+// Composed — Inputs
+export { default as DropdownBase } from './inputs/dropdowns/Base.vue'
+
+// Composed — Wrappers
+export { default as ModalBase } from './wrappers/modals/Base.vue'
+
+// Composed — Tables
+export { default as TableBase } from './tables/Base.vue'
+
+// Composed — Lists
+export { default as ListBase } from './lists/Base.vue'
+
 // Utilities
 export { stringToColor, getTextColorForBackground } from './utils/color'
 export { uid, resetUidCounter } from './utils/uid'
@@ -51,3 +63,17 @@ export type { ProgressBarProps, ProgressVariant } from './info/ProgressBar.vue'
 export type { FormFieldProps, ValidationEntry } from './forms/Field.vue'
 export type { NavigationTag, NavigationProps } from './utils/navigation'
 export type { PositionOffset } from './utils/positioning'
+
+// Composed — Type re-exports
+export type { DropdownOption, DropdownBaseProps } from './inputs/dropdowns/Base.vue'
+export type { ModalBaseProps } from './wrappers/modals/Base.vue'
+export type {
+    RowId,
+    SortDirection,
+    TableColumn,
+    TableRow,
+    TableSort,
+    TablePagination,
+    TableBaseProps,
+} from './tables/Base.vue'
+export type { ListBaseProps } from './lists/Base.vue'
