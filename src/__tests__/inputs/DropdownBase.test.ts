@@ -9,32 +9,34 @@ const sampleOptions = [
     { value: 'c', label: 'Gamma' },
 ]
 
+const global = { stubs: { Teleport: true } }
+
 describe('DropdownBase', () => {
     it('renders with data-testid', () => {
-        const wrapper = mount(DropdownBase, { props: { options: sampleOptions } })
+        const wrapper = mount(DropdownBase, { global, props: { options: sampleOptions } })
         expect(wrapper.attributes('data-testid')).toBe('dropdown-base')
     })
 
     it('shows placeholder when no selection', () => {
-        const wrapper = mount(DropdownBase, { props: { options: sampleOptions } })
+        const wrapper = mount(DropdownBase, { global, props: { options: sampleOptions } })
         expect(wrapper.text()).toContain('Select...')
     })
 
     it('shows selected label for single select', () => {
         const wrapper = mount(DropdownBase, {
-            props: { options: sampleOptions, modelValue: 'b' },
+            global, props: { options: sampleOptions, modelValue: 'b' },
         })
         expect(wrapper.text()).toContain('Beta')
     })
 
     it('opens menu on trigger click', async () => {
-        const wrapper = mount(DropdownBase, { props: { options: sampleOptions } })
+        const wrapper = mount(DropdownBase, { global, props: { options: sampleOptions } })
         await wrapper.find('[aria-haspopup]').trigger('click')
         expect(wrapper.find('[role="listbox"]').exists()).toBe(true)
     })
 
     it('closes menu on escape key', async () => {
-        const wrapper = mount(DropdownBase, { props: { options: sampleOptions } })
+        const wrapper = mount(DropdownBase, { global, props: { options: sampleOptions } })
         await wrapper.find('[aria-haspopup]').trigger('click')
         expect(wrapper.find('[role="listbox"]').exists()).toBe(true)
         await wrapper.trigger('keydown', { key: 'Escape' })
@@ -42,7 +44,7 @@ describe('DropdownBase', () => {
     })
 
     it('emits update:modelValue on option click (single select)', async () => {
-        const wrapper = mount(DropdownBase, { props: { options: sampleOptions } })
+        const wrapper = mount(DropdownBase, { global, props: { options: sampleOptions } })
         await wrapper.find('[aria-haspopup]').trigger('click')
         const options = wrapper.findAll('[role="option"]')
         await options[1].trigger('click')
@@ -51,7 +53,7 @@ describe('DropdownBase', () => {
 
     it('emits update:modelValue with array on multi-select', async () => {
         const wrapper = mount(DropdownBase, {
-            props: { options: sampleOptions, isMultiSelect: true, modelValue: [] },
+            global, props: { options: sampleOptions, isMultiSelect: true, modelValue: [] },
         })
         await wrapper.find('[aria-haspopup]').trigger('click')
         const options = wrapper.findAll('[role="option"]')
@@ -61,7 +63,7 @@ describe('DropdownBase', () => {
 
     it('filters options by search', async () => {
         const wrapper = mount(DropdownBase, {
-            props: { options: sampleOptions, hasSearch: true },
+            global, props: { options: sampleOptions, hasSearch: true },
         })
         await wrapper.find('[aria-haspopup]').trigger('click')
         const searchInput = wrapper.find('input[type="text"]')
@@ -74,14 +76,14 @@ describe('DropdownBase', () => {
 
     it('does not open when disabled', async () => {
         const wrapper = mount(DropdownBase, {
-            props: { options: sampleOptions, isDisabled: true },
+            global, props: { options: sampleOptions, isDisabled: true },
         })
         await wrapper.find('[aria-haspopup]').trigger('click')
         expect(wrapper.find('[role="listbox"]').exists()).toBe(false)
     })
 
     it('keyboard ArrowDown navigates through options', async () => {
-        const wrapper = mount(DropdownBase, { props: { options: sampleOptions } })
+        const wrapper = mount(DropdownBase, { global, props: { options: sampleOptions } })
         await wrapper.find('[aria-haspopup]').trigger('click')
         await wrapper.trigger('keydown', { key: 'ArrowDown' })
         const options = wrapper.findAll('[role="option"]')
@@ -93,7 +95,7 @@ describe('DropdownBase', () => {
             { value: 'a', label: 'Alpha', isDisabled: true },
             { value: 'b', label: 'Beta' },
         ]
-        const wrapper = mount(DropdownBase, { props: { options: opts } })
+        const wrapper = mount(DropdownBase, { global, props: { options: opts } })
         await wrapper.find('[aria-haspopup]').trigger('click')
         const options = wrapper.findAll('[role="option"]')
         await options[0].trigger('click')
@@ -102,6 +104,7 @@ describe('DropdownBase', () => {
 
     it('shows apply/clear buttons in multi-select with hasApplyButton', async () => {
         const wrapper = mount(DropdownBase, {
+            global,
             props: {
                 options: sampleOptions,
                 isMultiSelect: true,
@@ -116,13 +119,13 @@ describe('DropdownBase', () => {
     })
 
     it('has no accessibility violations', async () => {
-        const wrapper = mount(DropdownBase, { props: { options: sampleOptions } })
+        const wrapper = mount(DropdownBase, { global, props: { options: sampleOptions } })
         const results = await axe(wrapper.element)
         expect(results).toHaveNoViolations()
     })
 
     it('has no accessibility violations when open', async () => {
-        const wrapper = mount(DropdownBase, { props: { options: sampleOptions } })
+        const wrapper = mount(DropdownBase, { global, props: { options: sampleOptions } })
         await wrapper.find('[aria-haspopup]').trigger('click')
         const results = await axe(wrapper.element)
         expect(results).toHaveNoViolations()

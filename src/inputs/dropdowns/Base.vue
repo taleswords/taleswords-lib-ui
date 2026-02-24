@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { uid } from '../../utils/uid'
-import { useOutsideClick } from '../../utils/outsideClick'
 import { calculateDropdownPosition } from '../../utils/positioning'
 import DropdownTrigger from './components/Trigger.vue'
 import DropdownHeader from './components/Header.vue'
@@ -120,8 +119,20 @@ const selectedLabel = computed(() => {
 
 // ── Outside click ──────────────────────────────────
 
-useOutsideClick(containerRef, () => {
-    if (isOpen.value) close()
+function handleOutsideClick(event: MouseEvent): void {
+    if (!isOpen.value) return
+    const target = event.target as Node
+    if (containerRef.value?.contains(target)) return
+    if (menuContainerRef.value?.contains(target)) return
+    close()
+}
+
+onMounted(() => {
+    document.addEventListener('mousedown', handleOutsideClick)
+})
+
+onBeforeUnmount(() => {
+    document.removeEventListener('mousedown', handleOutsideClick)
 })
 
 // ── Scroll/resize repositioning ────────────────────
@@ -133,6 +144,7 @@ function updatePosition(): void {
     const pos = calculateDropdownPosition(trigger, menuContainerRef.value)
     menuContainerRef.value.style.top = `${pos.top + props.offset}px`
     menuContainerRef.value.style.left = `${pos.left}px`
+    menuContainerRef.value.style.width = `${trigger.offsetWidth}px`
 }
 
 onMounted(() => {
@@ -323,12 +335,14 @@ defineExpose({ open, close, toggle, resetSearch, getSelectedOptions })
             />
         </slot>
 
-        <!-- Menu panel -->
+        <!-- Menu panel (teleported to body to escape overflow:hidden parents) -->
+        <Teleport to="body">
         <div
             v-if="isOpen"
             ref="menuContainerRef"
             class="dropdown__panel"
             :id="listboxId"
+            @keydown="handleKeydown"
         >
             <!-- Header -->
             <slot name="header">
@@ -375,6 +389,7 @@ defineExpose({ open, close, toggle, resetSearch, getSelectedOptions })
                 />
             </slot>
         </div>
+        </Teleport>
     </div>
 </template>
 
@@ -386,12 +401,8 @@ defineExpose({ open, close, toggle, resetSearch, getSelectedOptions })
 }
 
 .dropdown__panel {
-    position: absolute;
-    z-index: 50;
-    top: 100%;
-    left: 0;
-    right: 0;
-    margin-top: 4px;
+    position: fixed;
+    z-index: 9999;
     background-color: var(--dropdown-bg);
     border: 1px solid var(--dropdown-border);
     border-radius: var(--button-border-radius);

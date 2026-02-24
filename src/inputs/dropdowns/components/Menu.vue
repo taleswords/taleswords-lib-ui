@@ -129,12 +129,11 @@ function isSelected(option: DropdownMenuOption): boolean {
                     >
                         <span v-if="isSelected(option)" class="material-symbols-rounded" aria-hidden="true">check</span>
                     </span>
-                    <i
+                    <span
                         v-if="option.icon"
-                        class="dropdown-menu__option-icon"
-                        :class="`icon-${option.icon}`"
+                        class="material-symbols-rounded dropdown-menu__option-icon"
                         aria-hidden="true"
-                    />
+                    >{{ option.icon }}</span>
                     <slot name="option" :option="option" :is-selected="isSelected(option)">
                         <span class="dropdown-menu__option-label">{{ option.label }}</span>
                     </slot>
@@ -209,13 +208,16 @@ function isSelected(option: DropdownMenuOption): boolean {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.125em;
-    height: 1.125em;
+    width: 1rem;
+    height: 1rem;
     border: 2px solid var(--checkbox-border);
     border-radius: 3px;
     flex-shrink: 0;
-    font-size: 0.625em;
     transition: background-color 0.15s, border-color 0.15s;
+}
+
+.dropdown-menu__checkbox .material-symbols-rounded {
+    font-size: 0.875rem;
 }
 
 .dropdown-menu__checkbox--checked {

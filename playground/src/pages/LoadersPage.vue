@@ -33,17 +33,18 @@ const showOverlay = ref(false)
             </div>
         </CardBase>
 
-        <CardBase title="Overlay Demo" :is-loading="showOverlay">
+        <CardBase title="Overlay Demo">
+            <ButtonBase
+                :variant="showOverlay ? 'danger' : 'primary'"
+                :label="showOverlay ? 'Hide Overlay' : 'Show Overlay'"
+                icon="layers"
+                @click="showOverlay = !showOverlay"
+            />
+        </CardBase>
+
+        <CardBase :is-loading="showOverlay">
             <p>This card shows a loader overlay when toggled.</p>
             <p>Content is still here underneath the overlay.</p>
-            <template #actions>
-                <ButtonBase
-                    :variant="showOverlay ? 'danger' : 'primary'"
-                    :label="showOverlay ? 'Hide Overlay' : 'Show Overlay'"
-                    size="small"
-                    @click="showOverlay = !showOverlay"
-                />
-            </template>
         </CardBase>
     </div>
 </template>
