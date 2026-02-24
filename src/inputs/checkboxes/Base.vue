@@ -66,7 +66,10 @@ function onChange(event: Event): void {
 
 .checkbox.is-disabled {
     cursor: not-allowed;
-    opacity: 0.65;
+}
+
+.checkbox.is-disabled .checkbox__label {
+    color: var(--form-field-label-disabled-color);
 }
 
 .checkbox__native {

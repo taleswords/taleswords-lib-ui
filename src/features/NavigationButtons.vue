@@ -103,8 +103,13 @@ function handleClick(item: NavItem): void {
 }
 
 .nav-buttons__item--disabled {
-    opacity: 0.5;
+    color: var(--nav-btn-disabled-color);
     cursor: not-allowed;
+    pointer-events: none;
+}
+
+.nav-buttons__item--disabled .nav-buttons__icon {
+    color: var(--nav-btn-disabled-icon-color);
 }
 
 .nav-buttons__icon {

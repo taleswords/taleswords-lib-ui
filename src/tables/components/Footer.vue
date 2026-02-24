@@ -112,9 +112,10 @@ function goToNext(): void {
 }
 
 .table-footer__btn--disabled {
-    color: var(--pagination-disabled-color);
+    color: var(--table-footer-btn-disabled-color);
+    background-color: var(--table-footer-btn-disabled-bg);
+    border-color: var(--table-footer-btn-disabled-border);
     cursor: not-allowed;
-    opacity: 0.65;
 }
 
 .table-footer__btn .material-symbols-rounded {

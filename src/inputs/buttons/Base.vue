@@ -81,7 +81,6 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
 .button.is-disabled {
     pointer-events: none;
     cursor: default;
-    opacity: 0.5;
 }
 
 .button:focus-visible {
@@ -127,6 +126,11 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
     box-shadow: var(--button-primary-shadow-hover);
 }
 
+.button--primary.is-disabled {
+    background-color: var(--button-primary-bg-disabled);
+    color: var(--button-primary-text-disabled);
+}
+
 /* Secondary variant */
 .button--secondary {
     background-color: var(--button-secondary-bg);
@@ -136,6 +140,11 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
 .button--secondary:hover:not(:disabled):not(.is-disabled) {
     background-color: var(--button-secondary-bg-hover);
     box-shadow: var(--button-secondary-shadow-hover);
+}
+
+.button--secondary.is-disabled {
+    background-color: var(--button-secondary-bg-disabled);
+    color: var(--button-secondary-text-disabled);
 }
 
 /* Danger variant */
@@ -149,6 +158,11 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
     box-shadow: var(--button-danger-shadow-hover);
 }
 
+.button--danger.is-disabled {
+    background-color: var(--button-danger-bg-disabled);
+    color: var(--button-danger-text-disabled);
+}
+
 /* Ghost variant */
 .button--ghost {
     background-color: var(--button-ghost-bg);
@@ -158,6 +172,10 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
 
 .button--ghost:hover:not(:disabled):not(.is-disabled) {
     background-color: var(--button-ghost-bg-hover);
+}
+
+.button--ghost.is-disabled {
+    color: var(--button-ghost-text-disabled);
 }
 
 /* Ghost primary variant */
@@ -172,6 +190,10 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
     color: var(--button-ghost-primary-text-hover);
 }
 
+.button--ghost-primary.is-disabled {
+    color: var(--button-ghost-primary-text-disabled);
+}
+
 /* Ghost danger variant */
 .button--ghost-danger {
     background-color: transparent;
@@ -182,6 +204,10 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
 .button--ghost-danger:hover:not(:disabled):not(.is-disabled) {
     background-color: var(--button-ghost-danger-bg-hover);
     color: var(--button-ghost-danger-text-hover);
+}
+
+.button--ghost-danger.is-disabled {
+    color: var(--button-ghost-danger-text-disabled);
 }
 
 /* Icon */

@@ -184,6 +184,8 @@ function isSelected(option: DropdownMenuOption): boolean {
 
 .dropdown-menu__option--selected {
     font-weight: 600;
+    background-color: var(--dropdown-item-bg-selected);
+    color: var(--dropdown-item-text-selected);
 }
 
 .dropdown-menu__option.is-disabled {

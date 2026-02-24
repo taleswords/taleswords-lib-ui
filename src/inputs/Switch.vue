@@ -63,7 +63,10 @@ function toggle(): void {
 
 .switch.is-disabled {
     cursor: not-allowed;
-    opacity: 0.65;
+}
+
+.switch.is-disabled .switch__label {
+    color: var(--form-field-label-disabled-color);
 }
 
 .switch__native {

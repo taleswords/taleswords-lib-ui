@@ -20,34 +20,42 @@
     --color-neutral-1300: #333333;
     --color-neutral-1400: #2D2D2D;
 
-    /* Primary (gold) */
+    /* Primary (gold) — 4-step ramp, dark text on gold */
+    --color-primary-200: #FFF3D0;
     --color-primary-300: #FFD166;
     --color-primary-400: #EFB948;
-    --color-primary-500: #F0E68C;
+    --color-primary-500: #D4A23A;
 
     /* Accent (blue) */
+    --color-accent-100: #F0F5FA;
     --color-accent-300: #A8DADC;
     --color-accent-400: #7AA2C9;
     --color-accent-500: #457B9D;
     --color-accent-600: #2C5282;
 
     /* Danger (red) */
+    --color-danger-100: #FFEBEE;
+    --color-danger-200: #EF9A9A;
     --color-danger-300: #F67280;
+    --color-danger-350: #D32F2F;
     --color-danger-400: #E63946;
     --color-danger-500: #B71C1C;
 
     /* Success (teal/green) */
+    --color-success-100: #E8F5E9;
     --color-success-300: #A5D6A7;
     --color-success-400: #4CAF50;
     --color-success-500: #2A9D8F;
     --color-success-600: #1B5E20;
 
     /* Warning (amber) */
+    --color-warning-100: #FFF8E1;
     --color-warning-300: #FFE082;
     --color-warning-400: #D97706;
     --color-warning-500: #663C00;
 
     /* Info (blue) */
+    --color-info-100: #EBF5FF;
     --color-info-300: #B8DAFF;
     --color-info-400: #3A82F7;
     --color-info-500: #004085;
@@ -87,4 +95,15 @@
     --color-nord-sub-muted: #A3B0C2;
     --color-nord-sub-dim: #718096;
     --color-nord-sub-deep: #CBD5E0;
+
+    /* Nord — alert surface tints */
+    --color-nord-info-tint: #2E3A4F;
+    --color-nord-success-tint: #2F3E2F;
+    --color-nord-warning-tint: #3E3726;
+    --color-nord-danger-tint: #3B2327;
+
+    /* Nord — surface variants */
+    --color-nord-badge-muted: #3A404C;
+    --color-nord-accent-soft: #6B8FA3;
+    --color-nord-surface-alt: #323848;
 }

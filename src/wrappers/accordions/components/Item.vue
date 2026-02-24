@@ -163,7 +163,7 @@ function onAfterLeave(el: Element): void {
 }
 
 .accordion-item--disabled .accordion-item__trigger {
-    opacity: 0.5;
+    color: var(--accordion-trigger-color-disabled);
     cursor: not-allowed;
 }
 

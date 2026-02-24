@@ -1,5 +1,11 @@
 /* Layer 3 — Dark theme overrides.
-   Only tokens that differ from light are redeclared. */
+   Only tokens that differ from light are redeclared.
+
+   Color Doctrine v1 enforced:
+   - Gold = interaction (checked, active, selected)
+   - Blue = informational (focus, links)
+   - No hardcoded hex — all reference palette.css
+   - All rgba derived from palette via color-mix() */
 
 [data-theme="dark"] {
     /* ──────────────────────────────────────────
@@ -9,9 +15,9 @@
     --general-body-bg: var(--color-nord-bg);
     --general-card-bg: var(--color-nord-surface);
     --general-card-border: var(--color-nord-border);
-    --general-card-shadow: 0px 6px 18px rgba(0, 0, 0, 0.45);
+    --general-card-shadow: 0px 6px 18px color-mix(in srgb, var(--color-black) 45%, transparent);
     --general-focus-ring: var(--color-nord-accent);
-    --general-focus-shadow: 0px 0px 0px 2px rgba(122, 162, 201, 0.35);
+    --general-focus-shadow: 0px 0px 0px 2px color-mix(in srgb, var(--color-nord-accent) 35%, transparent);
     --general-error-color: var(--color-nord-danger);
     --general-success-color: var(--color-nord-success);
 
@@ -22,15 +28,15 @@
     --heading-h2-color: var(--color-nord-accent);
     --heading-h3-color: var(--color-nord-text);
     --heading-h4-color: var(--color-nord-text-muted);
-    --heading-h5-color: var(--color-nord-danger);
+    --heading-h5-color: var(--color-nord-text-muted);
 
     /* ──────────────────────────────────────────
-       Links
+       Links — hover = brighter blue, never gold/red
        ────────────────────────────────────────── */
     --link-color: var(--color-nord-accent);
-    --link-color-hover: var(--color-nord-primary);
+    --link-color-hover: var(--color-nord-frost);
     --link-secondary-color: var(--color-nord-text-muted);
-    --link-secondary-color-hover: var(--color-primary-300);
+    --link-secondary-color-hover: var(--color-nord-text);
 
     /* ──────────────────────────────────────────
        Button
@@ -47,27 +53,36 @@
     --button-primary-bg: var(--color-nord-primary);
     --button-primary-text: var(--color-neutral-1300);
     --button-primary-bg-hover: var(--color-primary-300);
-    --button-primary-shadow-hover: 0px 4px 10px rgba(235, 203, 139, 0.35);
+    --button-primary-shadow-hover: 0px 4px 10px color-mix(in srgb, var(--color-nord-primary) 35%, transparent);
+    --button-primary-bg-disabled: color-mix(in srgb, var(--color-nord-primary) 25%, var(--color-nord-muted));
+    --button-primary-text-disabled: var(--color-nord-text-muted);
 
     --button-secondary-bg: var(--color-nord-muted);
     --button-secondary-text: var(--color-nord-text);
     --button-secondary-bg-hover: var(--color-nord-elevated);
+    --button-secondary-bg-disabled: var(--color-nord-border);
+    --button-secondary-text-disabled: var(--color-nord-text-muted);
 
-    --button-danger-bg: var(--color-nord-danger);
+    --button-danger-bg: var(--color-danger-350);
     --button-danger-text: var(--color-white);
-    --button-danger-bg-hover: var(--color-danger-300);
-    --button-danger-shadow-hover: 0px 4px 10px rgba(224, 108, 117, 0.4);
+    --button-danger-bg-hover: var(--color-nord-danger);
+    --button-danger-shadow-hover: 0px 4px 10px color-mix(in srgb, var(--color-nord-danger) 40%, transparent);
+    --button-danger-bg-disabled: color-mix(in srgb, var(--color-nord-danger) 25%, var(--color-nord-muted));
+    --button-danger-text-disabled: var(--color-nord-text-muted);
 
     --button-ghost-text: var(--color-nord-text);
     --button-ghost-bg-hover: var(--color-nord-hover);
+    --button-ghost-text-disabled: var(--color-nord-text-muted);
 
     --button-ghost-primary-text: var(--color-nord-accent);
-    --button-ghost-primary-bg-hover: rgba(122, 162, 201, 0.15);
-    --button-ghost-primary-text-hover: var(--color-nord-primary);
+    --button-ghost-primary-bg-hover: color-mix(in srgb, var(--color-nord-accent) 15%, transparent);
+    --button-ghost-primary-text-hover: var(--color-nord-frost);
+    --button-ghost-primary-text-disabled: var(--color-nord-text-muted);
 
     --button-ghost-danger-text: var(--color-nord-danger);
-    --button-ghost-danger-bg-hover: rgba(224, 108, 117, 0.15);
+    --button-ghost-danger-bg-hover: color-mix(in srgb, var(--color-nord-danger) 15%, transparent);
     --button-ghost-danger-text-hover: var(--color-danger-300);
+    --button-ghost-danger-text-disabled: var(--color-nord-text-muted);
 
     /* ──────────────────────────────────────────
        Textbox / Input
@@ -80,28 +95,28 @@
     --textbox-border-disabled: var(--color-nord-dim-border);
     --textbox-text-disabled: var(--color-nord-text-muted);
     --textbox-border-focus: var(--color-nord-accent);
-    --textbox-shadow-focus: 0px 0px 0px 2px rgba(122, 162, 201, 0.35);
+    --textbox-shadow-focus: 0px 0px 0px 2px color-mix(in srgb, var(--color-nord-accent) 35%, transparent);
     --textbox-border-error: var(--color-nord-danger);
     --textbox-border-error-focus: var(--color-nord-danger);
 
     /* ──────────────────────────────────────────
-       Checkbox
+       Checkbox — checked = gold
        ────────────────────────────────────────── */
     --checkbox-accent: var(--color-nord-primary);
     --checkbox-border: var(--color-nord-border);
-    --checkbox-border-hover: var(--color-nord-accent);
+    --checkbox-border-hover: var(--color-nord-primary);
     --checkbox-border-checked: var(--color-nord-primary);
     --checkbox-border-error: var(--color-nord-danger);
     --checkbox-bg-disabled: var(--color-nord-dim);
     --checkbox-border-disabled: var(--color-nord-dim-border);
 
     /* ──────────────────────────────────────────
-       Radio
+       Radio — checked = gold (selection consistency)
        ────────────────────────────────────────── */
-    --radio-accent: var(--color-nord-accent);
+    --radio-accent: var(--color-nord-primary);
     --radio-border: var(--color-nord-border);
-    --radio-border-hover: var(--color-nord-accent);
-    --radio-border-checked: var(--color-nord-accent);
+    --radio-border-hover: var(--color-nord-primary);
+    --radio-border-checked: var(--color-nord-primary);
     --radio-border-error: var(--color-nord-danger);
     --radio-bg-disabled: var(--color-nord-dim);
     --radio-border-disabled: var(--color-nord-dim-border);
@@ -116,26 +131,26 @@
     --switch-thumb-bg-disabled: var(--color-nord-border);
 
     /* ──────────────────────────────────────────
-       Badge
+       Badge — no hardcoded hex
        ────────────────────────────────────────── */
-    --badge-visitor-bg: #3A404C;
+    --badge-visitor-bg: var(--color-nord-badge-muted);
     --badge-visitor-text: var(--color-nord-sub-text);
     --badge-guest-bg: var(--color-nord-sub);
     --badge-guest-text: var(--color-nord-text-bright);
-    --badge-guest-editor-bg: #6B8FA3;
+    --badge-guest-editor-bg: var(--color-nord-accent-soft);
     --badge-guest-editor-text: var(--color-nord-text-bright);
     --badge-reviewer-bg: var(--color-nord-primary);
     --badge-reviewer-text: var(--color-nord-deep);
-    --badge-editor-bg: var(--color-nord-deep-danger);
-    --badge-editor-text: var(--color-nord-text-bright);
+    --badge-editor-bg: var(--color-danger-350);
+    --badge-editor-text: var(--color-white);
     --badge-manager-bg: var(--color-nord-deep-accent);
     --badge-manager-text: var(--color-nord-text-bright);
-    --badge-admin-bg: var(--color-nord-deep-danger);
-    --badge-admin-text: var(--color-nord-text-bright);
+    --badge-admin-bg: var(--color-danger-350);
+    --badge-admin-text: var(--color-white);
     --badge-public-bg: var(--color-nord-teal);
     --badge-public-text: var(--color-nord-deep);
-    --badge-private-bg: var(--color-nord-deep-danger);
-    --badge-private-text: var(--color-nord-text-bright);
+    --badge-private-bg: var(--color-danger-350);
+    --badge-private-text: var(--color-white);
     --badge-pending-bg: var(--color-nord-deep-warning);
     --badge-pending-text: var(--color-nord-deep);
     --badge-declined-bg: var(--color-nord-sub);
@@ -148,17 +163,17 @@
        ────────────────────────────────────────── */
     --loader-color: var(--color-nord-accent);
     --loader-secondary-color: var(--color-nord-border);
-    --loader-overlay-bg: rgba(43, 47, 58, 0.85);
+    --loader-overlay-bg: color-mix(in srgb, var(--color-nord-bg) 85%, transparent);
     --loader-label-color: var(--color-nord-text-muted);
 
     /* ──────────────────────────────────────────
-       Progress Bar
+       Progress Bar — primary fill = gold
        ────────────────────────────────────────── */
     --progress-bg: var(--color-nord-border);
-    --progress-fill-bg: var(--color-nord-accent);
+    --progress-fill-bg: var(--color-nord-primary);
     --progress-fill-success: var(--color-nord-success);
     --progress-fill-danger: var(--color-nord-danger);
-    --progress-fill-warning: var(--color-nord-primary);
+    --progress-fill-warning: var(--color-nord-deep-warning);
     --progress-text-color: var(--color-nord-text-muted);
 
     /* ──────────────────────────────────────────
@@ -169,51 +184,52 @@
     --form-field-required-star: var(--color-nord-danger);
     --form-field-description-color: var(--color-nord-text-muted);
     --form-field-error-color: var(--color-nord-danger);
+    --form-field-label-disabled-color: var(--color-nord-text-muted);
 
     /* ──────────────────────────────────────────
        Tooltip
        ────────────────────────────────────────── */
     --tooltip-bg: var(--color-nord-text-bright);
     --tooltip-text: var(--color-nord-bg);
-    --tooltip-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+    --tooltip-shadow: 0px 4px 12px color-mix(in srgb, var(--color-black) 50%, transparent);
 
     /* ──────────────────────────────────────────
        Modal
        ────────────────────────────────────────── */
-    --modal-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
-    --modal-overlay-bg: rgba(0, 0, 0, 0.45);
+    --modal-shadow: 0px 8px 24px color-mix(in srgb, var(--color-black) 50%, transparent);
+    --modal-overlay-bg: color-mix(in srgb, var(--color-black) 45%, transparent);
 
     /* ──────────────────────────────────────────
-       Alert
+       Alert — no hardcoded hex
        ────────────────────────────────────────── */
-    --alert-info-bg: #2E3A4F;
+    --alert-info-bg: var(--color-nord-info-tint);
     --alert-info-border: var(--color-nord-deep-accent);
     --alert-info-icon: var(--color-nord-frost);
     --alert-info-text: var(--color-nord-sub-text);
 
-    --alert-success-bg: #2F3E2F;
+    --alert-success-bg: var(--color-nord-success-tint);
     --alert-success-border: var(--color-nord-deep-success);
     --alert-success-icon: var(--color-nord-deep-success);
     --alert-success-text: var(--color-nord-text-bright);
 
-    --alert-warning-bg: #3E3726;
+    --alert-warning-bg: var(--color-nord-warning-tint);
     --alert-warning-border: var(--color-nord-primary);
     --alert-warning-icon: var(--color-nord-primary);
     --alert-warning-text: var(--color-nord-text-bright);
 
-    --alert-error-bg: #3B2327;
+    --alert-error-bg: var(--color-nord-danger-tint);
     --alert-error-border: var(--color-nord-deep-danger);
     --alert-error-icon: var(--color-nord-deep-danger);
     --alert-error-text: var(--color-nord-text-bright);
 
     /* ──────────────────────────────────────────
-       Tabs
+       Tabs — active = gold
        ────────────────────────────────────────── */
     --tabs-border-color: var(--color-nord-deep-border);
     --tabs-tab-color: var(--color-nord-sub-deep);
-    --tabs-tab-hover-color: var(--color-nord-frost);
-    --tabs-tab-active-color: #F7FAFC;
-    --tabs-tab-active-border: var(--color-nord-frost);
+    --tabs-tab-hover-color: var(--color-nord-primary);
+    --tabs-tab-active-color: var(--color-nord-text-bright);
+    --tabs-tab-active-border: var(--color-nord-primary);
     --tabs-tab-disabled-color: var(--color-nord-sub-dim);
 
     /* ──────────────────────────────────────────
@@ -221,54 +237,72 @@
        ────────────────────────────────────────── */
     --dropdown-bg: var(--color-nord-deep-surface);
     --dropdown-border: var(--color-nord-deep-border);
-    --dropdown-shadow: 0px 6px 20px rgba(0, 0, 0, 0.45);
+    --dropdown-shadow: 0px 6px 20px color-mix(in srgb, var(--color-black) 45%, transparent);
     --dropdown-item-hover-bg: var(--color-nord-deep-border);
     --dropdown-item-color: var(--color-nord-sub-text);
     --dropdown-item-danger-color: var(--color-nord-deep-danger);
     --dropdown-item-disabled-color: var(--color-nord-sub);
+    --dropdown-item-bg-selected: color-mix(in srgb, var(--color-nord-primary) 12%, transparent);
+    --dropdown-item-text-selected: var(--color-nord-text-bright);
 
     /* ──────────────────────────────────────────
-       Pagination
+       Pagination — active = gold
        ────────────────────────────────────────── */
     --pagination-btn-bg: var(--color-nord-deep-surface);
     --pagination-btn-border: var(--color-nord-deep-border);
     --pagination-btn-color: var(--color-nord-sub-text);
     --pagination-btn-hover-bg: var(--color-nord-deep-border);
     --pagination-btn-hover-border: var(--color-nord-deep-accent);
-    --pagination-active-bg: var(--color-nord-frost);
+    --pagination-active-bg: var(--color-nord-primary);
     --pagination-active-color: var(--color-nord-deep);
     --pagination-disabled-color: var(--color-nord-sub);
+    --pagination-btn-bg-disabled: var(--color-nord-muted);
+    --pagination-btn-border-disabled: var(--color-nord-deep-border);
     --pagination-ellipsis-color: var(--color-nord-sub-muted);
 
     /* ──────────────────────────────────────────
-       File Upload
+       File Upload — no hardcoded hex
        ────────────────────────────────────────── */
     --file-upload-border: var(--color-nord-border);
     --file-upload-border-hover: var(--color-nord-accent);
     --file-upload-bg: var(--color-nord-bg);
-    --file-upload-bg-hover: #323848;
+    --file-upload-bg-hover: var(--color-nord-surface-alt);
     --file-upload-icon-color: var(--color-nord-elevated);
     --file-upload-hint-color: var(--color-nord-text-muted);
     --file-upload-preview-bg: var(--color-nord-deep-surface);
-    --file-upload-remove-bg: rgba(0, 0, 0, 0.7);
+    --file-upload-remove-bg: color-mix(in srgb, var(--color-black) 70%, transparent);
 
     /* ──────────────────────────────────────────
        Toast
        ────────────────────────────────────────── */
-    --toast-shadow: 0px 6px 20px rgba(0, 0, 0, 0.45);
+    --toast-shadow: 0px 6px 20px color-mix(in srgb, var(--color-black) 45%, transparent);
 
     /* ──────────────────────────────────────────
-       Navigation Buttons
+       Navigation Buttons — active = gold
        ────────────────────────────────────────── */
     --nav-btn-color: var(--color-nord-sub-text);
     --nav-btn-hover-bg: var(--color-nord-hover);
-    --nav-btn-active-bg: var(--color-nord-frost);
+    --nav-btn-active-bg: var(--color-nord-primary);
     --nav-btn-active-color: var(--color-nord-deep);
     --nav-btn-icon-color: var(--color-nord-elevated);
+    --nav-btn-disabled-color: var(--color-nord-text-muted);
+    --nav-btn-disabled-icon-color: var(--color-nord-sub);
+
+    /* ──────────────────────────────────────────
+       Table
+       ────────────────────────────────────────── */
+    --table-row-selected-bg: color-mix(in srgb, var(--color-nord-primary) 12%, transparent);
+    --table-header-hover-bg: var(--color-nord-hover);
+    --table-sort-icon-color: var(--color-nord-text-muted);
+    --table-footer-btn-disabled-color: var(--color-nord-text-muted);
+    --table-footer-btn-disabled-bg: var(--color-nord-muted);
+    --table-footer-btn-disabled-border: var(--color-nord-deep-border);
 
     /* ──────────────────────────────────────────
        Accordion
        ────────────────────────────────────────── */
     --accordion-border: var(--color-nord-border);
     --accordion-trigger-hover-bg: var(--color-nord-hover);
+    --accordion-trigger-bg-expanded: var(--color-nord-hover);
+    --accordion-trigger-color-disabled: var(--color-nord-text-muted);
 }

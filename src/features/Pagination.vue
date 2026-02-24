@@ -161,8 +161,9 @@ function goToPage(page: number): void {
 
 .pagination__btn:disabled {
     color: var(--pagination-disabled-color);
+    background-color: var(--pagination-btn-bg-disabled);
+    border-color: var(--pagination-btn-border-disabled);
     cursor: not-allowed;
-    opacity: 0.5;
 }
 
 .pagination__ellipsis {

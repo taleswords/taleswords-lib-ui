@@ -283,7 +283,7 @@ defineExpose({ clearSelection })
 }
 
 .table-base__table :deep(.table-body__row--selected) {
-    background-color: rgba(69, 123, 157, 0.08);
+    background-color: var(--table-row-selected-bg);
 }
 
 /* Body cell styles */

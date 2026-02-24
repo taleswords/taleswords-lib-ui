@@ -64,7 +64,10 @@ function onChange(): void {
 
 .radio.is-disabled {
     cursor: not-allowed;
-    opacity: 0.65;
+}
+
+.radio.is-disabled .radio__label {
+    color: var(--form-field-label-disabled-color);
 }
 
 .radio__native {

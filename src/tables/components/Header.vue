@@ -89,7 +89,7 @@ function getSortIcon(key: string): string | null {
 }
 
 .table-header__cell--sortable:hover {
-    background-color: var(--dropdown-item-hover-bg);
+    background-color: var(--table-header-hover-bg);
 }
 
 .table-header__label {
@@ -101,8 +101,7 @@ function getSortIcon(key: string): string | null {
     align-items: center;
     margin-left: 0.375em;
     font-size: 0.75em;
-    color: var(--general-text-color);
-    opacity: 0.6;
+    color: var(--table-sort-icon-color);
 }
 
 .table-header__sort-icon .material-symbols-rounded {
