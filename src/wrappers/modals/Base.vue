@@ -166,9 +166,9 @@ defineExpose({ close: requestClose })
                         <slot />
                     </ModalBody>
 
-                    <slot name="footer" :close="requestClose">
-                        <ModalFooter />
-                    </slot>
+                    <ModalFooter v-if="$slots.footer">
+                        <slot name="footer" :close="requestClose" />
+                    </ModalFooter>
                 </div>
             </div>
         </Transition>

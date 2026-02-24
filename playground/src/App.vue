@@ -207,8 +207,11 @@ function toggleTheme(): void {
     padding: 2rem;
     padding-bottom: 6rem;
     max-width: 960px;
+}
+
+.playground-content :deep(.page) {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.25rem;
 }
 </style>

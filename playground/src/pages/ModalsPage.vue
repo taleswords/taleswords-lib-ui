@@ -46,12 +46,22 @@ async function confirmClose(): Promise<boolean> {
 
             <ModalBase v-model="showSmall" size="small" title="Small Modal">
                 <p>This is a small modal.</p>
+                <template #footer="{ close }">
+                    <ButtonBase variant="secondary" label="Close" @click="close" />
+                </template>
             </ModalBase>
             <ModalBase v-model="showLarge" size="large" title="Large Modal">
                 <p>This is a large modal with more space for content.</p>
+                <template #footer="{ close }">
+                    <ButtonBase variant="secondary" label="Cancel" @click="close" />
+                    <ButtonBase variant="primary" label="Save" @click="close" />
+                </template>
             </ModalBase>
             <ModalBase v-model="showFull" size="full" title="Fullscreen Modal">
                 <p>This modal takes the full screen.</p>
+                <template #footer="{ close }">
+                    <ButtonBase variant="secondary" label="Close" @click="close" />
+                </template>
             </ModalBase>
         </CardBase>
 
@@ -69,6 +79,10 @@ async function confirmClose(): Promise<boolean> {
                 :before-close="confirmClose"
             >
                 <p>Try closing this modal — you'll get a confirm dialog.</p>
+                <template #footer="{ close }">
+                    <ButtonBase variant="secondary" label="Discard" @click="close" />
+                    <ButtonBase variant="primary" label="Save Changes" @click="close" />
+                </template>
             </ModalBase>
         </CardBase>
 
@@ -89,7 +103,14 @@ async function confirmClose(): Promise<boolean> {
                 />
                 <ModalBase v-model="showNestedInner" size="small" title="Inner Modal">
                     <p>This is a nested modal inside the outer one.</p>
+                    <template #footer="{ close }">
+                        <ButtonBase variant="secondary" label="Close" @click="close" />
+                    </template>
                 </ModalBase>
+                <template #footer="{ close }">
+                    <ButtonBase variant="secondary" label="Cancel" @click="close" />
+                    <ButtonBase variant="primary" label="Done" @click="close" />
+                </template>
             </ModalBase>
         </CardBase>
 

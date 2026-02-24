@@ -67,6 +67,7 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
     font-family: var(--font-heading);
     font-weight: 500;
     font-size: 1em;
+    line-height: 1.25;
     padding-block: 10px;
     padding-inline: 1em;
     min-width: 8em;
@@ -80,6 +81,7 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
 .button.is-disabled {
     pointer-events: none;
     cursor: default;
+    opacity: 0.5;
 }
 
 .button:focus-visible {
