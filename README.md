@@ -1,397 +1,256 @@
 # @taleswords/lib-ui
 
-Vue 3 UI component library with built-in typography, theming via CSS custom properties, and a complete set of form and layout components.
+Private UI component library for **Taleswords Web**.
 
-## Features
+This package contains the complete design system used by the Taleswords application, including:
 
-- 11 ready-to-use Vue 3 components
-- Full TypeScript support with exported prop interfaces
-- Global base styles (typography, forms, links, buttons)
-- 90+ CSS custom properties for theming
-- Bundled fonts: Raleway (headings/UI), Lora (body), Source Sans Pro (inputs)
-- Responsive design with mobile-first approach
-- Tree-shakeable named exports
+* Vue 3 base components
+* Composed UI systems (Dropdown, Modal, Table, etc.)
+* Design tokens (color, typography, spacing)
+* Dark mode support
+* Global base styles
+* Accessibility-safe interaction patterns
 
-## Installation
+> ⚠️ This package is **private** and intended for use only inside `taleswords-web`.
 
-```bash
+---
+
+# Philosophy
+
+`@taleswords/lib-ui` is a **sealed UI subsystem**.
+
+It provides:
+
+* Deterministic styling
+* Strong TypeScript surface
+* Strict component contracts
+* Token-driven design
+* Zero domain knowledge
+
+It does **not** include:
+
+* Application logic
+* API logic
+* Store logic
+* Router logic
+* Pixi or editor logic
+
+Dependency direction must always be:
+
+```
+taleswords-web  →  @taleswords/lib-ui
+```
+
+Never reverse.
+
+---
+
+# Installation
+
+This package is installed via private registry:
+
+```
 npm install @taleswords/lib-ui
 ```
 
-**Peer dependency:** Vue 3.5+
+Peer dependency:
 
-## Quick Start
+* Vue 3.x
 
-### Option A: Plugin (global registration)
+Vue is intentionally **not bundled**.
 
-```ts
-import { createApp } from 'vue'
-import LibUiPlugin from '@taleswords/lib-ui'
-import '@taleswords/lib-ui/style.css'
-import App from './App.vue'
+---
 
-const app = createApp(App)
-app.use(LibUiPlugin)
-app.mount('#app')
-```
+# Usage
 
-All components are then available globally without imports.
-
-### Option B: Named imports (tree-shaking)
+Import styles once at application root:
 
 ```ts
-// main.ts
-import '@taleswords/lib-ui/style.css'
+import '@taleswords/lib-ui/styles.css'
 ```
 
-```vue
-<script setup lang="ts">
-import { UiButton, UiCard } from '@taleswords/lib-ui'
-</script>
+Import components as needed:
 
-<template>
-    <UiCard>
-        <UiButton variant="primary">Click me</UiButton>
-    </UiCard>
-</template>
+```ts
+import { ButtonBase, DropdownBase } from '@taleswords/lib-ui'
 ```
 
-## CSS Entry Points
+Do not deep-import internal files.
 
-| Import | Description |
-|--------|-------------|
-| `@taleswords/lib-ui/style.css` | Everything: variables + base styles + component styles |
-| `@taleswords/lib-ui/variables.css` | CSS custom properties only (for custom builds) |
-| `@taleswords/lib-ui/base.css` | Base element styles only (typography, forms, links) |
+Allowed:
 
-**Note:** Base styles apply globally to standard HTML elements (`h1`-`h5`, `p`, `a`, `label`, `input`, `button`, `select`, `textarea`). No wrapper class is needed.
+```ts
+import { ButtonBase } from '@taleswords/lib-ui'
+```
+
+Not allowed:
+
+```ts
+import ButtonBase from '@taleswords/lib-ui/dist/...'
+```
+
+---
+
+# What This Library Exports
 
 ## Components
 
-### UiButton
+Base controls:
 
-Button with four style variants and two sizes.
+* ButtonBase
+* TextboxBase
+* CheckboxBase
+* Radio
+* Switch
+* BadgeBase
+* LoaderBase
+* ProgressBar
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default' \| 'primary' \| 'secondary' \| 'danger'` | `'default'` | Visual style |
-| `size` | `'small' \| 'medium'` | `'medium'` | Button size |
-| `disabled` | `boolean` | `false` | Disables interaction |
+Composed systems:
 
-```vue
-<UiButton variant="primary">Save</UiButton>
-<UiButton variant="danger" size="small">Delete</UiButton>
-<UiButton disabled>Unavailable</UiButton>
+* DropdownBase
+* ModalBase
+* TableBase
+* ListBase
+* TabsBase
+* AccordionBase
+* Pagination
+* NavigationButtons
+
+Layout primitives:
+
+* CardBase
+* LayoutBase
+* TitleDescAction
+
+Notification systems:
+
+* ToastBase
+* BannerBase
+* useToast
+* useBanner
+
+All components are fully typed.
+
+---
+
+# Styling System
+
+The styling architecture follows a strict three-layer model:
+
+1. Palette (raw colors)
+2. Semantic Tokens
+3. Component Tokens
+
+Consumers must never override component classes directly.
+
+All customization must happen via:
+
+* Token adjustments
+* Component props
+* Layout wrappers
+
+---
+
+# Typography
+
+The library bundles the official Taleswords typography stack:
+
+* Lora (narrative body text)
+* Raleway (UI headings)
+* Source Sans Pro (UI body)
+* Material Symbols (icons)
+
+Typography is opinionated and global.
+
+---
+
+# Dark Mode
+
+Dark mode is token-driven.
+
+It activates via:
+
+```
+document.documentElement.setAttribute('data-theme', 'dark')
 ```
 
-### UiBadge
+The application is responsible for toggling the theme.
 
-Colored label for roles, statuses, and visibility.
+---
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `UiBadgeValue` | *required* | Badge type |
+# Accessibility
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `click` | `MouseEvent` | Badge clicked |
+All interactive components:
 
-**`UiBadgeValue`** is one of: `visitor`, `guest`, `guest-editor`, `reviewer`, `editor`, `manager`, `admin`, `owner`, `public`, `private`, `pending`, `declined`, `accepted`
+* Support keyboard navigation
+* Provide visible focus rings
+* Follow ARIA best practices
+* Are WCAG AA contrast compliant
 
-```vue
-<UiBadge value="admin" />
-<UiBadge value="pending" @click="handleClick" />
+Accessibility validation is enforced in playground development.
+
+---
+
+# Development
+
+Build library:
+
+```
+npm run build
 ```
 
-### UiCard
+Verify tarball contents:
 
-Container with three visual variants.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default' \| 'elevated' \| 'outlined'` | `'default'` | Card style |
-| `noPadding` | `boolean` | `false` | Removes padding |
-| `row` | `boolean` | `false` | Horizontal flex layout |
-
-```vue
-<UiCard>Default card with background</UiCard>
-<UiCard variant="elevated">Card with box shadow</UiCard>
-<UiCard variant="outlined">Transparent with border</UiCard>
-<UiCard row>
-    <UiButton>A</UiButton>
-    <UiButton>B</UiButton>
-</UiCard>
+```
+npm pack
 ```
 
-### UiInputField
+Only the `dist/` directory is published.
 
-Text input with label, validation, and v-model support.
+---
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | *required* | Input value (v-model) |
-| `type` | `'text' \| 'email' \| 'password'` | `'text'` | HTML input type |
-| `label` | `string` | — | Label text |
-| `placeholder` | `string` | — | Placeholder text |
-| `error` | `string` | — | Error message (shows red border + text) |
-| `required` | `boolean` | `false` | Shows asterisk on label |
-| `disabled` | `boolean` | `false` | Disables the input |
-| `autocomplete` | `string` | — | HTML autocomplete attribute |
+# Boundary Rules
 
-```vue
-<UiInputField
-    v-model="email"
-    type="email"
-    label="Email"
-    placeholder="you@example.com"
-    required
-    :error="emailError"
-/>
-```
+The application must NOT:
 
-### UiCheckboxField
+* Override internal component classes
+* Redefine design tokens
+* Depend on component internal DOM structure
+* Import internal paths
 
-Checkbox with label and optional error state.
+If visual changes are required, update this library — not the app.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `boolean` | *required* | Checked state (v-model) |
-| `label` | `string` | *required* | Label text |
-| `error` | `string` | — | Error message |
-| `disabled` | `boolean` | `false` | Disables the checkbox |
+---
 
-```vue
-<UiCheckboxField
-    v-model="agreed"
-    label="I agree to the terms"
-    :error="agreed ? '' : 'You must accept'"
-/>
-```
+# Versioning Strategy
 
-### UiInputSelect
+Since this is an internal package:
 
-Custom dropdown select with keyboard support.
+* Breaking changes are allowed
+* Version increments should reflect UI surface changes
+* taleswords-web should upgrade intentionally
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | *required* | Selected value (v-model) |
-| `options` | `{ label: string; value: string }[]` | *required* | Available options |
-| `label` | `string` | — | Label text |
-| `placeholder` | `string` | — | Placeholder when nothing is selected |
-| `error` | `string` | — | Error message |
-| `required` | `boolean` | `false` | Shows asterisk on label |
-| `disabled` | `boolean` | `false` | Disables the select |
+Recommended:
 
-```vue
-<UiInputSelect
-    v-model="role"
-    label="Role"
-    placeholder="Select a role..."
-    :options="[
-        { label: 'Editor', value: 'editor' },
-        { label: 'Reviewer', value: 'reviewer' },
-        { label: 'Admin', value: 'admin' },
-    ]"
-    required
-/>
-```
+* Patch: styling fixes
+* Minor: new components / props
+* Major: breaking API or token changes
 
-### UiModal
+---
 
-Fullscreen modal on mobile (slides up from bottom) and centered dialog on desktop. Teleports to `<body>` and locks page scroll.
+# Status
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | *required* | Modal header title |
-| `confirmText` | `string` | `'Confirm'` | Confirm button label |
-| `cancelText` | `string` | `'Cancel'` | Cancel button label |
-| `confirmVariant` | `'default' \| 'primary' \| 'secondary' \| 'danger'` | `'primary'` | Confirm button style |
-| `confirmDisabled` | `boolean` | `false` | Disables confirm button only |
-| `actionsDisabled` | `boolean` | `false` | Disables all actions (close, cancel, confirm) |
-| `errorText` | `string` | — | Error message with icon |
-| `warningText` | `string` | — | Warning message with icon |
-| `infoText` | `string` | — | Info message with icon |
-| `progressText` | `string` | — | Progress message with hourglass icon |
-| `leftButtonText` | `string` | — | Optional left-side button label |
-| `leftButtonVariant` | `'default' \| 'primary' \| 'secondary' \| 'danger'` | `'secondary'` | Left button style |
-| `noScrolls` | `boolean` | `false` | Disables scroll containment on desktop |
+This library is actively maintained as part of Taleswords frontend stabilization.
 
-| Event | Description |
-|-------|-------------|
-| `close` | Overlay or X button clicked |
-| `confirm` | Confirm button clicked |
-| `cancel` | Cancel button clicked |
-| `left-button-click` | Left button clicked |
+It is considered the single source of truth for:
 
-**Slot:** Default slot for modal body content.
+* Visual identity
+* Interaction patterns
+* UI accessibility
 
-```vue
-<UiModal
-    v-if="showModal"
-    title="Delete Item"
-    confirm-text="Delete"
-    confirm-variant="danger"
-    :error-text="deleteError"
-    @close="showModal = false"
-    @confirm="handleDelete"
-    @cancel="showModal = false"
->
-    <p>Are you sure you want to delete this item?</p>
-</UiModal>
-```
+---
 
-### UiPopover
+# License
 
-Toast notification that auto-dismisses.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `message` | `string` | *required* | Notification text |
-| `type` | `'success' \| 'error'` | `'success'` | Visual style |
-| `duration` | `number` | `3000` | Auto-dismiss time in ms |
-
-| Event | Description |
-|-------|-------------|
-| `close` | Popover dismissed (by timer or click) |
-
-```vue
-<UiPopover
-    v-if="showToast"
-    message="Changes saved"
-    type="success"
-    @close="showToast = false"
-/>
-```
-
-### UiUserIcon
-
-Circular avatar with the first letter of a name. Background color is deterministically generated from the name string with auto-contrasting text.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `name` | `string` | *required* | User name |
-
-```vue
-<UiUserIcon name="Alice" />
-```
-
-### UiBreadcrumbs
-
-Navigation breadcrumb trail.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `{ label: string; href?: string }[]` | *required* | Breadcrumb items (last item renders as plain text) |
-
-```vue
-<UiBreadcrumbs :items="[
-    { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Current Project' },
-]" />
-```
-
-### UiActionsHeader
-
-Section header with a title and a slot for action buttons.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | *required* | Header text |
-
-**Slot:** Default slot for action buttons.
-
-```vue
-<UiActionsHeader title="Team Members">
-    <UiButton variant="primary" size="small">Invite</UiButton>
-</UiActionsHeader>
-```
-
-## Utilities
-
-The library exports two color utility functions:
-
-```ts
-import { stringToColor, getTextColorForBackground } from '@taleswords/lib-ui'
-
-const bg = stringToColor('Alice')       // deterministic hex color from string
-const text = getTextColorForBackground(bg) // '#FAFAFA' or '#333333' for contrast
-```
-
-## TypeScript
-
-All prop interfaces are exported:
-
-```ts
-import type {
-    UiButtonProps,
-    UiBadgeProps,
-    UiBadgeValue,
-    UiCardProps,
-    UiModalProps,
-    UiPopoverProps,
-    UiInputFieldProps,
-    UiCheckboxFieldProps,
-    UiInputSelectProps,
-    UiInputSelectOption,
-    UiUserIconProps,
-    UiBreadcrumbsProps,
-    UiBreadcrumbItem,
-    UiActionsHeaderProps,
-} from '@taleswords/lib-ui'
-```
-
-## Theming
-
-Override any CSS custom property in your app to customize the theme:
-
-```css
-:root {
-    --ui-primary-btn: #3B82F6;
-    --ui-primary-btn-hover: #2563EB;
-    --ui-body-bg: #1a1a2e;
-    --ui-text-color: #e0e0e0;
-}
-```
-
-### Available CSS Variable Categories
-
-| Category | Prefix | Examples |
-|----------|--------|---------|
-| Text & Background | `--ui-text-*`, `--ui-body-*` | `--ui-text-color`, `--ui-body-bg` |
-| Cards | `--ui-card-*` | `--ui-card-bg`, `--ui-card-border-color`, `--ui-card-shadow` |
-| Buttons | `--ui-primary-btn*`, `--ui-secondary-btn*`, `--ui-button-*` | `--ui-primary-btn`, `--ui-button-danger` |
-| Headings | `--ui-h1-color` ... `--ui-h5-color` | Per-level heading colors |
-| Links | `--ui-link-*`, `--ui-secondary-link-*` | `--ui-link-color`, `--ui-link-hover` |
-| Inputs | `--ui-input-*` | `--ui-input-bg`, `--ui-input-border-color`, `--ui-input-focus-*` |
-| Badges | `--ui-badge-*` | `--ui-badge-admin-bg`, `--ui-badge-admin-text` |
-| Modals | `--ui-modal-*` | `--ui-modal-overlay`, `--ui-modal-shadow` |
-| Status Icons | `--ui-warning-icon`, `--ui-error-icon`, `--ui-info-icon` | Modal message icons |
-| Status Text | `--ui-error-text-color`, `--ui-success-text-color`, `--ui-info-text` | Feedback colors |
-
-See [`src/styles/variables.css`](src/styles/variables.css) for the full list of variables and their default values.
-
-## Fonts
-
-Three font families are bundled and loaded automatically:
-
-| Font | Usage | Weight |
-|------|-------|--------|
-| **Raleway** (variable) | Headings, labels, buttons | 400-700 |
-| **Lora** (variable) | Body text | 400 |
-| **Source Sans Pro** | Form inputs, selects | 400 |
-
-## Development
-
-```bash
-npm install       # Install dependencies
-npm run dev       # Start playground (Vite dev server)
-npm run build     # Build library (ES + UMD + type declarations)
-npm run typecheck # Run vue-tsc type checking
-```
-
-The playground at `playground/` demonstrates all components with interactive controls.
-
-## License
-
-MIT
+Private – Taleswords internal use only.
