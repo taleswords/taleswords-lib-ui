@@ -79,6 +79,7 @@ const emit = defineEmits<{
 // ── Refs ───────────────────────────────────────────
 
 const containerRef = ref<HTMLElement | null>(null)
+const triggerWrapperRef = ref<HTMLElement | null>(null)
 const menuContainerRef = ref<HTMLElement | null>(null)
 const isOpen = ref(false)
 const searchQuery = ref('')
@@ -138,10 +139,8 @@ onBeforeUnmount(() => {
 // ── Scroll/resize repositioning ────────────────────
 
 function updatePosition(): void {
-    if (!isOpen.value || !containerRef.value || !menuContainerRef.value) return
-    const trigger = containerRef.value.querySelector('[aria-haspopup]') as HTMLElement | null
-    if (!trigger) return
-    const triggerRect = trigger.getBoundingClientRect()
+    if (!isOpen.value || !triggerWrapperRef.value || !menuContainerRef.value) return
+    const triggerRect = triggerWrapperRef.value.getBoundingClientRect()
     const menuRect = menuContainerRef.value.getBoundingClientRect()
     const pos = calculateFloatingPosition(
         triggerRect,
@@ -327,21 +326,23 @@ defineExpose({ open, close, toggle, resetSearch, getSelectedOptions })
         @keydown="handleKeydown"
     >
         <!-- Trigger -->
-        <slot
-            name="trigger"
-            :selected-label="selectedLabel"
-            :is-open="isOpen"
-            :toggle="toggle"
-        >
-            <DropdownTrigger
+        <div ref="triggerWrapperRef" class="dropdown__trigger-wrapper">
+            <slot
+                name="trigger"
                 :selected-label="selectedLabel"
-                :placeholder="props.placeholder"
                 :is-open="isOpen"
-                :is-disabled="props.isDisabled"
-                :has-error="props.hasError"
-                @toggle="toggle"
-            />
-        </slot>
+                :toggle="toggle"
+            >
+                <DropdownTrigger
+                    :selected-label="selectedLabel"
+                    :placeholder="props.placeholder"
+                    :is-open="isOpen"
+                    :is-disabled="props.isDisabled"
+                    :has-error="props.hasError"
+                    @toggle="toggle"
+                />
+            </slot>
+        </div>
 
         <!-- Menu panel (teleported to body to escape overflow:hidden parents) -->
         <Teleport to="body">

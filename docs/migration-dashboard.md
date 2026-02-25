@@ -259,3 +259,16 @@ There is no built-in label/error prop on `TextboxBase` or `CheckboxBase`. Use `F
     <TextboxBase v-model="form.email" type="email" :has-error="!!errors.email" />
 </FormField>
 ```
+
+## 2.0.x Notes
+
+### 2.0.1
+
+**DropdownBase**
+- `#trigger` slot now exposes `toggle()` in slot props, enabling fully custom trigger UIs to open/close the dropdown.
+- Trigger measurement for positioning no longer relies on querying `[aria-haspopup]` from slotted content; it uses an internal trigger wrapper ref for slot-safe positioning.
+
+**TooltipBase**
+- Added `closeOnPointerDown` prop (default: `false`).
+  - When `true`, tooltip closes on outside pointer down (mouse + touch).
+- Improved leave animation reliability by separating mount/unmount (`v-if`) from visibility (`v-show`).

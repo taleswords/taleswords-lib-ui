@@ -252,6 +252,59 @@ describe('TooltipBase', () => {
         wrapper.unmount()
     })
 
+    it('closes on pointerdown outside when closeOnPointerDown is true', async () => {
+        const wrapper = mount(TooltipBase, {
+            props: { content: 'Click outside', openDelayMs: 0, closeDelayMs: 0, closeOnPointerDown: true },
+            slots: { default: '<button>Trigger</button>' },
+            attachTo: document.body,
+        })
+        const trigger = wrapper.find('.tooltip-trigger')
+        stubRect(trigger.element as HTMLElement, { top: 400, left: 400, width: 100, height: 40, bottom: 440, right: 500 })
+
+        await trigger.trigger('pointerenter', { pointerType: 'mouse' })
+        vi.advanceTimersByTime(1)
+        await vi.dynamicImportSettled()
+        expect(document.querySelector('[role="tooltip"]')).not.toBeNull()
+
+        // Simulate pointerdown outside
+        const outside = new PointerEvent('pointerdown', { bubbles: true, pointerType: 'mouse' })
+        document.dispatchEvent(outside)
+        await vi.dynamicImportSettled()
+
+        // Tooltip should be gone (isOpen=false, v-show hides it)
+        const tooltip = document.querySelector('[role="tooltip"]') as HTMLElement | null
+        expect(tooltip === null || tooltip.style.display === 'none').toBe(true)
+
+        wrapper.unmount()
+    })
+
+    it('does not close on mouse pointerdown outside when closeOnPointerDown is false', async () => {
+        const wrapper = mount(TooltipBase, {
+            props: { content: 'Stay open', openDelayMs: 0, closeDelayMs: 0, closeOnPointerDown: false },
+            slots: { default: '<button>Trigger</button>' },
+            attachTo: document.body,
+        })
+        const trigger = wrapper.find('.tooltip-trigger')
+        stubRect(trigger.element as HTMLElement, { top: 400, left: 400, width: 100, height: 40, bottom: 440, right: 500 })
+
+        await trigger.trigger('pointerenter', { pointerType: 'mouse' })
+        vi.advanceTimersByTime(1)
+        await vi.dynamicImportSettled()
+        expect(document.querySelector('[role="tooltip"]')).not.toBeNull()
+
+        // Simulate mouse pointerdown outside
+        const outside = new PointerEvent('pointerdown', { bubbles: true, pointerType: 'mouse' })
+        document.dispatchEvent(outside)
+        await vi.dynamicImportSettled()
+
+        // Tooltip should still be visible
+        const tooltip = document.querySelector('[role="tooltip"]') as HTMLElement | null
+        expect(tooltip).not.toBeNull()
+        expect(tooltip!.style.display).not.toBe('none')
+
+        wrapper.unmount()
+    })
+
     it('has no accessibility violations when closed', async () => {
         vi.useRealTimers()
         const wrapper = mount(TooltipBase, {

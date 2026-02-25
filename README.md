@@ -5,7 +5,7 @@ Private UI component library for **Taleswords Web**.
 This package contains the complete design system used by the Taleswords application, including:
 
 * Vue 3 base components
-* Composed UI systems (Dropdown, Modal, Table, etc.)
+* Composed UI systems (Dropdown, Modal, Table, Tooltip, etc.)
 * Design tokens (color, typography, spacing)
 * Dark mode support
 * Global base styles
@@ -72,7 +72,7 @@ import '@taleswords/lib-ui/styles.css'
 Import components as needed:
 
 ```ts
-import { ButtonBase, DropdownBase } from '@taleswords/lib-ui'
+import { ButtonBase, DropdownBase, TooltipBase } from '@taleswords/lib-ui'
 ```
 
 Do not deep-import internal files.
@@ -93,9 +93,7 @@ import ButtonBase from '@taleswords/lib-ui/dist/...'
 
 # What This Library Exports
 
-## Components
-
-Base controls:
+## Base Controls
 
 * ButtonBase
 * TextboxBase
@@ -106,7 +104,7 @@ Base controls:
 * LoaderBase
 * ProgressBar
 
-Composed systems:
+## Composed Systems
 
 * DropdownBase
 * ModalBase
@@ -116,14 +114,15 @@ Composed systems:
 * AccordionBase
 * Pagination
 * NavigationButtons
+* TooltipBase
 
-Layout primitives:
+## Layout Primitives
 
 * CardBase
 * LayoutBase
 * TitleDescAction
 
-Notification systems:
+## Notification Systems
 
 * ToastBase
 * BannerBase
@@ -131,6 +130,49 @@ Notification systems:
 * useBanner
 
 All components are fully typed.
+
+---
+
+# TooltipBase
+
+TooltipBase provides accessible, collision-safe floating tooltips.
+
+### Features
+
+* Hover + focus activation (recommended pattern)
+* Escape dismiss
+* Scroll + resize repositioning
+* Auto-flip + viewport shift
+* Optional arrow
+* Teleport to body (no clipping issues)
+* WCAG-safe aria-describedby wiring
+
+Example:
+
+```vue
+<TooltipBase content="Delete project">
+  <ButtonBase variant="danger" />
+</TooltipBase>
+```
+
+Custom content:
+
+```vue
+<TooltipBase placement="bottom">
+  <ButtonBase label="Info" />
+  <template #content>
+    <strong>Custom tooltip</strong>
+  </template>
+</TooltipBase>
+```
+
+Optional outside close:
+
+```vue
+<TooltipBase closeOnPointerDown>
+  <ButtonBase label="Interactive" />
+</TooltipBase>
+```
 
 ---
 
@@ -169,7 +211,7 @@ Typography is opinionated and global.
 
 Dark mode is token-driven.
 
-It activates via:
+Activate via:
 
 ```
 document.documentElement.setAttribute('data-theme', 'dark')
@@ -233,8 +275,8 @@ Since this is an internal package:
 
 Recommended:
 
-* Patch: styling fixes
-* Minor: new components / props
+* Patch: styling fixes, internal stability improvements
+* Minor: new components or non-breaking props
 * Major: breaking API or token changes
 
 ---
@@ -243,7 +285,7 @@ Recommended:
 
 This library is actively maintained as part of Taleswords frontend stabilization.
 
-It is considered the single source of truth for:
+It is the single source of truth for:
 
 * Visual identity
 * Interaction patterns

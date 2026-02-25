@@ -14,6 +14,7 @@ export interface TooltipBaseProps {
     maxWidth?: string
     isDisabled?: boolean
     hasArrow?: boolean
+    closeOnPointerDown?: boolean
     testId?: string
 }
 
@@ -28,6 +29,7 @@ const props = withDefaults(defineProps<TooltipBaseProps>(), {
     maxWidth: '240px',
     isDisabled: false,
     hasArrow: true,
+    closeOnPointerDown: false,
     testId: 'tooltip',
 })
 
@@ -158,12 +160,14 @@ function onTouchStart(): void {
 }
 
 function onDocumentPointerDown(e: PointerEvent): void {
-    if (e.pointerType !== 'touch') return
-    if (!triggerRef.value || !tooltipRef.value) return
+    if (!isOpen.value) return
+    const isTouch = e.pointerType === 'touch'
+    if (!isTouch && !props.closeOnPointerDown) return
     const target = e.target as Node
-    if (triggerRef.value.contains(target) || tooltipRef.value.contains(target)) return
+    if (triggerRef.value?.contains(target)) return
+    if (tooltipRef.value?.contains(target)) return
     closeImmediate()
-    if (touchTimeout !== null) { clearTimeout(touchTimeout); touchTimeout = null }
+    if (isTouch && touchTimeout !== null) { clearTimeout(touchTimeout); touchTimeout = null }
 }
 
 // ── Lifecycle ──────────────────────────────────────
@@ -227,7 +231,8 @@ function onScrollResize(): void {
             @after-leave="onAfterLeave"
         >
             <div
-                v-if="isMounted && isOpen && (hasContent || $slots.content)"
+                v-if="isMounted && (hasContent || $slots.content)"
+                v-show="isOpen"
                 :id="tooltipId"
                 ref="tooltipRef"
                 role="tooltip"
