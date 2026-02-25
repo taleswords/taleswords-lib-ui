@@ -13,18 +13,12 @@ export default defineConfig({
         outDir: 'dist',
         lib: {
             entry: path.resolve(__dirname, 'src/index.ts'),
-            name: 'LibUi',
-            fileName: 'lib-ui',
-            formats: ['es', 'umd']
+            formats: ['es'],
+            fileName: 'index',
+            cssFileName: 'styles',
         },
         rollupOptions: {
             external: ['vue'],
-            output: {
-                globals: {
-                    vue: 'Vue'
-                },
-                exports: 'named'
-            }
-        }
+        },
     }
 })

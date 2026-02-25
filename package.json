@@ -3,19 +3,14 @@
   "version": "1.0.9",
   "description": "Vue 3 UI component library for Taleswords",
   "type": "module",
-  "main": "./dist/lib-ui.umd.cjs",
-  "module": "./dist/lib-ui.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/lib-ui.js",
-      "require": "./dist/lib-ui.umd.cjs"
+      "import": "./dist/index.js"
     },
-    "./style.css": "./dist/lib-ui.css",
-    "./variables.css": "./dist/variables.css",
-    "./base.css": "./dist/base.css",
-    "./icons.css": "./dist/icons.css"
+    "./styles.css": "./dist/styles.css"
   },
   "files": [
     "dist"
@@ -26,7 +21,7 @@
   "scripts": {
     "dev": "vite --config vite.config.ts playground",
     "clean": "del ./dist/",
-    "build": "npm run clean && vite build && vue-tsc -p tsconfig-build.json && cat src/styles/palette.css src/styles/fonts.css src/styles/tokens.css src/styles/tokens-dark.css > dist/variables.css && cp src/styles/base.css dist/ && cp src/styles/icons.css dist/ && cp src/globals.d.ts dist/",
+    "build": "npm run clean && vite build && vue-tsc -p tsconfig-build.json",
     "test": "vitest",
     "test:run": "vitest run",
     "typecheck": "vue-tsc --noEmit",

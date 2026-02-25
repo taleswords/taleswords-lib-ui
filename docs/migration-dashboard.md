@@ -14,15 +14,7 @@ npm install @taleswords/lib-ui
 
 ```ts
 // main.ts
-import '@taleswords/lib-ui/style.css'   // all component styles + design tokens
-```
-
-Optional granular imports:
-
-```ts
-import '@taleswords/lib-ui/variables.css' // design tokens only
-import '@taleswords/lib-ui/base.css'      // reset + typography
-import '@taleswords/lib-ui/icons.css'     // icon classes
+import '@taleswords/lib-ui/styles.css'   // all component styles + design tokens
 ```
 
 ### Theme setup
@@ -165,7 +157,7 @@ All components use CSS custom properties defined as semantic tokens. Override th
 
 ### Adding custom token overrides
 
-Create a CSS file loaded after `style.css`:
+Create a CSS file loaded after `styles.css`:
 
 ```css
 /* my-overrides.css */

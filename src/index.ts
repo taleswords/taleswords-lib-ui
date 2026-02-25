@@ -1,5 +1,3 @@
-/// <reference path="./globals.d.ts" />
-
 // Font imports
 import '@fontsource/source-sans-pro'
 import '@fontsource-variable/lora'
