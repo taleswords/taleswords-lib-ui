@@ -1,6 +1,6 @@
 {
   "name": "@taleswords/lib-ui",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Vue 3 UI component library for Taleswords",
   "type": "module",
   "module": "./dist/index.js",
