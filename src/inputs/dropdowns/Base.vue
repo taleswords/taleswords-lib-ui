@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { uid } from '../../utils/uid'
-import { calculateDropdownPosition } from '../../utils/positioning'
+import { calculateFloatingPosition } from '../../utils/floatingPosition'
 import DropdownTrigger from './components/Trigger.vue'
 import DropdownHeader from './components/Header.vue'
 import DropdownMenu from './components/Menu.vue'
@@ -141,10 +141,17 @@ function updatePosition(): void {
     if (!isOpen.value || !containerRef.value || !menuContainerRef.value) return
     const trigger = containerRef.value.querySelector('[aria-haspopup]') as HTMLElement | null
     if (!trigger) return
-    const pos = calculateDropdownPosition(trigger, menuContainerRef.value)
-    menuContainerRef.value.style.top = `${pos.top + props.offset}px`
-    menuContainerRef.value.style.left = `${pos.left}px`
-    menuContainerRef.value.style.width = `${trigger.offsetWidth}px`
+    const triggerRect = trigger.getBoundingClientRect()
+    const menuRect = menuContainerRef.value.getBoundingClientRect()
+    const pos = calculateFloatingPosition(
+        triggerRect,
+        menuRect,
+        { width: window.innerWidth, height: window.innerHeight },
+        { placement: 'bottom-start', offset: props.offset, collisionPadding: 0, flip: true, shift: true },
+    )
+    menuContainerRef.value.style.top = `${pos.y}px`
+    menuContainerRef.value.style.left = `${pos.x}px`
+    menuContainerRef.value.style.width = `${triggerRect.width}px`
 }
 
 onMounted(() => {
