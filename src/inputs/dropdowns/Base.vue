@@ -38,7 +38,7 @@ export interface DropdownBaseProps<TValue = unknown> {
 // ── Slots ──────────────────────────────────────────
 
 defineSlots<{
-    trigger?: (slotProps: { selectedLabel: string; isOpen: boolean }) => unknown
+    trigger?: (slotProps: { selectedLabel: string; isOpen: boolean; toggle: () => void }) => unknown
     option?: (slotProps: { option: DropdownOption<unknown>; isSelected: boolean }) => unknown
     selected?: (slotProps: { selectedOptions: DropdownOption<unknown>[]; selectedLabel: string }) => unknown
     empty?: () => unknown
@@ -324,6 +324,7 @@ defineExpose({ open, close, toggle, resetSearch, getSelectedOptions })
             name="trigger"
             :selected-label="selectedLabel"
             :is-open="isOpen"
+            :toggle="toggle"
         >
             <DropdownTrigger
                 :selected-label="selectedLabel"

@@ -127,11 +127,12 @@ const customOptions: DropdownOption<string>[] = [
                 placeholder="Select user..."
                 test-id="dropdown-custom"
             >
-                <template #trigger="{ selectedLabel, isOpen }">
+                <template #trigger="{ selectedLabel, isOpen, toggle }">
                     <ButtonBase
                         :variant="isOpen ? 'primary' : 'secondary'"
                         :label="selectedLabel || 'Pick a user'"
                         icon="person"
+                        @click="toggle"
                     />
                 </template>
                 <template #option="{ option, isSelected }">
