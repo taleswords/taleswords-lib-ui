@@ -4,6 +4,7 @@ export interface AccordionContext {
     expandedIds: Readonly<Ref<ReadonlySet<string>>>
     allowMultiple: boolean
     toggle: (id: string) => void
+    register: (id: string) => void
 }
 
 export const AccordionKey: InjectionKey<AccordionContext> = Symbol('AccordionContext')

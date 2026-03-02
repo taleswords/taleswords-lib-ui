@@ -27,6 +27,7 @@ const props = withDefaults(defineProps<AccordionItemProps>(), {
 // ── Inject ─────────────────────────────────────────
 
 const accordion = inject<AccordionContext>(AccordionKey)
+accordion?.register(props.id)
 
 // ── IDs ────────────────────────────────────────────
 

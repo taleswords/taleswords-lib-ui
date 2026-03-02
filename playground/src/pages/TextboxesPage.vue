@@ -16,6 +16,11 @@ const disabledValue = ref('Cannot edit this')
 const readonlyValue = ref('Read-only content')
 const errorValue = ref('Bad input')
 const maxlengthValue = ref('')
+const multilineValue = ref('')
+const multilineRowsValue = ref('')
+const multilineAutosizeValue = ref('Type here and watch it grow...')
+const multilineDisabledValue = ref('This multiline field is disabled')
+const multilineErrorValue = ref('Invalid content')
 </script>
 
 <template>
@@ -37,6 +42,17 @@ const maxlengthValue = ref('')
                 <TextboxBase v-model="searchValue" type="search" placeholder="Search..." />
             </FormField>
         </Case>
+        <Case title="Multiline" layout="columns">
+            <FormField label="Default Multiline">
+                <TextboxBase v-model="multilineValue" multiline placeholder="Enter multiple lines..." />
+            </FormField>
+            <FormField label="Multiline with rows">
+                <TextboxBase v-model="multilineRowsValue" multiline :rows="6" placeholder="6 rows tall..." />
+            </FormField>
+            <FormField label="Multiline with autosize">
+                <TextboxBase v-model="multilineAutosizeValue" multiline autosize placeholder="Grows as you type..." />
+            </FormField>
+        </Case>
     </Section>
 
     <Section title="States">
@@ -56,6 +72,19 @@ const maxlengthValue = ref('')
                 :validation-data="{ hasError: true, message: 'This field is required' }"
             >
                 <TextboxBase v-model="errorValue" has-error />
+            </FormField>
+        </Case>
+        <Case title="Multiline Disabled" layout="columns">
+            <FormField label="Disabled Multiline">
+                <TextboxBase v-model="multilineDisabledValue" multiline is-disabled />
+            </FormField>
+        </Case>
+        <Case title="Multiline Error" layout="columns">
+            <FormField
+                label="Multiline with Error"
+                :validation-data="{ hasError: true, message: 'Content exceeds allowed length' }"
+            >
+                <TextboxBase v-model="multilineErrorValue" multiline has-error />
             </FormField>
         </Case>
         <Case title="Maxlength" layout="columns">

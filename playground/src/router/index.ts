@@ -30,6 +30,7 @@ export const navCategories: NavCategory[] = [
             { id: 'loaders', label: 'Loaders', path: '/lib/loaders', icon: 'sync' },
             { id: 'progress', label: 'Progress', path: '/lib/progress', icon: 'trending_up' },
             { id: 'tooltips', label: 'Tooltips', path: '/lib/tooltips', icon: 'chat_bubble' },
+            { id: 'display-fields', label: 'Display Fields', path: '/lib/display-fields', icon: 'label' },
         ],
     },
     {
@@ -100,6 +101,7 @@ const pageFileMap: Record<string, string> = {
     'row-expandable': 'RowExpandablePage.vue',
     'notifications': 'NotificationsPage.vue',
     'tooltips': 'TooltipsPage.vue',
+    'display-fields': 'DisplayFieldsPage.vue',
 }
 
 const pageRoutes: RouteRecordRaw[] = navCategories.flatMap(cat =>

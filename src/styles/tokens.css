@@ -215,6 +215,13 @@
     --tooltip-shadow: 0px 2px 8px color-mix(in srgb, var(--color-black) 15%, transparent);
 
     /* ──────────────────────────────────────────
+       Display Field
+       ────────────────────────────────────────── */
+    --display-field-label-color: var(--color-neutral-1000);
+    --display-field-value-color: var(--color-neutral-1300);
+    --display-field-muted-color: var(--color-neutral-800);
+
+    /* ──────────────────────────────────────────
        Modal
        ────────────────────────────────────────── */
     --modal-shadow: 0px 8px 16px color-mix(in srgb, var(--color-black) 15%, transparent), 0px 4px 8px color-mix(in srgb, var(--color-black) 10%, transparent);
@@ -378,6 +385,12 @@
     --description-weight: var(--weight-regular);
 
     --error-size: var(--text-sm);
+
+    --display-field-label-font: var(--font-ui);
+    --display-field-label-size: var(--text-sm);
+    --display-field-label-weight: var(--weight-medium);
+    --display-field-value-font: var(--font-ui);
+    --display-field-value-size: var(--text-md);
 
     --badge-font: var(--font-ui);
     --badge-size: var(--text-base);

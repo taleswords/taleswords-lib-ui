@@ -11,7 +11,7 @@
 | Component | Props | Emits | Slots |
 |-----------|-------|-------|-------|
 | **ButtonBase** | `variant?: ButtonVariant` (`'default'`), `size?: ButtonSize` (`'medium'`), `icon?: string`, `iconPosition?: 'left'\|'right'` (`'left'`), `isDisabled?: boolean`, `label?: string`, `href?: string`, `to?: string\|object` | `click` | `default` |
-| **TextboxBase** | `modelValue?: string` (`''`), `type?: TextboxType` (`'text'`), `placeholder?: string`, `isDisabled?: boolean`, `isReadonly?: boolean`, `hasError?: boolean`, `autocomplete?: string`, `maxlength?: number` | `update:modelValue`, `blur`, `focus` | — |
+| **TextboxBase** | `modelValue?: string` (`''`), `type?: TextboxType` (`'text'`), `placeholder?: string`, `isDisabled?: boolean`, `isReadonly?: boolean`, `hasError?: boolean`, `autocomplete?: string`, `maxlength?: number`, `multiline?: boolean` (`false`), `rows?: number`, `autosize?: boolean` (`false`) | `update:modelValue`, `blur`, `focus` | — |
 | **CheckboxInput** | `isChecked?: boolean`, `isDisabled?: boolean`, `hasError?: boolean` | — | — |
 | **CheckboxBase** | `modelValue?: boolean`, `label?: string`, `isDisabled?: boolean`, `hasError?: boolean` | `update:modelValue` | — |
 | **Radio** | `modelValue?: string`, `value: string` (required), `name: string` (required), `label?: string`, `isDisabled?: boolean`, `hasError?: boolean` | `update:modelValue` | — |
@@ -25,6 +25,7 @@
 | **LoaderIcon** | `size?: LoaderIconSize` (`'medium'`) | — | — |
 | **LoaderBase** | `size?: LoaderIconSize` (`'medium'`), `variant?: LoaderVariant` (`'spinner'`), `label?: string`, `isOverlay?: boolean` | — | — |
 | **ProgressBar** | `value: number` (required), `max?: number` (`100`), `variant?: ProgressVariant` (`'default'`), `showLabel?: boolean`, `ariaLabel?: string` | — | — |
+| **DisplayFieldBase** | `label: string` (required), `value?: string\|number\|null`, `inline?: boolean` (`false`), `isMuted?: boolean` (`false`), `truncate?: boolean` (`false`) | — | `default` |
 
 ### Forms
 
@@ -73,7 +74,7 @@
 | **CardBase** | `title?: string`, `description?: string`, `isLoading?: boolean`, `testId?: string` | — | `header`, `default`, `actions` |
 | **LayoutBase** | `title?: string`, `description?: string`, `isLoading?: boolean`, `testId?: string` | — | `breadcrumbs`, `actions`, `default` |
 | **TabsBase** | `modelValue: string` (required), `tabs: TabItem[]` (required), `testId?: string` | `update:modelValue` | `default` |
-| **AccordionBase** | `allowMultiple?: boolean`, `testId?: string` | — | `default` |
+| **AccordionBase** | `allowMultiple?: boolean`, `defaultExpanded?: string[]\|'all'`, `testId?: string` | — | `default` |
 | **AccordionItem** | `id: string` (required), `title: string` (required), `isDisabled?: boolean` | — | `default` |
 
 ### Notifications
@@ -175,6 +176,7 @@ const { banners, addBanner, removeBanner, clearAll } = useBanner()
 - `LoaderIconProps`, `LoaderIconSize`
 - `LoaderBaseProps`, `LoaderVariant`
 - `ProgressBarProps`, `ProgressVariant`
+- `DisplayFieldBaseProps`
 
 ### Form Types
 

@@ -260,6 +260,62 @@ There is no built-in label/error prop on `TextboxBase` or `CheckboxBase`. Use `F
 </FormField>
 ```
 
+## 2.1.0 Notes
+
+### TextboxBase — Multiline Support
+
+`TextboxBase` now supports `<textarea>` rendering via three new props:
+
+- `multiline?: boolean` — renders a `<textarea>` instead of `<input>`
+- `rows?: number` — sets the visible row count (textarea only)
+- `autosize?: boolean` — auto-grows height to fit content (textarea only)
+
+```vue
+<TextboxBase v-model="bio" multiline :rows="4" />
+<TextboxBase v-model="note" multiline autosize placeholder="Auto-growing..." />
+```
+
+Replaces the need for `UiTextarea` in migration — wrap with `FormField` for label/validation.
+
+### DisplayFieldBase — New Component
+
+New read-only label+value display component for inspector panels, detail views, and summaries.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Label text (required) |
+| `value` | `string \| number \| null` | — | Value text; renders em dash when null/undefined |
+| `inline` | `boolean` | `false` | Horizontal layout (label + value on same line) |
+| `isMuted` | `boolean` | `false` | Muted value color |
+| `truncate` | `boolean` | `false` | Truncate overflowing value text |
+
+Provides a `default` slot to override the value region with custom content (badges, links, etc.).
+
+```vue
+<DisplayFieldBase label="Status">
+    <BadgeBase variant="accepted" label="Active" />
+</DisplayFieldBase>
+```
+
+### AccordionBase — Default Expanded State
+
+`AccordionBase` now accepts `defaultExpanded` to control which items start expanded:
+
+- `defaultExpanded?: string[] | 'all'`
+- Pass an array of item IDs to expand specific items on mount
+- Pass `'all'` to expand every item on mount
+- Runtime toggling works normally after initial mount
+
+```vue
+<!-- Specific items -->
+<AccordionBase allow-multiple :default-expanded="['faq-1', 'faq-3']">
+
+<!-- All items -->
+<AccordionBase allow-multiple default-expanded="all">
+```
+
+---
+
 ## 2.0.x Notes
 
 ### 2.0.1

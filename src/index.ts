@@ -24,6 +24,7 @@ export { default as LoaderIcon } from './info/loaders/Icon.vue'
 export { default as LoaderBase } from './info/loaders/Base.vue'
 export { default as ProgressBar } from './info/ProgressBar.vue'
 export { default as TooltipBase } from './info/tooltips/Base.vue'
+export { default as DisplayFieldBase } from './info/display-fields/Base.vue'
 
 // Foundation — Forms
 export { default as FormField } from './forms/Field.vue'
@@ -86,6 +87,7 @@ export type { NavigationTag, NavigationProps } from './utils/navigation'
 export type { PositionOffset } from './utils/positioning'
 export type { Placement, Align, PlacementWithAlign, FloatingOptions, FloatingResult } from './utils/floatingPosition'
 export type { TooltipBaseProps } from './info/tooltips/Base.vue'
+export type { DisplayFieldBaseProps } from './info/display-fields/Base.vue'
 
 // Composed — Type re-exports
 export type { DropdownOption, DropdownBaseProps } from './inputs/dropdowns/Base.vue'

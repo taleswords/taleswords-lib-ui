@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted, watch, nextTick } from 'vue'
 import { uid } from '../../utils/uid'
 
 export type TextboxType = 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url'
@@ -13,6 +13,9 @@ export interface TextboxBaseProps {
     hasError?: boolean
     autocomplete?: string
     maxlength?: number
+    multiline?: boolean
+    rows?: number
+    autosize?: boolean
 }
 
 const props = withDefaults(defineProps<TextboxBaseProps>(), {
@@ -21,6 +24,8 @@ const props = withDefaults(defineProps<TextboxBaseProps>(), {
     isDisabled: false,
     isReadonly: false,
     hasError: false,
+    multiline: false,
+    autosize: false,
 })
 
 const emit = defineEmits<{
@@ -30,25 +35,71 @@ const emit = defineEmits<{
 }>()
 
 const inputId = uid('textbox')
+const textareaRef = ref<HTMLTextAreaElement | null>(null)
 
 const inputClasses = computed(() => [
     'textbox__input',
     {
         'textbox__input--error': props.hasError,
+        'textbox__input--multiline': props.multiline,
+        'textbox__input--autosize': props.multiline && props.autosize,
         'is-disabled': props.isDisabled,
         'is-readonly': props.isReadonly,
     },
 ])
 
-function onInput(event: Event): void {
-    const target = event.target as HTMLInputElement
-    emit('update:modelValue', target.value)
+function adjustHeight(): void {
+    const el = textareaRef.value
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = `${el.scrollHeight}px`
 }
+
+function onInput(event: Event): void {
+    const target = event.target as HTMLInputElement | HTMLTextAreaElement
+    emit('update:modelValue', target.value)
+    if (props.multiline && props.autosize) {
+        adjustHeight()
+    }
+}
+
+onMounted(() => {
+    if (props.multiline && props.autosize) {
+        adjustHeight()
+    }
+})
+
+watch(
+    () => props.modelValue,
+    () => {
+        if (props.multiline && props.autosize) {
+            nextTick(adjustHeight)
+        }
+    },
+)
 </script>
 
 <template>
     <div class="textbox" data-testid="textbox-base">
+        <textarea
+            v-if="props.multiline"
+            :id="inputId"
+            ref="textareaRef"
+            :class="inputClasses"
+            :value="props.modelValue"
+            :placeholder="props.placeholder"
+            :disabled="props.isDisabled"
+            :readonly="props.isReadonly"
+            :autocomplete="props.autocomplete"
+            :maxlength="props.maxlength"
+            :rows="props.rows"
+            :aria-invalid="props.hasError || undefined"
+            @input="onInput"
+            @blur="emit('blur', $event)"
+            @focus="emit('focus', $event)"
+        />
         <input
+            v-else
             :id="inputId"
             :class="inputClasses"
             :type="props.type"
@@ -111,5 +162,15 @@ function onInput(event: Event): void {
 
 .textbox__input--error:focus {
     border-color: var(--textbox-border-error-focus);
+}
+
+.textbox__input--multiline {
+    resize: vertical;
+    line-height: var(--textbox-leading, var(--leading-normal));
+}
+
+.textbox__input--autosize {
+    resize: none;
+    overflow-y: hidden;
 }
 </style>

@@ -35,6 +35,32 @@ definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Accessib
                 </AccordionItem>
             </AccordionBase>
         </Case>
+        <Case title="Default Expanded (specific IDs)" layout="columns">
+            <AccordionBase allow-multiple :default-expanded="['def-1', 'def-3']">
+                <AccordionItem id="def-1" title="Open by default">
+                    This item starts expanded via defaultExpanded.
+                </AccordionItem>
+                <AccordionItem id="def-2" title="Collapsed by default">
+                    This item starts collapsed.
+                </AccordionItem>
+                <AccordionItem id="def-3" title="Also open by default">
+                    This item also starts expanded.
+                </AccordionItem>
+            </AccordionBase>
+        </Case>
+        <Case title="Default Expanded (all)" layout="columns">
+            <AccordionBase allow-multiple default-expanded="all">
+                <AccordionItem id="all-1" title="First Section">
+                    All sections start expanded when defaultExpanded is "all".
+                </AccordionItem>
+                <AccordionItem id="all-2" title="Second Section">
+                    You can still collapse and re-expand each section.
+                </AccordionItem>
+                <AccordionItem id="all-3" title="Third Section">
+                    Runtime toggling works normally after initial mount.
+                </AccordionItem>
+            </AccordionBase>
+        </Case>
     </Section>
 
     <Section title="States" :full-width="true">

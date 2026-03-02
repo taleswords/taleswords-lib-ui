@@ -117,4 +117,57 @@ describe('AccordionBase', () => {
         const results = await axe(wrapper.element)
         expect(results).toHaveNoViolations()
     })
+
+    describe('defaultExpanded', () => {
+        it('all items collapsed when defaultExpanded is undefined', () => {
+            const wrapper = createAccordion()
+            const triggers = wrapper.findAll('button[aria-expanded]')
+            triggers.forEach((t) => {
+                expect(t.attributes('aria-expanded')).toBe('false')
+            })
+        })
+
+        it('expands specific IDs from defaultExpanded array', () => {
+            const wrapper = createAccordion({ defaultExpanded: ['a', 'b'] })
+            const triggers = wrapper.findAll('button[aria-expanded]')
+            expect(triggers[0].attributes('aria-expanded')).toBe('true')
+            expect(triggers[1].attributes('aria-expanded')).toBe('true')
+            expect(triggers[2].attributes('aria-expanded')).toBe('false')
+        })
+
+        it('expands all items when defaultExpanded is "all"', () => {
+            const wrapper = createAccordion({ defaultExpanded: 'all' })
+            const triggers = wrapper.findAll('button[aria-expanded]')
+            triggers.forEach((t) => {
+                expect(t.attributes('aria-expanded')).toBe('true')
+            })
+        })
+
+        it('runtime toggle still works after defaultExpanded', async () => {
+            const wrapper = createAccordion({
+                defaultExpanded: ['a'],
+                allowMultiple: true,
+            })
+            const triggers = wrapper.findAll('button[aria-expanded]')
+            expect(triggers[0].attributes('aria-expanded')).toBe('true')
+
+            await triggers[0].trigger('click')
+            expect(triggers[0].attributes('aria-expanded')).toBe('false')
+
+            await triggers[1].trigger('click')
+            expect(triggers[1].attributes('aria-expanded')).toBe('true')
+        })
+
+        it('runtime toggle works after defaultExpanded "all"', async () => {
+            const wrapper = createAccordion({
+                defaultExpanded: 'all',
+                allowMultiple: true,
+            })
+            const triggers = wrapper.findAll('button[aria-expanded]')
+
+            await triggers[0].trigger('click')
+            expect(triggers[0].attributes('aria-expanded')).toBe('false')
+            expect(triggers[1].attributes('aria-expanded')).toBe('true')
+        })
+    })
 })

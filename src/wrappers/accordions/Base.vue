@@ -6,6 +6,7 @@ import { AccordionKey } from './context'
 
 export interface AccordionBaseProps {
     allowMultiple?: boolean
+    defaultExpanded?: string[] | 'all'
     testId?: string
 }
 
@@ -24,7 +25,19 @@ const props = withDefaults(defineProps<AccordionBaseProps>(), {
 
 // ── State ──────────────────────────────────────────
 
-const expandedIds = ref<Set<string>>(new Set())
+const expandedIds = ref<Set<string>>(
+    new Set(Array.isArray(props.defaultExpanded) ? props.defaultExpanded : []),
+)
+
+const shouldExpandAll = props.defaultExpanded === 'all'
+
+function register(id: string): void {
+    if (shouldExpandAll) {
+        const next = new Set(expandedIds.value)
+        next.add(id)
+        expandedIds.value = next
+    }
+}
 
 function toggle(id: string): void {
     const next = new Set(expandedIds.value)
@@ -53,6 +66,7 @@ provide(AccordionKey, {
     expandedIds: readonly(expandedIds),
     allowMultiple: props.allowMultiple,
     toggle,
+    register,
 })
 
 defineExpose({ expandAll, collapseAll })

@@ -74,4 +74,118 @@ describe('TextboxBase', () => {
         const results = await axe(wrapper.element)
         expect(results).toHaveNoViolations()
     })
+
+    describe('multiline', () => {
+        it('renders textarea when multiline is true', () => {
+            const wrapper = mount(TextboxBase, { props: { multiline: true } })
+            expect(wrapper.find('textarea').exists()).toBe(true)
+            expect(wrapper.find('input').exists()).toBe(false)
+        })
+
+        it('renders input when multiline is false', () => {
+            const wrapper = mount(TextboxBase, { props: { multiline: false } })
+            expect(wrapper.find('input').exists()).toBe(true)
+            expect(wrapper.find('textarea').exists()).toBe(false)
+        })
+
+        it('binds modelValue to textarea', () => {
+            const wrapper = mount(TextboxBase, {
+                props: { multiline: true, modelValue: 'multi\nline' },
+            })
+            expect(wrapper.find('textarea').element.value).toBe('multi\nline')
+        })
+
+        it('emits update:modelValue from textarea', async () => {
+            const wrapper = mount(TextboxBase, {
+                props: { multiline: true, modelValue: '' },
+            })
+            await wrapper.find('textarea').setValue('new text')
+            expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['new text'])
+        })
+
+        it('applies rows attribute', () => {
+            const wrapper = mount(TextboxBase, {
+                props: { multiline: true, rows: 5 },
+            })
+            expect(wrapper.find('textarea').attributes('rows')).toBe('5')
+        })
+
+        it('applies error class on textarea', () => {
+            const wrapper = mount(TextboxBase, {
+                props: { multiline: true, hasError: true },
+            })
+            expect(wrapper.find('textarea').classes()).toContain('textbox__input--error')
+        })
+
+        it('sets aria-invalid on textarea when hasError is true', () => {
+            const wrapper = mount(TextboxBase, {
+                props: { multiline: true, hasError: true },
+            })
+            expect(wrapper.find('textarea').attributes('aria-invalid')).toBe('true')
+        })
+
+        it('disables textarea when isDisabled is true', () => {
+            const wrapper = mount(TextboxBase, {
+                props: { multiline: true, isDisabled: true },
+            })
+            expect(wrapper.find('textarea').attributes('disabled')).toBeDefined()
+        })
+
+        it('sets readonly on textarea when isReadonly is true', () => {
+            const wrapper = mount(TextboxBase, {
+                props: { multiline: true, isReadonly: true },
+            })
+            expect(wrapper.find('textarea').attributes('readonly')).toBeDefined()
+        })
+
+        it('emits blur from textarea', async () => {
+            const wrapper = mount(TextboxBase, { props: { multiline: true } })
+            await wrapper.find('textarea').trigger('blur')
+            expect(wrapper.emitted('blur')).toHaveLength(1)
+        })
+
+        it('emits focus from textarea', async () => {
+            const wrapper = mount(TextboxBase, { props: { multiline: true } })
+            await wrapper.find('textarea').trigger('focus')
+            expect(wrapper.emitted('focus')).toHaveLength(1)
+        })
+
+        it('applies multiline class', () => {
+            const wrapper = mount(TextboxBase, { props: { multiline: true } })
+            expect(wrapper.find('textarea').classes()).toContain('textbox__input--multiline')
+        })
+
+        it('applies autosize class when multiline and autosize', () => {
+            const wrapper = mount(TextboxBase, {
+                props: { multiline: true, autosize: true },
+            })
+            expect(wrapper.find('textarea').classes()).toContain('textbox__input--autosize')
+        })
+
+        it('does not apply autosize class when not multiline', () => {
+            const wrapper = mount(TextboxBase, {
+                props: { multiline: false, autosize: true },
+            })
+            expect(wrapper.find('input').classes()).not.toContain('textbox__input--autosize')
+        })
+
+        it('adjusts height on input when autosize is true', async () => {
+            const wrapper = mount(TextboxBase, {
+                props: { multiline: true, autosize: true },
+                attachTo: document.body,
+            })
+            await wrapper.find('textarea').setValue('line1\nline2\nline3')
+            const textarea = wrapper.find('textarea').element
+            expect(textarea.style.height).not.toBe('')
+            wrapper.unmount()
+        })
+
+        it('has no accessibility violations with textarea', async () => {
+            const wrapper = mount(TextboxBase, {
+                props: { multiline: true, placeholder: 'Enter text' },
+            })
+            const results = await axe(wrapper.element)
+            expect(results).toHaveNoViolations()
+        })
+    })
 })

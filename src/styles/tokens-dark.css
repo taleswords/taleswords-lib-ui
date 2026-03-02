@@ -194,6 +194,13 @@
     --tooltip-shadow: 0px 4px 12px color-mix(in srgb, var(--color-black) 50%, transparent);
 
     /* ──────────────────────────────────────────
+       Display Field
+       ────────────────────────────────────────── */
+    --display-field-label-color: var(--color-nord-text-muted);
+    --display-field-value-color: var(--color-nord-text-bright);
+    --display-field-muted-color: var(--color-nord-text-subtle);
+
+    /* ──────────────────────────────────────────
        Modal
        ────────────────────────────────────────── */
     --modal-shadow: 0px 8px 24px color-mix(in srgb, var(--color-black) 50%, transparent);
