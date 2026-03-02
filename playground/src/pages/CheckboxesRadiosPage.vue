@@ -5,7 +5,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Density', 'Accessibility'], isInteractive: true })
 
 const cb1 = ref(false)
 const cb2 = ref(true)
@@ -50,6 +50,15 @@ const radio2 = ref('')
         </Case>
         <Case title="Radio Error" layout="columns">
             <Radio v-model="radio2" value="error-opt" name="state-group" label="Error radio" has-error />
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact" style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                <CheckboxBase :model-value="true" label="Compact checkbox" />
+                <Radio model-value="option-a" value="option-a" name="compact-group" label="Compact radio" />
+            </div>
         </Case>
     </Section>
 

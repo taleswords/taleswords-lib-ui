@@ -5,7 +5,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Sizes', 'States', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Sizes', 'States', 'Density', 'Accessibility'], isInteractive: true })
 
 const sm = ref(false)
 const md = ref(true)
@@ -27,6 +27,15 @@ const disabledOn = ref(true)
         <Case title="Disabled" layout="columns">
             <Switch v-model="disabledOff" label="Disabled (off)" is-disabled />
             <Switch v-model="disabledOn" label="Disabled (on)" is-disabled />
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact" style="display: flex; align-items: center; gap: var(--space-sm);">
+                <Switch :model-value="true" size="medium" label="Compact switch" />
+                <Switch :model-value="false" size="small" label="Compact small" />
+            </div>
         </Case>
     </Section>
 
