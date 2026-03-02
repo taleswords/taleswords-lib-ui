@@ -60,8 +60,8 @@ const emit = defineEmits<{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 0.75rem 1rem;
+    gap: var(--space-lg);
+    padding: var(--space-md) var(--space-lg);
     border-radius: var(--button-border-radius);
     border-left: 4px solid;
     font-family: var(--banner-font);
@@ -100,7 +100,7 @@ const emit = defineEmits<{
 .banner__actions {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-sm);
     flex-shrink: 0;
 }
 
@@ -126,7 +126,7 @@ const emit = defineEmits<{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.125rem;
+    padding: calc(0.125rem * var(--density-scale));
     color: inherit;
     opacity: 0.7;
     background: none;

@@ -43,7 +43,7 @@ const { banners, removeBanner } = useBanner()
 .banner-area {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-sm);
 }
 
 .banner-enter-active,

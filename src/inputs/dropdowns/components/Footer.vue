@@ -47,8 +47,8 @@ defineEmits<{
 .dropdown-footer {
     display: flex;
     justify-content: flex-end;
-    gap: 0.5em;
-    padding: 0.5em;
+    gap: calc(0.5em * var(--density-scale));
+    padding: calc(0.5em * var(--density-scale));
     border-top: 1px solid var(--dropdown-border);
 }
 
@@ -56,7 +56,7 @@ defineEmits<{
     font-family: var(--label-font);
     font-weight: var(--label-weight);
     font-size: var(--description-size);
-    padding: 0.375em 0.75em;
+    padding: calc(0.375em * var(--density-scale)) calc(0.75em * var(--density-scale));
     border-radius: var(--button-border-radius);
     border: 1px solid transparent;
     cursor: pointer;

@@ -142,7 +142,7 @@ function onAfterLeave(el: Element): void {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: var(--space-md) var(--space-lg);
     font-family: var(--accordion-font);
     font-size: var(--accordion-size);
     font-weight: var(--accordion-weight);
@@ -185,6 +185,6 @@ function onAfterLeave(el: Element): void {
 }
 
 .accordion-item__content {
-    padding: 0 1rem 0.75rem;
+    padding: 0 var(--space-lg) var(--space-md);
 }
 </style>

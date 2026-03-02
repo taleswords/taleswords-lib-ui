@@ -82,7 +82,7 @@ function toggle(): void {
 
 .row-expandable__toggle {
     display: inline-block;
-    margin-top: 0.25rem;
+    margin-top: var(--space-xs);
     padding: 0;
     font-family: var(--row-expand-font);
     font-size: var(--row-expand-size);

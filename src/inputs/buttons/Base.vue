@@ -68,8 +68,8 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
     font-weight: var(--button-weight);
     font-size: var(--button-size);
     line-height: var(--button-leading);
-    padding-block: 10px;
-    padding-inline: 1em;
+    padding-block: calc(0.625rem * var(--density-scale));
+    padding-inline: calc(1em * var(--density-scale));
     min-width: 8em;
     border-radius: var(--button-border-radius);
     border: 1px solid transparent;
@@ -91,8 +91,8 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
 
 /* Sizes */
 .button--small {
-    padding-block: 6px;
-    padding-inline: 0.75em;
+    padding-block: calc(0.375rem * var(--density-scale));
+    padding-inline: calc(0.75em * var(--density-scale));
     font-size: var(--button-size-sm);
     min-width: 6em;
 }
@@ -217,17 +217,17 @@ const isIconOnly = computed(() => !!props.icon && !props.label)
 }
 
 .button__icon--left {
-    margin-right: 0.5em;
+    margin-right: calc(0.5em * var(--density-scale));
 }
 
 .button__icon--right {
-    margin-left: 0.5em;
+    margin-left: calc(0.5em * var(--density-scale));
 }
 
 /* Icon only */
 .button--icon-only {
     min-width: auto;
-    padding-inline: 0.75em;
+    padding-inline: calc(0.75em * var(--density-scale));
 }
 
 .button--icon-only .button__icon {

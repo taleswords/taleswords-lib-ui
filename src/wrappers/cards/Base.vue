@@ -55,10 +55,10 @@ withDefaults(defineProps<CardBaseProps>(), {
 }
 
 .card-base__header {
-    padding: 1rem 1.25rem 0;
+    padding: var(--space-lg) var(--space-xl) 0;
 }
 
 .card-base__content {
-    padding: 1rem 1.25rem;
+    padding: var(--space-lg) var(--space-xl);
 }
 </style>

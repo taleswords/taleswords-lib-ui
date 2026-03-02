@@ -61,6 +61,21 @@ definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Accessib
                 </AccordionItem>
             </AccordionBase>
         </Case>
+        <Case title="Compact Density" layout="columns">
+            <div data-density="compact">
+                <AccordionBase>
+                    <AccordionItem id="compact-1" title="Compact Section A">
+                        Tighter padding via density-scale: 0.85. Compare with default above.
+                    </AccordionItem>
+                    <AccordionItem id="compact-2" title="Compact Section B">
+                        Content area also uses reduced spacing.
+                    </AccordionItem>
+                    <AccordionItem id="compact-3" title="Compact Section C">
+                        Suitable for inspector panels and sidebars.
+                    </AccordionItem>
+                </AccordionBase>
+            </div>
+        </Case>
     </Section>
 
     <Section title="States" :full-width="true">

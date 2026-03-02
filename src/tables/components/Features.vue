@@ -44,15 +44,15 @@ function onInput(event: Event): void {
 .table-features {
     display: flex;
     align-items: center;
-    gap: 0.75em;
-    padding: 0.75em 0;
+    gap: calc(0.75em * var(--density-scale));
+    padding: calc(0.75em * var(--density-scale)) 0;
 }
 
 .table-features__search {
     display: flex;
     align-items: center;
-    gap: 0.5em;
-    padding: 0.375em 0.625em;
+    gap: calc(0.5em * var(--density-scale));
+    padding: calc(0.375em * var(--density-scale)) calc(0.625em * var(--density-scale));
     border: 1px solid var(--textbox-border);
     border-radius: var(--textbox-border-radius);
     background-color: var(--textbox-bg);
@@ -88,7 +88,7 @@ function onInput(event: Event): void {
 .table-features__actions {
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    gap: calc(0.5em * var(--density-scale));
     margin-left: auto;
 }
 </style>

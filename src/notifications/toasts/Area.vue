@@ -45,7 +45,7 @@ const { toasts, removeToast, pauseTimer, resumeTimer } = useToast()
     z-index: 200;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-sm);
     pointer-events: none;
 }
 

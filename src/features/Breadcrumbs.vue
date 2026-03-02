@@ -73,13 +73,13 @@ function handleClick(item: BreadcrumbItem, index: number): void {
     padding: 0;
     font-family: var(--breadcrumb-font);
     font-size: var(--breadcrumb-size);
-    gap: 0.25rem;
+    gap: var(--space-xs);
 }
 
 .breadcrumbs__item {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: var(--space-xs);
 }
 
 .breadcrumbs__separator {

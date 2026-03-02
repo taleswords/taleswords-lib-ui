@@ -46,7 +46,7 @@ withDefaults(defineProps<LoaderBaseProps>(), {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.75em;
+    gap: calc(0.75em * var(--density-scale));
 }
 
 .loader--overlay {
@@ -62,7 +62,7 @@ withDefaults(defineProps<LoaderBaseProps>(), {
 /* Dots */
 .loader__dots {
     display: flex;
-    gap: 0.375em;
+    gap: calc(0.375em * var(--density-scale));
     align-items: center;
 }
 

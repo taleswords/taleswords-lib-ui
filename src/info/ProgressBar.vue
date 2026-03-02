@@ -51,7 +51,7 @@ const fillStyle = computed(() => ({
 .progress {
     display: flex;
     align-items: center;
-    gap: 0.75em;
+    gap: calc(0.75em * var(--density-scale));
     width: 100%;
 }
 

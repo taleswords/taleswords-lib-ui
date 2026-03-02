@@ -75,7 +75,7 @@ function goToNext(): void {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.75em 1em;
+    padding: calc(0.75em * var(--density-scale)) calc(1em * var(--density-scale));
     font-family: var(--table-cell-font);
     font-size: var(--description-size);
 }
@@ -87,14 +87,14 @@ function goToNext(): void {
 .table-footer__nav {
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    gap: calc(0.5em * var(--density-scale));
 }
 
 .table-footer__btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.375em;
-    padding: 0.375em 0.75em;
+    gap: calc(0.375em * var(--density-scale));
+    padding: calc(0.375em * var(--density-scale)) calc(0.75em * var(--density-scale));
     font-family: var(--label-font);
     font-weight: var(--label-weight);
     font-size: var(--description-size);

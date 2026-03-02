@@ -39,15 +39,15 @@ function onInput(event: Event): void {
 
 <style scoped>
 .dropdown-header {
-    padding: 0.5em;
+    padding: calc(0.5em * var(--density-scale));
     border-bottom: 1px solid var(--dropdown-border);
 }
 
 .dropdown-header__search {
     display: flex;
     align-items: center;
-    gap: 0.5em;
-    padding: 0.375em 0.5em;
+    gap: calc(0.5em * var(--density-scale));
+    padding: calc(0.375em * var(--density-scale)) calc(0.5em * var(--density-scale));
     border: 1px solid var(--textbox-border);
     border-radius: var(--textbox-border-radius);
     background-color: var(--textbox-bg);

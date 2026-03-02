@@ -59,7 +59,7 @@ function onChange(event: Event): void {
 .checkbox {
     display: inline-flex;
     align-items: center;
-    gap: 0.5em;
+    gap: calc(0.5em * var(--density-scale));
     cursor: pointer;
     user-select: none;
 }

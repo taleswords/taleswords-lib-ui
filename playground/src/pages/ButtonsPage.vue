@@ -18,6 +18,15 @@ definePlaygroundPage({ sections: ['Variants', 'Sizes'], isInteractive: true })
             <ButtonBase variant="ghost-primary" label="Ghost Primary" />
             <ButtonBase variant="ghost-danger" label="Ghost Danger" />
         </Case>
+        <Case title="Compact Density" layout="row">
+            <div data-density="compact" style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                <ButtonBase variant="primary" label="Primary" />
+                <ButtonBase variant="secondary" label="Secondary" />
+                <ButtonBase variant="primary" size="small" label="Small" />
+                <ButtonBase variant="danger" icon="delete" label="Delete" />
+                <ButtonBase variant="ghost" icon="settings" />
+            </div>
+        </Case>
     </Section>
 
     <Section title="Sizes">

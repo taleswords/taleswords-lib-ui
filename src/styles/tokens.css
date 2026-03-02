@@ -12,6 +12,16 @@
 
 :root {
     /* ──────────────────────────────────────────
+       Density & Spacing
+       ────────────────────────────────────────── */
+    --density-scale: 1;
+    --space-xs: calc(0.25rem  * var(--density-scale)); /*  4px */
+    --space-sm: calc(0.5rem   * var(--density-scale)); /*  8px */
+    --space-md: calc(0.75rem  * var(--density-scale)); /* 12px */
+    --space-lg: calc(1rem     * var(--density-scale)); /* 16px */
+    --space-xl: calc(1.25rem  * var(--density-scale)); /* 20px */
+
+    /* ──────────────────────────────────────────
        General
        ────────────────────────────────────────── */
     --general-text-color: var(--color-neutral-1300);
@@ -465,4 +475,9 @@
     --narrative-size: var(--text-lg);
     --narrative-weight: var(--weight-regular);
     --narrative-leading: var(--leading-relaxed);
+}
+
+/* ── Density: compact ── */
+[data-density="compact"] {
+    --density-scale: 0.85;
 }

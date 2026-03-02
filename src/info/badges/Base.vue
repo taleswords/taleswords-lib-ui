@@ -24,8 +24,8 @@ const props = defineProps<BadgeBaseProps>()
 <style scoped>
 .badge {
     display: inline-block;
-    padding-inline: 0.5em;
-    padding-block: 0.125em;
+    padding-inline: calc(0.5em * var(--density-scale));
+    padding-block: calc(0.125em * var(--density-scale));
     font-family: var(--badge-font);
     font-weight: var(--badge-weight);
     font-size: var(--badge-size);

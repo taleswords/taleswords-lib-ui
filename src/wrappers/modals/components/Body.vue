@@ -9,7 +9,7 @@
 
 <style scoped>
 .modal-body {
-    padding: 1.25em;
+    padding: calc(1.25em * var(--density-scale));
     overflow-y: auto;
     flex: 1;
     color: var(--general-text-color);

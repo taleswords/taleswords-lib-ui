@@ -171,7 +171,7 @@ function selectTab(tab: TabItem): void {
 
 .tabs-base__tab {
     position: relative;
-    padding: 0.625rem 1rem;
+    padding: calc(0.625rem * var(--density-scale)) var(--space-lg);
     font-family: var(--tab-font);
     font-size: var(--tab-size);
     font-weight: var(--tab-weight);
@@ -183,7 +183,7 @@ function selectTab(tab: TabItem): void {
     white-space: nowrap;
     display: flex;
     align-items: center;
-    gap: 0.375rem;
+    gap: calc(0.375rem * var(--density-scale));
 }
 
 .tabs-base__tab:hover:not(:disabled) {
@@ -214,7 +214,7 @@ function selectTab(tab: TabItem): void {
 }
 
 .tabs-base__panel {
-    padding-top: 1rem;
+    padding-top: var(--space-lg);
     outline: none;
 }
 

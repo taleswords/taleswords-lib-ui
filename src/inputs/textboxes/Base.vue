@@ -124,7 +124,7 @@ watch(
 
 .textbox__input {
     width: 100%;
-    padding: 10px 1em;
+    padding: calc(0.625rem * var(--density-scale)) calc(1em * var(--density-scale));
     font-family: var(--textbox-font);
     font-size: var(--textbox-size);
     color: var(--textbox-text);

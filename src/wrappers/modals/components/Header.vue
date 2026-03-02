@@ -33,7 +33,7 @@ defineEmits<{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1em 1.25em;
+    padding: calc(1em * var(--density-scale)) calc(1.25em * var(--density-scale));
     border-bottom: 1px solid var(--general-card-border);
     flex-shrink: 0;
 }
@@ -54,7 +54,7 @@ defineEmits<{
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 0.25em;
+    padding: calc(0.25em * var(--density-scale));
     font-size: 1.125em;
     color: var(--general-text-color);
     border-radius: var(--button-border-radius);

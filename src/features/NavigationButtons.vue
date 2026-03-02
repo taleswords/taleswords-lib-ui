@@ -68,15 +68,15 @@ function handleClick(item: NavItem): void {
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 0.125rem;
+    gap: calc(0.125rem * var(--density-scale));
 }
 
 .nav-buttons__item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-sm);
     width: 100%;
-    padding: 0.5rem 0.75rem;
+    padding: var(--space-sm) var(--space-md);
     font-family: var(--nav-btn-font);
     font-size: var(--nav-btn-size);
     font-weight: var(--nav-btn-weight);

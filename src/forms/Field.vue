@@ -73,7 +73,7 @@ const hasError = computed(() => errorMessages.value.length > 0)
 .form-field {
     display: flex;
     flex-direction: column;
-    gap: 0.375em;
+    gap: calc(0.375em * var(--density-scale));
     width: 100%;
 }
 

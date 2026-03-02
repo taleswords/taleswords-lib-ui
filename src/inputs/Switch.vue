@@ -56,7 +56,7 @@ function toggle(): void {
 .switch {
     display: inline-flex;
     align-items: center;
-    gap: 0.75em;
+    gap: calc(0.75em * var(--density-scale));
     cursor: pointer;
     user-select: none;
 }

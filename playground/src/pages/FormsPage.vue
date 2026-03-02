@@ -38,6 +38,16 @@ const roleOptions: DropdownOption<string>[] = [
                 <TextboxBase placeholder="Optional nickname..." />
             </FormField>
         </Case>
+        <Case title="Compact Density" layout="columns">
+            <div data-density="compact">
+                <FormField label="Full Name" description="Compact density wrapper">
+                    <TextboxBase placeholder="John Doe" />
+                </FormField>
+                <FormField label="Email Address">
+                    <TextboxBase type="email" placeholder="john@example.com" />
+                </FormField>
+            </div>
+        </Case>
     </Section>
 
     <Section title="States">

@@ -43,13 +43,13 @@ const displayValue = computed(() =>
 .display-field {
     display: flex;
     flex-direction: column;
-    gap: 0.25em;
+    gap: calc(0.25em * var(--density-scale));
 }
 
 .display-field--inline {
     flex-direction: row;
     align-items: baseline;
-    gap: 0.5em;
+    gap: calc(0.5em * var(--density-scale));
 }
 
 .display-field__label {

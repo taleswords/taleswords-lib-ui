@@ -262,7 +262,7 @@ defineExpose({ clearSelection })
 
 /* Header cell styles (deep because Header.vue is scoped) */
 .table-base__table :deep(.table-header__cell) {
-    padding: 0.75em 1em;
+    padding: calc(0.75em * var(--density-scale)) calc(1em * var(--density-scale));
     font-family: var(--table-header-font);
     font-weight: var(--table-header-weight);
     font-size: var(--table-header-size);
@@ -288,12 +288,12 @@ defineExpose({ clearSelection })
 
 /* Body cell styles */
 .table-base__table :deep(.table-body__cell) {
-    padding: 0.75em 1em;
+    padding: calc(0.75em * var(--density-scale)) calc(1em * var(--density-scale));
     color: var(--general-text-color);
 }
 
 .table-base__empty {
-    padding: 2em;
+    padding: calc(2em * var(--density-scale));
     text-align: center;
     color: var(--form-field-description-color);
     font-family: var(--table-cell-font);

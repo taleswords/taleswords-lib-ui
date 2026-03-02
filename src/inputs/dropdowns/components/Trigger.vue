@@ -53,7 +53,7 @@ defineEmits<{
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 10px 1em;
+    padding: calc(0.625rem * var(--density-scale)) calc(1em * var(--density-scale));
     font-family: var(--dropdown-font);
     font-size: var(--dropdown-size);
     color: var(--textbox-text);
@@ -63,7 +63,7 @@ defineEmits<{
     cursor: pointer;
     transition: border-color 0.3s, box-shadow 0.3s;
     text-align: left;
-    gap: 0.5em;
+    gap: calc(0.5em * var(--density-scale));
 }
 
 .dropdown-trigger:focus-visible {

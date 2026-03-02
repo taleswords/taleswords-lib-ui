@@ -123,7 +123,7 @@ function goToPage(page: number): void {
 .pagination {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: var(--space-xs);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -135,7 +135,7 @@ function goToPage(page: number): void {
     justify-content: center;
     min-width: 2rem;
     height: 2rem;
-    padding: 0 0.375rem;
+    padding: 0 calc(0.375rem * var(--density-scale));
     font-family: var(--pagination-font);
     font-size: var(--pagination-size);
     font-weight: var(--pagination-weight);

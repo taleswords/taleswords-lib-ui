@@ -36,7 +36,7 @@ withDefaults(defineProps<TitleDescActionProps>(), {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: var(--space-lg);
 }
 
 .title-desc-action__title {
@@ -54,12 +54,12 @@ withDefaults(defineProps<TitleDescActionProps>(), {
 .title-desc-action__actions {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-sm);
     flex-shrink: 0;
 }
 
 .title-desc-action__description {
-    margin: 0.25rem 0 0;
+    margin: var(--space-xs) 0 0;
     font-family: var(--title-desc-body-font);
     font-size: var(--title-desc-body-size);
     color: var(--form-field-description-color);
