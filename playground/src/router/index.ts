@@ -14,6 +14,12 @@ export interface NavCategory {
 
 export const navCategories: NavCategory[] = [
     {
+        label: 'Foundation',
+        items: [
+            { id: 'spacing-density', label: 'Spacing & Density', path: '/lib/spacing-density', icon: 'space_bar' },
+        ],
+    },
+    {
         label: 'Inputs',
         items: [
             { id: 'buttons', label: 'Buttons', path: '/lib/buttons', icon: 'touch_app' },
@@ -79,6 +85,7 @@ export const navCategories: NavCategory[] = [
 ]
 
 const pageFileMap: Record<string, string> = {
+    'spacing-density': 'SpacingDensityPage.vue',
     'buttons': 'ButtonsPage.vue',
     'textboxes': 'TextboxesPage.vue',
     'checkboxes-radios': 'CheckboxesRadiosPage.vue',
