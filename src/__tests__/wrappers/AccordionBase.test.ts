@@ -118,6 +118,85 @@ describe('AccordionBase', () => {
         expect(results).toHaveNoViolations()
     })
 
+    describe('trigger slots', () => {
+        function createWithSlots(slotContent: string) {
+            return mount(AccordionBase, {
+                global: { components: { AccordionItem } },
+                slots: {
+                    default: slotContent,
+                },
+            })
+        }
+
+        it('renders trigger-suffix slot content inside trigger button', () => {
+            const wrapper = createWithSlots(`
+                <AccordionItem id="s1" title="Section">
+                    <template #trigger-suffix><span class="test-suffix">3</span></template>
+                    Content
+                </AccordionItem>
+            `)
+            const trigger = wrapper.find('button[aria-expanded]')
+            expect(trigger.find('.test-suffix').exists()).toBe(true)
+            expect(trigger.find('.test-suffix').text()).toBe('3')
+        })
+
+        it('renders trigger-prefix slot content inside trigger button', () => {
+            const wrapper = createWithSlots(`
+                <AccordionItem id="p1" title="Section">
+                    <template #trigger-prefix><span class="test-prefix">icon</span></template>
+                    Content
+                </AccordionItem>
+            `)
+            const trigger = wrapper.find('button[aria-expanded]')
+            expect(trigger.find('.test-prefix').exists()).toBe(true)
+            expect(trigger.find('.test-prefix').text()).toBe('icon')
+        })
+
+        it('does not render wrapper spans when slots are unused', () => {
+            const wrapper = createAccordion()
+            expect(wrapper.find('.accordion-item__trigger-prefix').exists()).toBe(false)
+            expect(wrapper.find('.accordion-item__trigger-suffix').exists()).toBe(false)
+        })
+
+        it('slot content does not interfere with expand/collapse', async () => {
+            const wrapper = createWithSlots(`
+                <AccordionItem id="t1" title="Section">
+                    <template #trigger-suffix><span>badge</span></template>
+                    Content
+                </AccordionItem>
+            `)
+            const trigger = wrapper.find('button[aria-expanded]')
+            expect(trigger.attributes('aria-expanded')).toBe('false')
+            await trigger.trigger('click')
+            expect(trigger.attributes('aria-expanded')).toBe('true')
+        })
+
+        it('slot content does not interfere with disabled state', async () => {
+            const wrapper = createWithSlots(`
+                <AccordionItem id="d1" title="Disabled" is-disabled>
+                    <template #trigger-suffix><span>badge</span></template>
+                    Content
+                </AccordionItem>
+            `)
+            const trigger = wrapper.find('button[aria-expanded]')
+            await trigger.trigger('click')
+            expect(trigger.attributes('aria-expanded')).toBe('false')
+        })
+
+        it('has no accessibility violations with trigger slots populated', async () => {
+            const wrapper = createWithSlots(`
+                <AccordionItem id="a1" title="Section A">
+                    <template #trigger-prefix><span aria-hidden="true">★</span></template>
+                    <template #trigger-suffix><span>3</span></template>
+                    Content A
+                </AccordionItem>
+                <AccordionItem id="a2" title="Section B">Content B</AccordionItem>
+            `)
+            const results = await axe(wrapper.element)
+            expect(results).toHaveNoViolations()
+        })
+    })
+
     describe('defaultExpanded', () => {
         it('all items collapsed when defaultExpanded is undefined', () => {
             const wrapper = createAccordion()

@@ -95,6 +95,58 @@ definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Density'
                 </AccordionItem>
             </AccordionBase>
         </Case>
+        <Case title="Trigger Slots" layout="columns">
+            <AccordionBase allow-multiple>
+                <AccordionItem id="slot-suffix" title="Pepper Signals">
+                    <template #trigger-suffix>
+                        <BadgeBase variant="danger" label="3" size="sm" />
+                    </template>
+                    Governance signals for this section. The badge in the header shows the count at a glance.
+                </AccordionItem>
+                <AccordionItem id="slot-multi" title="Validation">
+                    <template #trigger-suffix>
+                        <span style="display: flex; gap: 0.25rem;">
+                            <BadgeBase variant="danger" label="2" size="sm" />
+                            <BadgeBase variant="warning" label="5" size="sm" />
+                        </span>
+                    </template>
+                    Multiple severity badges grouped in the suffix slot.
+                </AccordionItem>
+                <AccordionItem id="slot-prefix" title="Settings">
+                    <template #trigger-prefix>
+                        <span class="material-symbols-rounded" style="font-size: 1.125em;" aria-hidden="true">settings</span>
+                    </template>
+                    A prefix icon before the title text.
+                </AccordionItem>
+                <AccordionItem id="slot-both" title="Combined">
+                    <template #trigger-prefix>
+                        <span class="material-symbols-rounded" style="font-size: 1.125em;" aria-hidden="true">shield</span>
+                    </template>
+                    <template #trigger-suffix>
+                        <BadgeBase variant="success" label="OK" size="sm" />
+                    </template>
+                    Both prefix icon and suffix badge.
+                </AccordionItem>
+            </AccordionBase>
+        </Case>
+        <Case title="Trigger Slots — Compact" layout="columns">
+            <div data-density="compact">
+                <AccordionBase allow-multiple>
+                    <AccordionItem id="cslot-1" title="Compact with Badge">
+                        <template #trigger-suffix>
+                            <BadgeBase variant="warning" label="7" size="sm" />
+                        </template>
+                        Density-scaled margins on slot wrappers.
+                    </AccordionItem>
+                    <AccordionItem id="cslot-2" title="Compact with Icon">
+                        <template #trigger-prefix>
+                            <span class="material-symbols-rounded" style="font-size: 1.125em;" aria-hidden="true">lock</span>
+                        </template>
+                        Prefix icon at compact density.
+                    </AccordionItem>
+                </AccordionBase>
+            </div>
+        </Case>
     </Section>
 
     <Section title="Density" :full-width="true">

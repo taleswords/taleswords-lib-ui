@@ -16,6 +16,8 @@ export interface AccordionItemProps {
 
 defineSlots<{
     default?: () => unknown
+    'trigger-prefix'?: () => unknown
+    'trigger-suffix'?: () => unknown
 }>()
 
 // ── Props ──────────────────────────────────────────
@@ -93,7 +95,19 @@ function onAfterLeave(el: Element): void {
                 :disabled="isDisabled"
                 @click="handleToggle"
             >
+                <span
+                    v-if="$slots['trigger-prefix']"
+                    class="accordion-item__trigger-prefix"
+                >
+                    <slot name="trigger-prefix" />
+                </span>
                 <span class="accordion-item__title">{{ title }}</span>
+                <span
+                    v-if="$slots['trigger-suffix']"
+                    class="accordion-item__trigger-suffix"
+                >
+                    <slot name="trigger-suffix" />
+                </span>
                 <span
                     class="material-symbols-rounded accordion-item__icon"
                     :class="{ 'accordion-item__icon--expanded': isExpanded }"
@@ -166,6 +180,22 @@ function onAfterLeave(el: Element): void {
 .accordion-item--disabled .accordion-item__trigger {
     color: var(--accordion-trigger-color-disabled);
     cursor: not-allowed;
+}
+
+.accordion-item__trigger-prefix,
+.accordion-item__trigger-suffix {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.accordion-item__trigger-prefix {
+    margin-right: calc(0.5em * var(--density-scale));
+}
+
+.accordion-item__trigger-suffix {
+    margin-left: auto;
+    margin-right: calc(0.5em * var(--density-scale));
 }
 
 .accordion-item__icon {

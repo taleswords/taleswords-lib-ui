@@ -31,7 +31,7 @@
 
 | Component | Props | Emits | Slots |
 |-----------|-------|-------|-------|
-| **FormField** | `label?: string`, `description?: string`, `isOptional?: boolean`, `display?: boolean` (`false`), `validationData?: ValidationEntry\|ValidationEntry[]\|Record` | — | `default` |
+| **FormField** | `label?: string`, `description?: string`, `isOptional?: boolean`, `display?: boolean` (`false`), `validationData?: ValidationEntry\|ValidationEntry[]\|Record` | — | `default`, `label-suffix` |
 
 ### Composed — Dropdown
 
@@ -75,7 +75,7 @@
 | **LayoutBase** | `title?: string`, `description?: string`, `isLoading?: boolean`, `testId?: string` | — | `breadcrumbs`, `actions`, `default` |
 | **TabsBase** | `modelValue: string` (required), `tabs: TabItem[]` (required), `testId?: string` | `update:modelValue` | `default` |
 | **AccordionBase** | `allowMultiple?: boolean`, `defaultExpanded?: string[]\|'all'`, `testId?: string` | — | `default` |
-| **AccordionItem** | `id: string` (required), `title: string` (required), `isDisabled?: boolean` | — | `default` |
+| **AccordionItem** | `id: string` (required), `title: string` (required), `isDisabled?: boolean` | — | `default`, `trigger-prefix`, `trigger-suffix` |
 
 ### Notifications
 
