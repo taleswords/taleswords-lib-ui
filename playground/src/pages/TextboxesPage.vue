@@ -5,7 +5,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Density', 'Accessibility'], isInteractive: true })
 
 const textValue = ref('')
 const emailValue = ref('')
@@ -91,6 +91,19 @@ const multilineErrorValue = ref('Invalid content')
             <FormField label="Max 20 characters" :description="`${maxlengthValue.length}/20`">
                 <TextboxBase v-model="maxlengthValue" :maxlength="20" placeholder="Type up to 20 chars..." />
             </FormField>
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <FormField label="Full Name">
+                    <TextboxBase placeholder="John Doe" />
+                </FormField>
+                <FormField label="Notes">
+                    <TextboxBase multiline placeholder="Enter notes..." />
+                </FormField>
+            </div>
         </Case>
     </Section>
 

@@ -11,6 +11,7 @@ export const SECTION_ORDER = [
     'Sizes',
     'States',
     'Composition',
+    'Density',
     'Accessibility',
 ] as const
 

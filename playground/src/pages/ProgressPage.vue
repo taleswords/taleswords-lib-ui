@@ -5,7 +5,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Density', 'Accessibility'], isInteractive: true })
 
 const dynamicValue = ref(45)
 
@@ -33,6 +33,15 @@ function randomize(): void {
         <Case title="Interactive Value" layout="columns">
             <ProgressBar :value="dynamicValue" variant="success" show-label />
             <ButtonBase variant="secondary" size="small" label="Randomize" @click="randomize" />
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <ProgressBar :value="50" variant="success" show-label />
+                <ProgressBar :value="75" variant="warning" show-label />
+            </div>
         </Case>
     </Section>
 

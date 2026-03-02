@@ -21,7 +21,7 @@
 
 | Component | Props | Emits | Slots |
 |-----------|-------|-------|-------|
-| **BadgeBase** | `variant: BadgeVariant` (required), `label?: string` | — | — |
+| **BadgeBase** | `variant: BadgeVariant` (required), `label?: string`, `size?: BadgeSize` (`'md'`), `testId?: string` | — | — |
 | **LoaderIcon** | `size?: LoaderIconSize` (`'medium'`) | — | — |
 | **LoaderBase** | `size?: LoaderIconSize` (`'medium'`), `variant?: LoaderVariant` (`'spinner'`), `label?: string`, `isOverlay?: boolean` | — | — |
 | **ProgressBar** | `value: number` (required), `max?: number` (`100`), `variant?: ProgressVariant` (`'default'`), `showLabel?: boolean`, `ariaLabel?: string` | — | — |
@@ -31,7 +31,7 @@
 
 | Component | Props | Emits | Slots |
 |-----------|-------|-------|-------|
-| **FormField** | `label?: string`, `description?: string`, `isOptional?: boolean`, `validationData?: ValidationEntry\|ValidationEntry[]\|Record` | — | `default` |
+| **FormField** | `label?: string`, `description?: string`, `isOptional?: boolean`, `display?: boolean` (`false`), `validationData?: ValidationEntry\|ValidationEntry[]\|Record` | — | `default` |
 
 ### Composed — Dropdown
 
@@ -143,6 +143,56 @@ const { banners, addBanner, removeBanner, clearAll } = useBanner()
 
 ---
 
+## Design Tokens
+
+### Density & Spacing
+
+All component spacing is driven by a 5-tier token scale and a density multiplier. Tokens are defined in `tokens.css` and resolve at use-time via `var()`.
+
+| Token | Base value | Description |
+|-------|-----------|-------------|
+| `--density-scale` | `1` | Multiplier applied to all spacing tokens and density-aware `calc()` expressions |
+| `--space-xs` | `0.25rem` (4px) | Micro gaps, separators |
+| `--space-sm` | `0.5rem` (8px) | Tight gaps, inline spacing |
+| `--space-md` | `0.75rem` (12px) | Standard internal padding |
+| `--space-lg` | `1rem` (16px) | Section padding, card insets |
+| `--space-xl` | `1.25rem` (20px) | Generous padding, card headers |
+
+Compact mode is opt-in via a data attribute:
+
+```html
+<div data-density="compact">
+    <!-- all descendants render at 85% spacing -->
+</div>
+```
+
+| Selector | `--density-scale` |
+|----------|-------------------|
+| `:root` (default) | `1` |
+| `[data-density="compact"]` | `0.85` |
+
+### Badge Tokens
+
+Semantic variant tokens (light theme defaults):
+
+| Token | Value |
+|-------|-------|
+| `--badge-neutral-bg` | `--color-neutral-400` |
+| `--badge-neutral-text` | `--color-neutral-1300` |
+| `--badge-info-bg` | `--color-info-300` |
+| `--badge-info-text` | `--color-info-500` |
+| `--badge-success-bg` | `--color-success-100` |
+| `--badge-success-text` | `--color-success-600` |
+| `--badge-warning-bg` | `--color-warning-100` |
+| `--badge-warning-text` | `--color-warning-500` |
+| `--badge-danger-bg` | `--color-danger-100` |
+| `--badge-danger-text` | `--color-danger-500` |
+| `--badge-size-sm` | `--text-sm` |
+
+Dark theme overrides exist in `tokens-dark.css` using Nord palette equivalents.
+
+---
+
 ## Utility Functions
 
 | Function | Signature | Description |
@@ -172,7 +222,7 @@ const { banners, addBanner, removeBanner, clearAll } = useBanner()
 
 ### Info Types
 
-- `BadgeBaseProps`, `BadgeVariant`
+- `BadgeBaseProps`, `BadgeVariant`, `BadgeRoleVariant`, `BadgeSemanticVariant`, `BadgeSize`
 - `LoaderIconProps`, `LoaderIconSize`
 - `LoaderBaseProps`, `LoaderVariant`
 - `ProgressBarProps`, `ProgressVariant`

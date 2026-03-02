@@ -158,6 +158,17 @@
     --badge-accepted-bg: var(--color-nord-deep-success);
     --badge-accepted-text: var(--color-nord-deep);
 
+    --badge-neutral-bg: var(--color-nord-badge-muted);
+    --badge-neutral-text: var(--color-nord-sub-text);
+    --badge-info-bg: var(--color-nord-info-tint);
+    --badge-info-text: var(--color-nord-frost);
+    --badge-success-bg: var(--color-nord-success-tint);
+    --badge-success-text: var(--color-nord-success);
+    --badge-warning-bg: var(--color-nord-warning-tint);
+    --badge-warning-text: var(--color-nord-deep-warning);
+    --badge-danger-bg: var(--color-nord-danger-tint);
+    --badge-danger-text: var(--color-nord-danger);
+
     /* ──────────────────────────────────────────
        Loader
        ────────────────────────────────────────── */

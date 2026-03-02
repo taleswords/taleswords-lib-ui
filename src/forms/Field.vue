@@ -10,11 +10,13 @@ export interface FormFieldProps {
     label?: string
     description?: string
     isOptional?: boolean
+    display?: boolean
     validationData?: ValidationEntry | ValidationEntry[] | Record<string, unknown>
 }
 
 const props = withDefaults(defineProps<FormFieldProps>(), {
     isOptional: false,
+    display: false,
 })
 
 const errorMessages = computed<string[]>(() => {
@@ -40,7 +42,7 @@ const hasError = computed(() => errorMessages.value.length > 0)
 <template>
     <div
         class="form-field"
-        :class="{ 'form-field--error': hasError }"
+        :class="{ 'form-field--error': hasError, 'form-field--display': display }"
         data-testid="form-field"
     >
         <label v-if="props.label" class="form-field__label">
@@ -87,8 +89,12 @@ const hasError = computed(() => errorMessages.value.length > 0)
     transition: color 0.3s;
 }
 
-.form-field:focus-within .form-field__label {
+.form-field:not(.form-field--display):focus-within .form-field__label {
     color: var(--form-field-label-focus-color);
+}
+
+.form-field--display .form-field__label {
+    cursor: default;
 }
 
 .form-field__required {

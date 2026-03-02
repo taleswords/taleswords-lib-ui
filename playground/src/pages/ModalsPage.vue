@@ -5,7 +5,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'Sizes', 'States', 'Composition', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'Sizes', 'States', 'Composition', 'Density', 'Accessibility'], isInteractive: true })
 
 const showBasic = ref(false)
 const showSmall = ref(false)
@@ -142,6 +142,15 @@ async function confirmClose(): Promise<boolean> {
                     </div>
                 </template>
             </ModalBase>
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact Trigger" layout="row">
+            <div data-density="compact" style="display: flex; gap: 0.75rem;">
+                <ButtonBase variant="primary" label="Compact Primary" />
+                <ButtonBase variant="secondary" label="Compact Secondary" />
+            </div>
         </Case>
     </Section>
 

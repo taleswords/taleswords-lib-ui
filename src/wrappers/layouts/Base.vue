@@ -53,11 +53,11 @@ withDefaults(defineProps<LayoutBaseProps>(), {
 }
 
 .layout-base__breadcrumbs {
-    margin-bottom: 0.75rem;
+    margin-bottom: var(--space-md);
 }
 
 .layout-base__header {
-    margin-bottom: 1.5rem;
+    margin-bottom: calc(1.5rem * var(--density-scale));
 }
 
 .layout-base__content {

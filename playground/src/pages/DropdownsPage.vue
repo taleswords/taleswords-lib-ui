@@ -6,7 +6,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Density', 'Accessibility'], isInteractive: true })
 
 const basicValue = ref<string | undefined>(undefined)
 const multiValue = ref<string[]>([])
@@ -142,6 +142,17 @@ const customOptions: DropdownOption<string>[] = [
                     </div>
                 </template>
             </DropdownBase>
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <DropdownBase
+                    :options="basicOptions"
+                    placeholder="Compact dropdown..."
+                />
+            </div>
         </Case>
     </Section>
 

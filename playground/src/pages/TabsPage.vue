@@ -6,7 +6,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Density', 'Accessibility'], isInteractive: true })
 
 const activeTab = ref('overview')
 const controlledTab = ref('tab-a')
@@ -91,6 +91,20 @@ const disabledActiveTab = ref('active-1')
                     </div>
                 </template>
             </TabsBase>
+        </Case>
+    </Section>
+
+    <Section title="Density" :full-width="true">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <TabsBase v-model="activeTab" :tabs="basicTabs">
+                    <template #default="{ activeTab: current }">
+                        <div style="padding: 1rem 0;">
+                            <p>Compact tab content: {{ current }}</p>
+                        </div>
+                    </template>
+                </TabsBase>
+            </div>
         </Case>
     </Section>
 

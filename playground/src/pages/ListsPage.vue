@@ -5,7 +5,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States'] })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Density'] })
 
 const items: TableRow[] = [
     { id: 1, label: 'Dashboard Settings' },
@@ -52,6 +52,14 @@ const statusBadgeMap: Record<string, BadgeVariant> = {
     <Section title="States" :full-width="true">
         <Case title="Empty List" layout="columns">
             <ListBase :rows="[]" empty-text="No items to display." />
+        </Case>
+    </Section>
+
+    <Section title="Density" :full-width="true">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <ListBase :rows="items" />
+            </div>
         </Case>
     </Section>
 </template>

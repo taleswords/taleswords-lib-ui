@@ -4,7 +4,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Density', 'Accessibility'], isInteractive: true })
 
 const { addToast } = useToast()
 const { addBanner } = useBanner()
@@ -59,6 +59,15 @@ function fireDontShowAgainBanner(): void {
         <Case title="Inline Banner Area" layout="columns">
             <p style="margin-bottom: 0.5rem; font-size: 0.8125rem; color: var(--form-field-description-color);">Banners triggered above appear here:</p>
             <BannerArea />
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact Triggers" layout="row">
+            <div data-density="compact" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <ButtonBase variant="secondary" icon="info" label="Info Toast" @click="fireToast('info')" />
+                <ButtonBase variant="primary" icon="check_circle" label="Success Toast" @click="fireToast('success')" />
+            </div>
         </Case>
     </Section>
 

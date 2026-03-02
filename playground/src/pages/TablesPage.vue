@@ -7,7 +7,7 @@ import Case from '../components/Case.vue'
 import { usePlaygroundControls } from '../composables/usePlaygroundControls'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Density', 'Accessibility'], isInteractive: true })
 
 const { isLoading } = usePlaygroundControls()
 
@@ -133,6 +133,14 @@ function onPageChanged(page: number): void {
                 :total-pages="totalPages"
                 @page-changed="onPageChanged"
             />
+        </Case>
+    </Section>
+
+    <Section title="Density" :full-width="true">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <TableBase :columns="columns" :rows="allRows.slice(0, 4)" />
+            </div>
         </Case>
     </Section>
 

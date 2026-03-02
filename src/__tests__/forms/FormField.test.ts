@@ -83,6 +83,21 @@ describe('FormField', () => {
         expect(wrapper.find('.form-field__errors').attributes('role')).toBe('alert')
     })
 
+    it('does not apply display class by default', () => {
+        const wrapper = mount(FormField, { props: { label: 'Name' } })
+        expect(wrapper.classes()).not.toContain('form-field--display')
+    })
+
+    it('applies display class when display is true', () => {
+        const wrapper = mount(FormField, { props: { label: 'Name', display: true } })
+        expect(wrapper.classes()).toContain('form-field--display')
+    })
+
+    it('does not apply display class when display is false', () => {
+        const wrapper = mount(FormField, { props: { label: 'Name', display: false } })
+        expect(wrapper.classes()).not.toContain('form-field--display')
+    })
+
     it('has no accessibility violations', async () => {
         const wrapper = mount(FormField, {
             props: { label: 'Name' },

@@ -5,7 +5,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'Density'], isInteractive: true })
 
 const expanded1 = ref(false)
 const expanded2 = ref(true)
@@ -32,6 +32,17 @@ const expanded2 = ref(true)
             <RowExpandable>
                 <p>This text is short enough that no toggle button should appear.</p>
             </RowExpandable>
+        </Case>
+    </Section>
+
+    <Section title="Density" :full-width="true">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <RowExpandable>
+                    <p>This expandable row is rendered at compact density. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </RowExpandable>
+            </div>
         </Case>
     </Section>
 </template>

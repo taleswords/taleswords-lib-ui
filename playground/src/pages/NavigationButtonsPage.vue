@@ -6,7 +6,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Density', 'Accessibility'], isInteractive: true })
 
 const activeId = ref('dashboard')
 
@@ -75,6 +75,18 @@ const disabledActiveId = ref('active-item')
                     :items="disabledItems"
                     :active-id="disabledActiveId"
                     @item-clicked="(item) => disabledActiveId = item.id"
+                />
+            </div>
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact" style="max-width: 240px;">
+                <NavigationButtons
+                    :items="basicItems"
+                    :active-id="activeId"
+                    @item-clicked="(item) => activeId = item.id"
                 />
             </div>
         </Case>

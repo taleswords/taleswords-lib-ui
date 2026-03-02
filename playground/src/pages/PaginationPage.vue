@@ -5,7 +5,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Density', 'Accessibility'], isInteractive: true })
 
 const basicPage = ref(1)
 const manyPage = ref(1)
@@ -58,6 +58,17 @@ const computedTotalPages = computed(() => Math.ceil(totalItems / perPage))
                 :current-page="1"
                 :total-pages="5"
             />
+        </Case>
+    </Section>
+
+    <Section title="Density" :full-width="true">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <Pagination
+                    :current-page="1"
+                    :total-pages="10"
+                />
+            </div>
         </Case>
     </Section>
 

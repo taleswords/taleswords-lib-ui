@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { FormField, TextboxBase, CheckboxBase, DropdownBase } from '@lib'
+import { FormField, TextboxBase, CheckboxBase, DropdownBase, DisplayFieldBase } from '@lib'
 import type { DropdownOption } from '@lib'
 import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Density', 'Accessibility'], isInteractive: true })
 
 const name = ref('')
 const email = ref('')
@@ -38,15 +38,21 @@ const roleOptions: DropdownOption<string>[] = [
                 <TextboxBase placeholder="Optional nickname..." />
             </FormField>
         </Case>
-        <Case title="Compact Density" layout="columns">
-            <div data-density="compact">
-                <FormField label="Full Name" description="Compact density wrapper">
-                    <TextboxBase placeholder="John Doe" />
-                </FormField>
-                <FormField label="Email Address">
-                    <TextboxBase type="email" placeholder="john@example.com" />
-                </FormField>
-            </div>
+        <Case title="Display — With DisplayFieldBase" layout="columns">
+            <FormField label="Full Name" display>
+                <DisplayFieldBase label="" value="Jane Doe" />
+            </FormField>
+            <FormField label="Email Address" display>
+                <DisplayFieldBase label="" value="jane@example.com" />
+            </FormField>
+        </Case>
+        <Case title="Display — With Read-Only TextboxBase" layout="columns">
+            <FormField label="Full Name" display>
+                <TextboxBase model-value="Jane Doe" is-readonly />
+            </FormField>
+            <FormField label="Email Address" display>
+                <TextboxBase model-value="jane@example.com" is-readonly />
+            </FormField>
         </Case>
     </Section>
 
@@ -67,6 +73,29 @@ const roleOptions: DropdownOption<string>[] = [
             >
                 <CheckboxBase v-model="agree" label="I agree to the terms" has-error />
             </FormField>
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <FormField label="Full Name" description="Compact density wrapper">
+                    <TextboxBase placeholder="John Doe" />
+                </FormField>
+                <FormField label="Email Address">
+                    <TextboxBase type="email" placeholder="john@example.com" />
+                </FormField>
+            </div>
+        </Case>
+        <Case title="Compact Display" layout="columns">
+            <div data-density="compact">
+                <FormField label="Full Name" display>
+                    <DisplayFieldBase label="" value="Jane Doe" />
+                </FormField>
+                <FormField label="Role" display>
+                    <DisplayFieldBase label="" value="Administrator" />
+                </FormField>
+            </div>
         </Case>
     </Section>
 

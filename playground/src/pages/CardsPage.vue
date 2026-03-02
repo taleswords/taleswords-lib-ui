@@ -6,7 +6,7 @@ import Case from '../components/Case.vue'
 import { usePlaygroundControls } from '../composables/usePlaygroundControls'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States'] })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Density'] })
 
 const { isLoading } = usePlaygroundControls()
 const localLoading = ref(false)
@@ -59,6 +59,16 @@ const localLoading = ref(false)
                     />
                 </template>
             </CardBase>
+        </Case>
+    </Section>
+
+    <Section title="Density" :full-width="true">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <CardBase title="Compact Card" description="Card rendered at compact density">
+                    <p>Content with tighter spacing.</p>
+                </CardBase>
+            </div>
         </Case>
     </Section>
 </template>

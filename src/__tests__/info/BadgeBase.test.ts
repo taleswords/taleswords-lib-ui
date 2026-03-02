@@ -29,7 +29,7 @@ describe('BadgeBase', () => {
         expect(wrapper.text()).toBe('Administrator')
     })
 
-    it('renders all variants', () => {
+    it('renders all role variants', () => {
         const variants = [
             'visitor', 'guest', 'guest-editor', 'reviewer', 'editor',
             'manager', 'admin', 'owner', 'public', 'private',
@@ -42,8 +42,43 @@ describe('BadgeBase', () => {
         })
     })
 
+    it('renders all semantic variants', () => {
+        const variants = ['neutral', 'info', 'success', 'warning', 'danger'] as const
+
+        variants.forEach((variant) => {
+            const wrapper = mount(BadgeBase, { props: { variant } })
+            expect(wrapper.classes()).toContain(`badge--${variant}`)
+        })
+    })
+
+    it('defaults to md size', () => {
+        const wrapper = mount(BadgeBase, { props: { variant: 'info' } })
+        expect(wrapper.classes()).not.toContain('badge--sm')
+    })
+
+    it('applies sm size class', () => {
+        const wrapper = mount(BadgeBase, { props: { variant: 'info', size: 'sm' } })
+        expect(wrapper.classes()).toContain('badge--sm')
+    })
+
+    it('does not apply sm class for md size', () => {
+        const wrapper = mount(BadgeBase, { props: { variant: 'info', size: 'md' } })
+        expect(wrapper.classes()).not.toContain('badge--sm')
+    })
+
+    it('supports custom testId', () => {
+        const wrapper = mount(BadgeBase, { props: { variant: 'success', testId: 'my-badge' } })
+        expect(wrapper.attributes('data-testid')).toBe('my-badge')
+    })
+
     it('has no accessibility violations', async () => {
         const wrapper = mount(BadgeBase, { props: { variant: 'admin', label: 'Admin' } })
+        const results = await axe(wrapper.element)
+        expect(results).toHaveNoViolations()
+    })
+
+    it('has no accessibility violations for semantic variant', async () => {
+        const wrapper = mount(BadgeBase, { props: { variant: 'success', label: 'Active' } })
         const results = await axe(wrapper.element)
         expect(results).toHaveNoViolations()
     })

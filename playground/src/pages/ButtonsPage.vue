@@ -4,7 +4,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'Sizes'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'Sizes', 'Density'], isInteractive: true })
 </script>
 
 <template>
@@ -17,15 +17,6 @@ definePlaygroundPage({ sections: ['Variants', 'Sizes'], isInteractive: true })
             <ButtonBase variant="ghost" label="Ghost" />
             <ButtonBase variant="ghost-primary" label="Ghost Primary" />
             <ButtonBase variant="ghost-danger" label="Ghost Danger" />
-        </Case>
-        <Case title="Compact Density" layout="row">
-            <div data-density="compact" style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
-                <ButtonBase variant="primary" label="Primary" />
-                <ButtonBase variant="secondary" label="Secondary" />
-                <ButtonBase variant="primary" size="small" label="Small" />
-                <ButtonBase variant="danger" icon="delete" label="Delete" />
-                <ButtonBase variant="ghost" icon="settings" />
-            </div>
         </Case>
     </Section>
 
@@ -77,6 +68,18 @@ definePlaygroundPage({ sections: ['Variants', 'Sizes'], isInteractive: true })
     <Section title="As Link">
         <Case title="Link Button" layout="row">
             <ButtonBase variant="primary" label="External Link" href="#" />
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="row">
+            <div data-density="compact" style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                <ButtonBase variant="primary" label="Primary" />
+                <ButtonBase variant="secondary" label="Secondary" />
+                <ButtonBase variant="primary" size="small" label="Small" />
+                <ButtonBase variant="danger" icon="delete" label="Delete" />
+                <ButtonBase variant="ghost" icon="settings" />
+            </div>
         </Case>
     </Section>
 </template>

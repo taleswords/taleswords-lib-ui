@@ -4,7 +4,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Composition'] })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Density'] })
 </script>
 
 <template>
@@ -49,6 +49,15 @@ definePlaygroundPage({ sections: ['Variants', 'States', 'Composition'] })
             <DisplayFieldBase label="Visibility">
                 <BadgeBase variant="public" />
             </DisplayFieldBase>
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <DisplayFieldBase label="Name" value="Alice Whitmore" />
+                <DisplayFieldBase label="Email" value="alice@example.com" />
+            </div>
         </Case>
     </Section>
 </template>

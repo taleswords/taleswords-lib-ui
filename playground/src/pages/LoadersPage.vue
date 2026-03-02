@@ -5,7 +5,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States'] })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Density'] })
 
 const showOverlay = ref(false)
 </script>
@@ -35,6 +35,15 @@ const showOverlay = ref(false)
                 <p>Click this card to toggle the loader overlay. Content remains underneath.</p>
                 <p>Overlay is currently {{ showOverlay ? 'visible' : 'hidden' }}.</p>
             </CardBase>
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="row">
+            <div data-density="compact" style="display: flex; gap: 1rem; align-items: center;">
+                <LoaderBase variant="spinner" size="medium" label="Loading..." />
+                <LoaderBase variant="dots" size="medium" label="Loading..." />
+            </div>
         </Case>
     </Section>
 </template>

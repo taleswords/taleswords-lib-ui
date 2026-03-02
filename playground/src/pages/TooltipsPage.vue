@@ -5,7 +5,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Density', 'Accessibility'], isInteractive: true })
 
 const placements = ['top', 'bottom', 'left', 'right'] as const
 const isDisabled = ref(false)
@@ -88,6 +88,19 @@ const isDisabled = ref(false)
             <TooltipBase content="This tooltip has a wider max width of 400px for more content." max-width="400px" placement="bottom">
                 <ButtonBase label="400px wide" variant="secondary" />
             </TooltipBase>
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="row">
+            <div data-density="compact" style="display: flex; gap: 0.5rem;">
+                <TooltipBase content="Compact tooltip trigger" placement="top">
+                    <ButtonBase label="Compact" variant="secondary" />
+                </TooltipBase>
+                <TooltipBase content="Another compact trigger" placement="bottom">
+                    <ButtonBase label="Hover me" variant="primary" />
+                </TooltipBase>
+            </div>
         </Case>
     </Section>
 

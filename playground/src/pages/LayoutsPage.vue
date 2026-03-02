@@ -5,7 +5,7 @@ import Case from '../components/Case.vue'
 import { usePlaygroundControls } from '../composables/usePlaygroundControls'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States'] })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Density'] })
 
 const { isLoading } = usePlaygroundControls()
 </script>
@@ -52,6 +52,18 @@ const { isLoading } = usePlaygroundControls()
                     <p>This layout responds to the global loading toggle in the right sidebar.</p>
                 </CardBase>
             </LayoutBase>
+        </Case>
+    </Section>
+
+    <Section title="Density" :full-width="true">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <LayoutBase title="Compact Layout" description="Layout rendered at compact density">
+                    <CardBase>
+                        <p>Content inside compact layout.</p>
+                    </CardBase>
+                </LayoutBase>
+            </div>
         </Case>
     </Section>
 </template>

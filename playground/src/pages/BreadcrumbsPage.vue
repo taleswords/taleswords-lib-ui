@@ -4,7 +4,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'Density', 'Accessibility'], isInteractive: true })
 </script>
 
 <template>
@@ -29,6 +29,18 @@ definePlaygroundPage({ sections: ['Variants', 'Accessibility'], isInteractive: t
                 { label: 'Home' },
                 { label: 'Current Page' },
             ]" />
+        </Case>
+    </Section>
+
+    <Section title="Density">
+        <Case title="Compact" layout="columns">
+            <div data-density="compact">
+                <Breadcrumbs :items="[
+                    { label: 'Home' },
+                    { label: 'Settings' },
+                    { label: 'Account' },
+                ]" />
+            </div>
         </Case>
     </Section>
 

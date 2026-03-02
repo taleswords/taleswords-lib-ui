@@ -260,6 +260,64 @@ There is no built-in label/error prop on `TextboxBase` or `CheckboxBase`. Use `F
 </FormField>
 ```
 
+## 2.2.0 Notes
+
+### Density & Spacing Token System
+
+All component spacing is now token-driven via `--space-xs` through `--space-xl` and a `--density-scale` multiplier. Default rendering is visually identical to 2.1.0.
+
+Opt into compact mode by adding `data-density="compact"` to any container:
+
+```html
+<div data-density="compact">
+    <!-- all lib-ui components inside render at 85% spacing -->
+</div>
+```
+
+No migration action required — existing layouts render identically at `--density-scale: 1`.
+
+### BadgeBase — Semantic Variants + Size
+
+`BadgeBase` now supports 5 domain-agnostic semantic variants alongside the existing 13 role variants:
+
+```ts
+type BadgeSemanticVariant = 'neutral' | 'info' | 'success' | 'warning' | 'danger'
+```
+
+New props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md'` | `'md'` | Badge size |
+| `testId` | `string` | `'badge-base'` | Test ID attribute |
+
+```vue
+<BadgeBase variant="success" label="Active" />
+<BadgeBase variant="danger" label="Expired" size="sm" />
+```
+
+New type exports: `BadgeRoleVariant`, `BadgeSemanticVariant`, `BadgeSize`.
+
+No migration required — all existing role variants and props remain unchanged.
+
+### FormField — Display Mode
+
+`FormField` now accepts `display?: boolean` (default `false`). When enabled, the label loses its pointer cursor and focus-within accent styling is suppressed, making it suitable for read-only detail views.
+
+```vue
+<FormField label="Full Name" display>
+    <DisplayFieldBase label="" value="Jane Doe" />
+</FormField>
+
+<FormField label="Email" display>
+    <TextboxBase model-value="jane@example.com" is-readonly />
+</FormField>
+```
+
+Layout, validation, and all other behavior remain identical. No migration required.
+
+---
+
 ## 2.1.0 Notes
 
 ### TextboxBase — Multiline Support
