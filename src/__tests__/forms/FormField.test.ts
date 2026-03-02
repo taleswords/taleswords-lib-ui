@@ -98,6 +98,64 @@ describe('FormField', () => {
         expect(wrapper.classes()).not.toContain('form-field--display')
     })
 
+    describe('label-suffix slot', () => {
+        it('renders label-suffix slot content in label row', () => {
+            const wrapper = mount(FormField, {
+                props: { label: 'Name' },
+                slots: { 'label-suffix': '<span class="test-suffix">Saving</span>' },
+            })
+            const row = wrapper.find('.form-field__label-row')
+            expect(row.exists()).toBe(true)
+            expect(row.find('.test-suffix').exists()).toBe(true)
+            expect(row.find('.test-suffix').text()).toBe('Saving')
+        })
+
+        it('does not render label-suffix wrapper when slot is unused', () => {
+            const wrapper = mount(FormField, { props: { label: 'Name' } })
+            expect(wrapper.find('.form-field__label-suffix').exists()).toBe(false)
+        })
+
+        it('renders label-row wrapper when label prop is provided without suffix', () => {
+            const wrapper = mount(FormField, { props: { label: 'Name' } })
+            expect(wrapper.find('.form-field__label-row').exists()).toBe(true)
+            expect(wrapper.find('.form-field__label').exists()).toBe(true)
+        })
+
+        it('label-suffix does not affect label accessible name', () => {
+            const wrapper = mount(FormField, {
+                props: { label: 'Email' },
+                slots: { 'label-suffix': '<span>Saved</span>' },
+            })
+            const label = wrapper.find('.form-field__label')
+            expect(label.text()).toContain('Email')
+            expect(label.text()).not.toContain('Saved')
+        })
+
+        it('validation errors still render with label-suffix present', () => {
+            const wrapper = mount(FormField, {
+                props: {
+                    label: 'Name',
+                    validationData: { hasError: true, message: 'Required' },
+                },
+                slots: { 'label-suffix': '<span>indicator</span>' },
+            })
+            expect(wrapper.find('.form-field__error').text()).toBe('Required')
+            expect(wrapper.classes()).toContain('form-field--error')
+        })
+
+        it('has no accessibility violations with label-suffix populated', async () => {
+            const wrapper = mount(FormField, {
+                props: { label: 'Name' },
+                slots: {
+                    default: '<input type="text" aria-label="Name" />',
+                    'label-suffix': '<span role="status" aria-label="Saving">⟳</span>',
+                },
+            })
+            const results = await axe(wrapper.element)
+            expect(results).toHaveNoViolations()
+        })
+    })
+
     it('has no accessibility violations', async () => {
         const wrapper = mount(FormField, {
             props: { label: 'Name' },

@@ -14,6 +14,11 @@ export interface FormFieldProps {
     validationData?: ValidationEntry | ValidationEntry[] | Record<string, unknown>
 }
 
+defineSlots<{
+    default?: () => unknown
+    'label-suffix'?: () => unknown
+}>()
+
 const props = withDefaults(defineProps<FormFieldProps>(), {
     isOptional: false,
     display: false,
@@ -45,11 +50,19 @@ const hasError = computed(() => errorMessages.value.length > 0)
         :class="{ 'form-field--error': hasError, 'form-field--display': display }"
         data-testid="form-field"
     >
-        <label v-if="props.label" class="form-field__label">
-            {{ props.label }}
-            <span v-if="!props.isOptional" class="form-field__required" aria-label="required">*</span>
-            <span v-else class="form-field__optional">(optional)</span>
-        </label>
+        <div v-if="props.label || $slots['label-suffix']" class="form-field__label-row">
+            <label v-if="props.label" class="form-field__label">
+                {{ props.label }}
+                <span v-if="!props.isOptional" class="form-field__required" aria-label="required">*</span>
+                <span v-else class="form-field__optional">(optional)</span>
+            </label>
+            <span
+                v-if="$slots['label-suffix']"
+                class="form-field__label-suffix"
+            >
+                <slot name="label-suffix" />
+            </span>
+        </div>
 
         <p v-if="props.description" class="form-field__description">
             {{ props.description }}
@@ -77,6 +90,19 @@ const hasError = computed(() => errorMessages.value.length > 0)
     flex-direction: column;
     gap: calc(0.375em * var(--density-scale));
     width: 100%;
+}
+
+.form-field__label-row {
+    display: flex;
+    align-items: baseline;
+    gap: calc(0.5em * var(--density-scale));
+}
+
+.form-field__label-suffix {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 .form-field__label {
