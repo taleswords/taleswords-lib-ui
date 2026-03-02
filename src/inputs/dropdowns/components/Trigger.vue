@@ -7,6 +7,10 @@ export interface DropdownTriggerProps {
     hasError: boolean
 }
 
+defineSlots<{
+    default?: () => unknown
+}>()
+
 withDefaults(defineProps<DropdownTriggerProps>(), {
     selectedLabel: '',
     placeholder: 'Select...',
@@ -38,7 +42,7 @@ defineEmits<{
             class="dropdown-trigger__label"
             :class="{ 'dropdown-trigger__label--placeholder': !selectedLabel }"
         >
-            {{ selectedLabel || placeholder }}
+            <slot>{{ selectedLabel || placeholder }}</slot>
         </span>
         <span
             class="material-symbols-rounded dropdown-trigger__icon"

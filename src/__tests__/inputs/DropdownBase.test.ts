@@ -118,6 +118,40 @@ describe('DropdownBase', () => {
         expect(wrapper.text()).toContain('Clear')
     })
 
+    describe('selected slot', () => {
+        it('renders selected slot content inside the trigger, not in the panel', () => {
+            const wrapper = mount(DropdownBase, {
+                global,
+                props: { options: sampleOptions, modelValue: 'b' },
+                slots: {
+                    selected: '<span class="custom-selected">Custom: {{ params.selectedLabel }}</span>',
+                },
+            })
+            const trigger = wrapper.find('[aria-haspopup]')
+            expect(trigger.find('.custom-selected').exists()).toBe(true)
+        })
+
+        it('shows placeholder when selected slot is provided but nothing selected', () => {
+            const wrapper = mount(DropdownBase, {
+                global,
+                props: { options: sampleOptions },
+                slots: {
+                    selected: '<span class="custom-selected">Custom</span>',
+                },
+            })
+            expect(wrapper.find('.custom-selected').exists()).toBe(false)
+            expect(wrapper.text()).toContain('Select...')
+        })
+
+        it('falls back to default label when selected slot is not provided', () => {
+            const wrapper = mount(DropdownBase, {
+                global,
+                props: { options: sampleOptions, modelValue: 'a' },
+            })
+            expect(wrapper.text()).toContain('Alpha')
+        })
+    })
+
     it('has no accessibility violations', async () => {
         const wrapper = mount(DropdownBase, { global, props: { options: sampleOptions } })
         const results = await axe(wrapper.element)

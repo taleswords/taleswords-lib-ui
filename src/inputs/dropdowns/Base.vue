@@ -340,7 +340,15 @@ defineExpose({ open, close, toggle, resetSearch, getSelectedOptions })
                     :is-disabled="props.isDisabled"
                     :has-error="props.hasError"
                     @toggle="toggle"
-                />
+                >
+                    <template v-if="$slots.selected && selectedOptions.length > 0" #default>
+                        <slot
+                            name="selected"
+                            :selected-options="selectedOptions"
+                            :selected-label="selectedLabel"
+                        />
+                    </template>
+                </DropdownTrigger>
             </slot>
         </div>
 
@@ -362,13 +370,6 @@ defineExpose({ open, close, toggle, resetSearch, getSelectedOptions })
                     @update:search-query="handleSearchUpdate"
                 />
             </slot>
-
-            <!-- Selected display (optional) -->
-            <slot
-                name="selected"
-                :selected-options="selectedOptions"
-                :selected-label="selectedLabel"
-            />
 
             <!-- Menu options -->
             <DropdownMenu
