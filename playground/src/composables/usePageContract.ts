@@ -7,6 +7,9 @@ import { SECTION_REGISTRY_KEY } from './useSectionRegistry'
  * Sections must appear in this order (gaps are allowed).
  */
 export const SECTION_ORDER = [
+    'Scale',
+    'Scaling',
+    'Propagation',
     'Variants',
     'Sizes',
     'States',
