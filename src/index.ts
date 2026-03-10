@@ -13,6 +13,7 @@ import './styles/icons.css'
 // Foundation — Inputs
 export { default as ButtonBase } from './inputs/buttons/Base.vue'
 export { default as TextboxBase } from './inputs/textboxes/Base.vue'
+export { default as FileInputBase } from './inputs/file-inputs/Base.vue'
 export { default as CheckboxInput } from './inputs/checkboxes/Input.vue'
 export { default as CheckboxBase } from './inputs/checkboxes/Base.vue'
 export { default as Radio } from './inputs/Radio.vue'
@@ -73,7 +74,8 @@ export { useBanner } from './utils/useBanner'
 
 // Type re-exports
 export type { ButtonBaseProps, ButtonVariant, ButtonSize } from './inputs/buttons/Base.vue'
-export type { TextboxBaseProps, TextboxType } from './inputs/textboxes/Base.vue'
+export type { TextboxBaseProps, TextboxType, TextboxVariant } from './inputs/textboxes/Base.vue'
+export type { FileInputBaseProps } from './inputs/file-inputs/Base.vue'
 export type { CheckboxInputProps } from './inputs/checkboxes/Input.vue'
 export type { CheckboxBaseProps } from './inputs/checkboxes/Base.vue'
 export type { RadioProps } from './inputs/Radio.vue'

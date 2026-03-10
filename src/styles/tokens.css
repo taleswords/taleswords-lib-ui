@@ -15,11 +15,22 @@
        Density & Spacing
        ────────────────────────────────────────── */
     --density-scale: 1;
+    --space-2xs: calc(0.125rem * var(--density-scale)); /*  2px */
     --space-xs: calc(0.25rem  * var(--density-scale)); /*  4px */
     --space-sm: calc(0.5rem   * var(--density-scale)); /*  8px */
     --space-md: calc(0.75rem  * var(--density-scale)); /* 12px */
     --space-lg: calc(1rem     * var(--density-scale)); /* 16px */
     --space-xl: calc(1.25rem  * var(--density-scale)); /* 20px */
+
+    /* ──────────────────────────────────────────
+       Border Radius
+       ────────────────────────────────────────── */
+    --radius-xs: 2px;
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+    --radius-pill: 999px;
 
     /* ──────────────────────────────────────────
        General
@@ -54,7 +65,7 @@
     /* ──────────────────────────────────────────
        Button
        ────────────────────────────────────────── */
-    --button-border-radius: 6px;
+    --button-border-radius: var(--radius-md);
     --button-transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
 
     /* default */
@@ -115,7 +126,7 @@
     --textbox-bg: var(--color-white);
     --textbox-text: var(--color-neutral-1300);
     --textbox-border: var(--color-neutral-500);
-    --textbox-border-radius: 6px;
+    --textbox-border-radius: var(--radius-md);
     --textbox-placeholder: var(--color-neutral-1000);
     --textbox-border-hover: var(--color-neutral-800);
     --textbox-bg-disabled: var(--color-neutral-300);
@@ -161,7 +172,7 @@
     /* ──────────────────────────────────────────
        Badge — all pass AA 4.5:1 contrast
        ────────────────────────────────────────── */
-    --badge-border-radius: 6px;
+    --badge-border-radius: var(--radius-md);
 
     --badge-visitor-bg: var(--color-neutral-400);
     --badge-visitor-text: var(--color-neutral-1300);
@@ -215,7 +226,7 @@
     --progress-fill-success: var(--color-success-500);
     --progress-fill-danger: var(--color-danger-400);
     --progress-fill-warning: var(--color-warning-400);
-    --progress-border-radius: 999px;
+    --progress-border-radius: var(--radius-pill);
     --progress-text-color: var(--color-neutral-1000);
 
     /* ──────────────────────────────────────────

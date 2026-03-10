@@ -100,6 +100,13 @@ body.modal-open {
     overflow: hidden;
 }
 
+.tw-narrative-text {
+    font-family: var(--narrative-font);
+    font-size: var(--narrative-size);
+    font-weight: var(--narrative-weight);
+    line-height: var(--narrative-leading);
+}
+
 .sr-only {
     position: absolute;
     width: 1px;

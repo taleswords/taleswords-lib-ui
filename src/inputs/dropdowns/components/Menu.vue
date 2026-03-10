@@ -213,7 +213,7 @@ function isSelected(option: DropdownMenuOption): boolean {
     width: 1rem;
     height: 1rem;
     border: 2px solid var(--checkbox-border);
-    border-radius: 3px;
+    border-radius: var(--radius-xs);
     flex-shrink: 0;
     transition: background-color 0.15s, border-color 0.15s;
 }

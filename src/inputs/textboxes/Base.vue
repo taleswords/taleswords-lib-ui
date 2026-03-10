@@ -3,10 +3,12 @@ import { computed, ref, onMounted, watch, nextTick } from 'vue'
 import { uid } from '../../utils/uid'
 
 export type TextboxType = 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url'
+export type TextboxVariant = 'default' | 'narrative'
 
 export interface TextboxBaseProps {
     modelValue?: string
     type?: TextboxType
+    variant?: TextboxVariant
     placeholder?: string
     isDisabled?: boolean
     isReadonly?: boolean
@@ -21,6 +23,7 @@ export interface TextboxBaseProps {
 const props = withDefaults(defineProps<TextboxBaseProps>(), {
     modelValue: '',
     type: 'text',
+    variant: 'default',
     isDisabled: false,
     isReadonly: false,
     hasError: false,
@@ -40,6 +43,7 @@ const textareaRef = ref<HTMLTextAreaElement | null>(null)
 const inputClasses = computed(() => [
     'textbox__input',
     {
+        'textbox__input--narrative': props.variant === 'narrative',
         'textbox__input--error': props.hasError,
         'textbox__input--multiline': props.multiline,
         'textbox__input--autosize': props.multiline && props.autosize,
@@ -169,6 +173,12 @@ watch(
 
 .textbox__input--error:focus {
     border-color: var(--textbox-border-error-focus);
+}
+
+.textbox__input--narrative {
+    font-family: var(--narrative-font);
+    font-size: var(--narrative-size);
+    line-height: var(--narrative-leading);
 }
 
 .textbox__input--multiline {

@@ -99,7 +99,7 @@ const emit = defineEmits<{
     background: none;
     border: none;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: var(--radius-xs);
     transition: opacity 0.2s;
 }
 
