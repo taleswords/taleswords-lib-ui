@@ -174,8 +174,10 @@ describe('TextboxBase', () => {
                 props: { multiline: true, autosize: true },
                 attachTo: document.body,
             })
-            await wrapper.find('textarea').setValue('line1\nline2\nline3')
             const textarea = wrapper.find('textarea').element
+            Object.defineProperty(textarea, 'offsetParent', { value: document.body, configurable: true })
+            Object.defineProperty(textarea, 'scrollHeight', { value: 80, configurable: true })
+            await wrapper.find('textarea').setValue('line1\nline2\nline3')
             expect(textarea.style.height).not.toBe('')
             wrapper.unmount()
         })
@@ -186,6 +188,47 @@ describe('TextboxBase', () => {
             })
             const results = await axe(wrapper.element)
             expect(results).toHaveNoViolations()
+        })
+
+        describe('autosize visibility guard', () => {
+            it('skips autosize when textarea is hidden (offsetParent is null)', async () => {
+                const wrapper = mount(TextboxBase, {
+                    props: { multiline: true, autosize: true },
+                    attachTo: document.body,
+                })
+                const textarea = wrapper.find('textarea').element
+                Object.defineProperty(textarea, 'offsetParent', { value: null, configurable: true })
+                textarea.style.height = ''
+                await wrapper.find('textarea').setValue('line1\nline2\nline3')
+                expect(textarea.style.height).toBe('')
+                wrapper.unmount()
+            })
+
+            it('does not write height 0px when scrollHeight is 0', async () => {
+                const wrapper = mount(TextboxBase, {
+                    props: { multiline: true, autosize: true },
+                    attachTo: document.body,
+                })
+                const textarea = wrapper.find('textarea').element
+                Object.defineProperty(textarea, 'offsetParent', { value: document.body, configurable: true })
+                Object.defineProperty(textarea, 'scrollHeight', { value: 0, configurable: true })
+                await wrapper.find('textarea').setValue('some text')
+                expect(textarea.style.height).not.toBe('0px')
+                wrapper.unmount()
+            })
+
+            it('applies height normally when textarea is visible', async () => {
+                const wrapper = mount(TextboxBase, {
+                    props: { multiline: true, autosize: true },
+                    attachTo: document.body,
+                })
+                const textarea = wrapper.find('textarea').element
+                Object.defineProperty(textarea, 'offsetParent', { value: document.body, configurable: true })
+                Object.defineProperty(textarea, 'scrollHeight', { value: 120, configurable: true })
+                await wrapper.find('textarea').setValue('line1\nline2\nline3')
+                expect(textarea.style.height).toBe('120px')
+                wrapper.unmount()
+            })
         })
     })
 })

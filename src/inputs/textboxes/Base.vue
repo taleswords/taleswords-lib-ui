@@ -51,8 +51,15 @@ const inputClasses = computed(() => [
 function adjustHeight(): void {
     const el = textareaRef.value
     if (!el) return
+
+    if (el.offsetParent === null) return
+
     el.style.height = 'auto'
-    el.style.height = `${el.scrollHeight}px`
+    const height = el.scrollHeight
+
+    if (height === 0) return
+
+    el.style.height = `${height}px`
 }
 
 function onInput(event: Event): void {
