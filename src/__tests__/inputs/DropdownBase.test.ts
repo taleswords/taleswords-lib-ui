@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { describe, it, expect, vi } from 'vitest'
+import { mount, flushPromises } from '@vue/test-utils'
 import { axe } from '../axeHelper'
 import DropdownBase from '../../inputs/dropdowns/Base.vue'
 
@@ -163,5 +163,67 @@ describe('DropdownBase', () => {
         await wrapper.find('[aria-haspopup]').trigger('click')
         const results = await axe(wrapper.element)
         expect(results).toHaveNoViolations()
+    })
+
+    describe('panel width behavior', () => {
+        function mockRect(el: Element, rect: Partial<DOMRect>): void {
+            vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+                x: 0, y: 0, width: 0, height: 0, top: 0, right: 0, bottom: 0, left: 0, toJSON: () => ({}),
+                ...rect,
+            })
+        }
+
+        it('sets minWidth on the panel to match trigger width', async () => {
+            const wrapper = mount(DropdownBase, {
+                props: { options: sampleOptions },
+                attachTo: document.body,
+            })
+            const triggerWrapper = wrapper.find('.dropdown__trigger-wrapper').element
+            mockRect(triggerWrapper, { width: 120, height: 36, top: 100, left: 50, bottom: 136, right: 170 })
+            await wrapper.find('[aria-haspopup]').trigger('click')
+            await flushPromises()
+            const panel = document.body.querySelector('.dropdown__panel') as HTMLElement
+            expect(panel).not.toBeNull()
+            mockRect(panel, { width: 120, height: 100, top: 140, left: 50, bottom: 240, right: 170 })
+            // Trigger repositioning after panel is mounted
+            window.dispatchEvent(new Event('resize'))
+            expect(panel.style.minWidth).toBe('120px')
+            wrapper.unmount()
+        })
+
+        it('does not set a fixed width on the panel', async () => {
+            const wrapper = mount(DropdownBase, {
+                props: { options: sampleOptions },
+                attachTo: document.body,
+            })
+            const triggerWrapper = wrapper.find('.dropdown__trigger-wrapper').element
+            mockRect(triggerWrapper, { width: 32, height: 32, top: 50, left: 10, bottom: 82, right: 42 })
+            await wrapper.find('[aria-haspopup]').trigger('click')
+            await flushPromises()
+            const panel = document.body.querySelector('.dropdown__panel') as HTMLElement
+            expect(panel).not.toBeNull()
+            mockRect(panel, { width: 32, height: 80, top: 86, left: 10, bottom: 166, right: 42 })
+            window.dispatchEvent(new Event('resize'))
+            expect(panel.style.width).toBe('')
+            wrapper.unmount()
+        })
+
+        it('still applies top and left positioning', async () => {
+            const wrapper = mount(DropdownBase, {
+                props: { options: sampleOptions },
+                attachTo: document.body,
+            })
+            const triggerWrapper = wrapper.find('.dropdown__trigger-wrapper').element
+            mockRect(triggerWrapper, { width: 200, height: 40, top: 80, left: 60, bottom: 120, right: 260 })
+            await wrapper.find('[aria-haspopup]').trigger('click')
+            await flushPromises()
+            const panel = document.body.querySelector('.dropdown__panel') as HTMLElement
+            expect(panel).not.toBeNull()
+            mockRect(panel, { width: 200, height: 120, top: 124, left: 60, bottom: 244, right: 260 })
+            window.dispatchEvent(new Event('resize'))
+            expect(panel.style.top).not.toBe('')
+            expect(panel.style.left).not.toBe('')
+            wrapper.unmount()
+        })
     })
 })

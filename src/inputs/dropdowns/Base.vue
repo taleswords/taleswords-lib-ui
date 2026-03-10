@@ -150,7 +150,7 @@ function updatePosition(): void {
     )
     menuContainerRef.value.style.top = `${pos.y}px`
     menuContainerRef.value.style.left = `${pos.x}px`
-    menuContainerRef.value.style.width = `${triggerRect.width}px`
+    menuContainerRef.value.style.minWidth = `${triggerRect.width}px`
 }
 
 onMounted(() => {
