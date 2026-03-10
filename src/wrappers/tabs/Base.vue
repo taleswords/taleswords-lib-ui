@@ -221,6 +221,6 @@ function selectTab(tab: TabItem): void {
 .tabs-base__panel:focus-visible {
     outline: 2px solid var(--general-focus-ring);
     outline-offset: 2px;
-    border-radius: 2px;
+    border-radius: var(--radius-xs);
 }
 </style>

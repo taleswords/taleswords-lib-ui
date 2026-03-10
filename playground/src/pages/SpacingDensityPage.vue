@@ -7,6 +7,7 @@ import { definePlaygroundPage } from '../composables/usePageContract'
 definePlaygroundPage({ sections: ['Scale', 'Scaling', 'Propagation'] })
 
 const spacingTokens = [
+    { name: '2XS', variable: '--space-2xs', base: '2px' },
     { name: 'XS', variable: '--space-xs', base: '4px' },
     { name: 'SM', variable: '--space-sm', base: '8px' },
     { name: 'MD', variable: '--space-md', base: '12px' },

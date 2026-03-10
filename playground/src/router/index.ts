@@ -27,6 +27,7 @@ export const navCategories: NavCategory[] = [
             { id: 'checkboxes-radios', label: 'Checkboxes & Radios', path: '/lib/checkboxes-radios', icon: 'check_box' },
             { id: 'switches', label: 'Switches', path: '/lib/switches', icon: 'toggle_on' },
             { id: 'dropdowns', label: 'Dropdowns', path: '/lib/dropdowns', icon: 'arrow_drop_down_circle' },
+            { id: 'file-inputs', label: 'File Inputs', path: '/lib/file-inputs', icon: 'upload_file' },
         ],
     },
     {
@@ -91,6 +92,7 @@ const pageFileMap: Record<string, string> = {
     'checkboxes-radios': 'CheckboxesRadiosPage.vue',
     'switches': 'SwitchesPage.vue',
     'dropdowns': 'DropdownsPage.vue',
+    'file-inputs': 'FileInputsPage.vue',
     'badges': 'BadgesPage.vue',
     'loaders': 'LoadersPage.vue',
     'progress': 'ProgressPage.vue',

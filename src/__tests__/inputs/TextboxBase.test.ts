@@ -75,6 +75,30 @@ describe('TextboxBase', () => {
         expect(results).toHaveNoViolations()
     })
 
+    describe('narrative variant', () => {
+        it('applies narrative class when variant is narrative', () => {
+            const wrapper = mount(TextboxBase, { props: { variant: 'narrative' } })
+            expect(wrapper.find('input').classes()).toContain('textbox__input--narrative')
+        })
+
+        it('does not apply narrative class by default', () => {
+            const wrapper = mount(TextboxBase)
+            expect(wrapper.find('input').classes()).not.toContain('textbox__input--narrative')
+        })
+
+        it('does not apply narrative class when variant is default', () => {
+            const wrapper = mount(TextboxBase, { props: { variant: 'default' } })
+            expect(wrapper.find('input').classes()).not.toContain('textbox__input--narrative')
+        })
+
+        it('applies narrative class on multiline textarea', () => {
+            const wrapper = mount(TextboxBase, {
+                props: { variant: 'narrative', multiline: true },
+            })
+            expect(wrapper.find('textarea').classes()).toContain('textbox__input--narrative')
+        })
+    })
+
     describe('multiline', () => {
         it('renders textarea when multiline is true', () => {
             const wrapper = mount(TextboxBase, { props: { multiline: true } })

@@ -270,7 +270,7 @@ function onScrollResize(): void {
     background: var(--tooltip-bg);
     color: var(--tooltip-text);
     box-shadow: var(--tooltip-shadow);
-    border-radius: 6px;
+    border-radius: var(--radius-md);
     padding: calc(0.375rem * var(--density-scale)) calc(0.625rem * var(--density-scale));
     font-size: 0.8125rem;
     line-height: 1.4;

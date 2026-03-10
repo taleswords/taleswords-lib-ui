@@ -35,7 +35,7 @@ withDefaults(defineProps<CheckboxInputProps>(), {
     width: 1.25em;
     height: 1.25em;
     border: 2px solid var(--checkbox-border);
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     background-color: transparent;
     transition: border-color 0.2s, background-color 0.2s;
     flex-shrink: 0;

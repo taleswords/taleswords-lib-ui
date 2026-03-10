@@ -43,6 +43,8 @@ export default [
                 HTMLTextAreaElement: 'readonly',
                 ResizeObserver: 'readonly',
                 MutationObserver: 'readonly',
+                File: 'readonly',
+                DataTransfer: 'readonly',
                 setTimeout: 'readonly',
                 clearTimeout: 'readonly',
                 console: 'readonly',

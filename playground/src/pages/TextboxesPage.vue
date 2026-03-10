@@ -19,6 +19,8 @@ const maxlengthValue = ref('')
 const multilineValue = ref('')
 const multilineRowsValue = ref('')
 const multilineAutosizeValue = ref('Type here and watch it grow...')
+const narrativeValue = ref('The wanderer crossed the bridge at dawn, his cloak heavy with rain.')
+const narrativeMultilineValue = ref('She spoke softly, her voice carried by the wind.\n\nThe forest listened.')
 const multilineDisabledValue = ref('This multiline field is disabled')
 const multilineErrorValue = ref('Invalid content')
 </script>
@@ -51,6 +53,19 @@ const multilineErrorValue = ref('Invalid content')
             </FormField>
             <FormField label="Multiline with autosize">
                 <TextboxBase v-model="multilineAutosizeValue" multiline autosize placeholder="Grows as you type..." />
+            </FormField>
+        </Case>
+        <Case title="Narrative Variant" layout="columns">
+            <FormField label="Default Font">
+                <TextboxBase v-model="narrativeValue" />
+            </FormField>
+            <FormField label="Narrative Font">
+                <TextboxBase v-model="narrativeValue" variant="narrative" />
+            </FormField>
+        </Case>
+        <Case title="Narrative Multiline" layout="columns">
+            <FormField label="Narrative Multiline">
+                <TextboxBase v-model="narrativeMultilineValue" variant="narrative" multiline :rows="4" />
             </FormField>
         </Case>
     </Section>
