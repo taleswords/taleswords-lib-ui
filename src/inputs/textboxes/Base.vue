@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, watch, nextTick } from 'vue'
 import { uid } from '../../utils/uid'
+import { useBufferedModel } from '../../composables/useBufferedModel'
 
 export type TextboxType = 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url'
 export type TextboxVariant = 'default' | 'narrative'
@@ -40,6 +41,13 @@ const emit = defineEmits<{
 const inputId = uid('textbox')
 const textareaRef = ref<HTMLTextAreaElement | null>(null)
 
+const {
+    displayValue,
+    onInput: bufferedOnInput,
+    onFocus: bufferedOnFocus,
+    onBlur: bufferedOnBlur,
+} = useBufferedModel(props, emit)
+
 const inputClasses = computed(() => [
     'textbox__input',
     {
@@ -67,11 +75,20 @@ function adjustHeight(): void {
 }
 
 function onInput(event: Event): void {
-    const target = event.target as HTMLInputElement | HTMLTextAreaElement
-    emit('update:modelValue', target.value)
+    bufferedOnInput(event)
     if (props.multiline && props.autosize) {
         adjustHeight()
     }
+}
+
+function onFocus(event: FocusEvent): void {
+    bufferedOnFocus()
+    emit('focus', event)
+}
+
+function onBlur(event: FocusEvent): void {
+    bufferedOnBlur()
+    emit('blur', event)
 }
 
 onMounted(() => {
@@ -97,7 +114,7 @@ watch(
             :id="inputId"
             ref="textareaRef"
             :class="inputClasses"
-            :value="props.modelValue"
+            :value="displayValue"
             :placeholder="props.placeholder"
             :disabled="props.isDisabled"
             :readonly="props.isReadonly"
@@ -106,15 +123,15 @@ watch(
             :rows="props.rows"
             :aria-invalid="props.hasError || undefined"
             @input="onInput"
-            @blur="emit('blur', $event)"
-            @focus="emit('focus', $event)"
+            @blur="onBlur"
+            @focus="onFocus"
         />
         <input
             v-else
             :id="inputId"
             :class="inputClasses"
             :type="props.type"
-            :value="props.modelValue"
+            :value="displayValue"
             :placeholder="props.placeholder"
             :disabled="props.isDisabled"
             :readonly="props.isReadonly"
@@ -122,8 +139,8 @@ watch(
             :maxlength="props.maxlength"
             :aria-invalid="props.hasError || undefined"
             @input="onInput"
-            @blur="emit('blur', $event)"
-            @focus="emit('focus', $event)"
+            @blur="onBlur"
+            @focus="onFocus"
         />
     </div>
 </template>
