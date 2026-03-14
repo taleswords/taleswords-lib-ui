@@ -71,6 +71,7 @@ export { calculateDropdownPosition } from './utils/positioning'
 export { calculateFloatingPosition } from './utils/floatingPosition'
 export { useToast } from './utils/useToast'
 export { useBanner } from './utils/useBanner'
+export { useBufferedModel } from './composables/useBufferedModel'
 
 // Type re-exports
 export type { ButtonBaseProps, ButtonVariant, ButtonSize } from './inputs/buttons/Base.vue'
