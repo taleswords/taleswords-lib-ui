@@ -30,7 +30,7 @@
     "lint:boundaries": "eslint src/ --no-warn-ignored --rule '{\"no-restricted-imports\": \"error\", \"no-restricted-globals\": \"error\", \"@typescript-eslint/no-unused-vars\": \"off\"}' --max-warnings 0",
     "lint:playground": "node playground/lint-pages.mjs",
     "test:contracts": "playwright test",
-    "pub": "npm version patch && npm run build && npm publish"
+    "pub": "npm version patch && npm run build && npm publish && git push --follow-tags"
   },
   "repository": {
     "type": "git",
