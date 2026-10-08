@@ -2,10 +2,16 @@
 
 [![npm](https://img.shields.io/npm/v/@taleswords/lib-ui)](https://www.npmjs.com/package/@taleswords/lib-ui)
 [![license](https://img.shields.io/npm/l/@taleswords/lib-ui)](./LICENSE)
+[![playground](https://img.shields.io/badge/playground-live-D4A23A)](https://taleswords.github.io/taleswords-lib-ui/)
 
 A Vue 3 component library and design system: typed base controls, composed UI systems
 (dropdown, modal, table, tooltip, toasts), a three-layer token architecture, dark mode and
 accessibility-safe interaction patterns.
+
+**[Open the playground →](https://taleswords.github.io/taleswords-lib-ui/)** every component, every
+variant and state, in light and dark.
+
+![lib-ui components in light and dark: form fields, a table with status badges, buttons, dropdowns and a confirm modal](docs/screenshot.png)
 
 It was built as the design system for one application, Taleswords Web, and is published under
 MIT because the components are generally useful even though the opinions are not neutral.
@@ -148,6 +154,7 @@ notifications — and the playground is linted for accessibility during developm
 ```
 npm install
 npm run dev              # playground
+npm run build:playground # the playground as a static site, in playground-dist/
 npm test                 # unit tests (Vitest)
 npm run test:contracts   # interaction contracts (Playwright)
 npm run typecheck        # vue-tsc
@@ -156,7 +163,8 @@ npm run lint:boundaries  # enforce the import boundaries
 npm run build            # build dist/ and emit types
 ```
 
-Only `dist/` is published; `npm pack` shows exactly what ships.
+Only `dist/` is published; `npm pack` shows exactly what ships. The playground is deployed to
+GitHub Pages from `main` by `.github/workflows/playground.yml`.
 
 ## Versioning
 

@@ -20,6 +20,8 @@
   ],
   "scripts": {
     "dev": "vite --config vite.config.ts playground",
+    "build:playground": "vite build --config vite.playground.config.ts && node -e \"require('fs').copyFileSync('playground-dist/index.html','playground-dist/404.html')\"",
+    "preview:playground": "vite preview --config vite.playground.config.ts",
     "clean": "del ./dist/",
     "build": "npm run clean && vite build && vue-tsc -p tsconfig-build.json",
     "test": "vitest",
