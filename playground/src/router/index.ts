@@ -113,11 +113,14 @@ const pageFileMap: Record<string, string> = {
     'display-fields': 'DisplayFieldsPage.vue',
 }
 
+// A glob, not a template-literal import: the bundler must see every page to build it.
+const pageModules = import.meta.glob('../pages/*.vue')
+
 const pageRoutes: RouteRecordRaw[] = navCategories.flatMap(cat =>
     cat.items.map(item => ({
         path: item.path,
         name: item.id,
-        component: () => import(`../pages/${pageFileMap[item.id]}`),
+        component: pageModules[`../pages/${pageFileMap[item.id]}`],
     }))
 )
 
@@ -127,6 +130,6 @@ const routes: RouteRecordRaw[] = [
 ]
 
 export const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes,
 })

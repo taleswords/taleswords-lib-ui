@@ -33,3 +33,5 @@ Thumbs.db
 
 # Test coverage
 coverage/
+playground-dist/
+test-results/
