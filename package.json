@@ -1,6 +1,6 @@
 {
   "name": "@taleswords/lib-ui",
-  "version": "2.5.10",
+  "version": "2.6.0",
   "description": "Vue 3 UI component library for Taleswords",
   "type": "module",
   "module": "./dist/index.js",
@@ -75,6 +75,7 @@
   },
   "dependencies": {
     "@fontsource-variable/lora": "^5.2.8",
+    "@fontsource/source-code-pro": "^5.3.1",
     "@fontsource/source-sans-pro": "^5.2.5",
     "@material-symbols/font-400": "^0.40.2"
   }
