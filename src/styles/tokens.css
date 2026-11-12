@@ -498,6 +498,11 @@
     --narrative-size: var(--text-lg);
     --narrative-weight: var(--weight-regular);
     --narrative-leading: var(--leading-relaxed);
+
+    /* ──────────────────────────────────────────
+       Typography — Code
+       ────────────────────────────────────────── */
+    --code-font: var(--font-family-code);
 }
 
 /* ── Density: compact ── */

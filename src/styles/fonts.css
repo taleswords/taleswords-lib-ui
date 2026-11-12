@@ -1,5 +1,6 @@
 /* Typography scale for the design system.
-   Two-font system: Source Sans Pro (UI) + Lora (narrative).
+   Three-font system: Source Sans Pro (UI) + Lora (narrative)
+   + Source Code Pro (code).
    Actual @font-face rules are provided by @fontsource packages
    imported in src/index.ts. */
 
@@ -7,6 +8,7 @@
     /* ── Font stacks ── */
     --font-ui: 'Source Sans Pro', system-ui, sans-serif;
     --font-narrative: 'Lora', serif;
+    --font-family-code: 'Source Code Pro', ui-monospace, monospace;
 
     /* ── Size scale (rem) ── */
     --text-xs:   0.75rem;   /* 12px */

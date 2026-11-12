@@ -17,7 +17,7 @@ This doctrine defines strict rules for font usage, token layering, and component
 
 ## 2. Font System
 
-Taleswords uses a **two‑font architecture**.
+Taleswords uses a **three‑font architecture**: a UI font, a content font and a code font.
 
 ### 2.1 UI Font (Structural Layer)
 
@@ -62,6 +62,33 @@ Token:
 ```
 --font-family-content: 'Lora', Georgia, serif;
 ```
+
+---
+
+### 2.3 Code Font (Code Layer)
+
+Used for:
+
+* Code samples
+* Snippets
+* Identifiers shown as code
+
+**Font:** Source Code Pro
+**Role:** Exact, monospaced, copyable
+
+Token:
+
+```
+--font-family-code: 'Source Code Pro', ui-monospace, monospace;
+```
+
+Semantic token:
+
+```
+--code-font: var(--font-family-code);
+```
+
+The code font is never used for UI text or narrative text.
 
 ---
 
@@ -228,7 +255,7 @@ This ensures structural clarity while preserving emotional tone.
    * `font-family` directly
    * Raw `px` font-size values
    * Inline font styles
-2. No third font family may be introduced.
+2. No font family beyond these three (UI, content, code) may be introduced.
 3. Raleway is not part of the system.
 4. All typography must reference semantic tokens.
 5. Dark mode does NOT change font families.
