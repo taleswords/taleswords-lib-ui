@@ -3,7 +3,7 @@ import { computed, ref, onMounted, watch, nextTick } from 'vue'
 import { uid } from '../../utils/uid'
 import { useBufferedModel } from '../../composables/useBufferedModel'
 
-export type TextboxType = 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url'
+export type TextboxType = 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url' | 'date'
 export type TextboxVariant = 'default' | 'narrative'
 
 export interface TextboxBaseProps {
@@ -16,6 +16,8 @@ export interface TextboxBaseProps {
     hasError?: boolean
     autocomplete?: string
     maxlength?: number
+    min?: string
+    max?: string
     multiline?: boolean
     rows?: number
     autosize?: boolean
@@ -55,6 +57,8 @@ const inputClasses = computed(() => [
         'textbox__input--error': props.hasError,
         'textbox__input--multiline': props.multiline,
         'textbox__input--autosize': props.multiline && props.autosize,
+        'textbox__input--date': !props.multiline && props.type === 'date',
+        'is-empty': displayValue.value === '',
         'is-disabled': props.isDisabled,
         'is-readonly': props.isReadonly,
     },
@@ -137,6 +141,8 @@ watch(
             :readonly="props.isReadonly"
             :autocomplete="props.autocomplete"
             :maxlength="props.maxlength"
+            :min="props.min"
+            :max="props.max"
             :aria-invalid="props.hasError || undefined"
             @input="onInput"
             @blur="onBlur"
@@ -206,5 +212,19 @@ watch(
 .textbox__input--autosize {
     resize: none;
     overflow-y: hidden;
+}
+
+/* The browser's own date input: its picker and indicator follow the theme,
+   and its empty segments read as a placeholder where the engine exposes them. */
+.textbox__input--date {
+    color-scheme: var(--textbox-color-scheme);
+}
+
+.textbox__input--date.is-empty::-webkit-datetime-edit {
+    color: var(--textbox-placeholder);
+}
+
+.textbox__input--date:not(.is-disabled)::-webkit-calendar-picker-indicator {
+    cursor: pointer;
 }
 </style>

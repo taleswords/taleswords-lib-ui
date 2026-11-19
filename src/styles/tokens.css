@@ -128,6 +128,7 @@
     --textbox-border: var(--color-neutral-500);
     --textbox-border-radius: var(--radius-md);
     --textbox-placeholder: var(--color-neutral-1000);
+    --textbox-color-scheme: light;
     --textbox-border-hover: var(--color-neutral-800);
     --textbox-bg-disabled: var(--color-neutral-300);
     --textbox-border-disabled: var(--color-neutral-400);

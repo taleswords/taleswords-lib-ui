@@ -11,7 +11,7 @@
 | Component | Props | Emits | Slots |
 |-----------|-------|-------|-------|
 | **ButtonBase** | `variant?: ButtonVariant` (`'default'`), `size?: ButtonSize` (`'medium'`), `icon?: string`, `iconPosition?: 'left'\|'right'` (`'left'`), `isDisabled?: boolean`, `label?: string`, `href?: string`, `to?: string\|object` | `click` | `default` |
-| **TextboxBase** | `modelValue?: string` (`''`), `type?: TextboxType` (`'text'`), `placeholder?: string`, `isDisabled?: boolean`, `isReadonly?: boolean`, `hasError?: boolean`, `autocomplete?: string`, `maxlength?: number`, `multiline?: boolean` (`false`), `rows?: number`, `autosize?: boolean` (`false`) | `update:modelValue`, `blur`, `focus` | — |
+| **TextboxBase** | `modelValue?: string` (`''`), `type?: TextboxType` (`'text'`), `placeholder?: string`, `isDisabled?: boolean`, `isReadonly?: boolean`, `hasError?: boolean`, `autocomplete?: string`, `maxlength?: number`, `min?: string`, `max?: string`, `multiline?: boolean` (`false`), `rows?: number`, `autosize?: boolean` (`false`) | `update:modelValue`, `blur`, `focus` | — |
 | **CheckboxInput** | `isChecked?: boolean`, `isDisabled?: boolean`, `hasError?: boolean` | — | — |
 | **CheckboxBase** | `modelValue?: boolean`, `label?: string`, `isDisabled?: boolean`, `hasError?: boolean` | `update:modelValue` | — |
 | **Radio** | `modelValue?: string`, `value: string` (required), `name: string` (required), `label?: string`, `isDisabled?: boolean`, `hasError?: boolean` | `update:modelValue` | — |

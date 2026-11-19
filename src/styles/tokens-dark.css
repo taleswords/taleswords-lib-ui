@@ -91,6 +91,7 @@
     --textbox-text: var(--color-nord-text-bright);
     --textbox-border: var(--color-nord-border);
     --textbox-placeholder: var(--color-nord-text-subtle);
+    --textbox-color-scheme: dark;
     --textbox-bg-disabled: var(--color-nord-dim);
     --textbox-border-disabled: var(--color-nord-dim-border);
     --textbox-text-disabled: var(--color-nord-text-muted);

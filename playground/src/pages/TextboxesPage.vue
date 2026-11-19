@@ -12,6 +12,10 @@ const emailValue = ref('')
 const passwordValue = ref('')
 const numberValue = ref('')
 const searchValue = ref('')
+const dateValue = ref('')
+const dateSetValue = ref('2026-11-17')
+const dateDisabledValue = ref('2026-11-17')
+const dateErrorValue = ref('2026-11-19')
 const disabledValue = ref('Cannot edit this')
 const readonlyValue = ref('Read-only content')
 const errorValue = ref('Bad input')
@@ -42,6 +46,20 @@ const multilineErrorValue = ref('Invalid content')
             </FormField>
             <FormField label="Search">
                 <TextboxBase v-model="searchValue" type="search" placeholder="Search..." />
+            </FormField>
+        </Case>
+        <Case title="Date (the browser's own date input; the value is YYYY-MM-DD)" layout="columns">
+            <FormField label="Date, empty" :description="'Value: ' + (dateValue || '(empty)')">
+                <TextboxBase v-model="dateValue" type="date" />
+            </FormField>
+            <FormField label="Date, set, with min and max" :description="'Value: ' + dateSetValue">
+                <TextboxBase v-model="dateSetValue" type="date" min="2026-11-01" max="2026-11-30" />
+            </FormField>
+            <FormField label="Date, disabled">
+                <TextboxBase v-model="dateDisabledValue" type="date" :is-disabled="true" />
+            </FormField>
+            <FormField label="Date, error" description="The end is before the start.">
+                <TextboxBase v-model="dateErrorValue" type="date" :has-error="true" />
             </FormField>
         </Case>
         <Case title="Multiline" layout="columns">
