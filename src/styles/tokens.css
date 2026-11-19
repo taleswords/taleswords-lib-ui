@@ -412,6 +412,12 @@
     --textbox-font: var(--font-ui);
     --textbox-size: var(--text-lg);
 
+    /* One height for single-line controls that stand in a row (textbox, dropdown
+       trigger): a fixed line, the controls' own vertical padding, and their 1px borders.
+       46px at density 1, 43px compact. */
+    --control-line-height: 1.5rem;
+    --control-height: calc(var(--control-line-height) + 1.25rem * var(--density-scale) + 2px);
+
     --label-font: var(--font-ui);
     --label-size: var(--text-md);
     --label-weight: var(--weight-medium);
@@ -511,4 +517,7 @@
 /* ── Density: compact ── */
 [data-density="compact"] {
     --density-scale: 0.85;
+    /* Declared again so it is computed with this scope's density: a custom
+       property that reads --density-scale is resolved where it is declared. */
+    --control-height: calc(var(--control-line-height) + 1.25rem * var(--density-scale) + 2px);
 }

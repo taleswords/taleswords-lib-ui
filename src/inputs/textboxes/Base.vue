@@ -55,6 +55,7 @@ const inputClasses = computed(() => [
     {
         'textbox__input--narrative': props.variant === 'narrative',
         'textbox__input--error': props.hasError,
+        'textbox__input--single': !props.multiline,
         'textbox__input--multiline': props.multiline,
         'textbox__input--autosize': props.multiline && props.autosize,
         'textbox__input--date': !props.multiline && props.type === 'date',
@@ -196,6 +197,13 @@ watch(
 
 .textbox__input--error:focus {
     border-color: var(--textbox-border-error-focus);
+}
+
+/* A single-line input stands at the one control height (2.7.0): an explicit
+   line, so the height does not depend on the consumer's reset. */
+.textbox__input--single {
+    height: var(--control-height);
+    line-height: var(--control-line-height);
 }
 
 .textbox__input--narrative {
