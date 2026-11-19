@@ -158,6 +158,7 @@ Rules:
 * Destructive buttons must pass AA normal text
 * Badges must pass AA normal text
 * Focus ring must be visible on all surfaces
+* A control's resting boundary ≥ 3:1 against the surface it stands on
 * Disabled elements exempt from AA but must remain readable
 
 No exceptions.

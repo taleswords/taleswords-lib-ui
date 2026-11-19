@@ -6,7 +6,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Overflow', 'Density', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Composition', 'Density', 'Accessibility'], isInteractive: true })
 
 const activeTab = ref('overview')
 const controlledTab = ref('tab-a')
@@ -106,7 +106,7 @@ const disabledActiveTab = ref('active-1')
         </Case>
     </Section>
 
-    <Section title="Overflow" :full-width="true">
+    <Section title="Composition" :full-width="true">
         <Case title="A row wider than its column scrolls (343px column, a 375px screen)" layout="columns">
             <div data-testid="tabs-overflow-375" style="width: 343px;">
                 <TabsBase v-model="overflowTab375" :tabs="adminTabs">

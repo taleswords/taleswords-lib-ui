@@ -189,6 +189,10 @@ function selectTab(tab: TabItem): void {
         <div
             ref="tabListRef"
             class="tabs-base__list"
+            :class="{
+                'tabs-base__list--fade-start': hasStart,
+                'tabs-base__list--fade-end': hasEnd,
+            }"
             role="tablist"
             @keydown="handleKeydown"
             @scroll.passive="updateEdges"
@@ -268,10 +272,33 @@ function selectTab(tab: TabItem): void {
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
+    /* A tab scrolled into view stays clear of the faded edge and its chevron. */
+    scroll-padding-inline: 2.5rem;
 }
 
 .tabs-base__list::-webkit-scrollbar {
     display: none;
+}
+
+/* An edge with tabs beyond it fades the tabs themselves (a mask, so it holds on
+   any ground: the page, a card, a modal). A mask reads alpha only: `black`
+   here is opacity, not a colour. */
+.tabs-base__list--fade-start {
+    mask-image: linear-gradient(to right, transparent 0.75rem, black 2.5rem);
+}
+
+.tabs-base__list--fade-end {
+    mask-image: linear-gradient(to left, transparent 0.75rem, black 2.5rem);
+}
+
+.tabs-base__list--fade-start.tabs-base__list--fade-end {
+    mask-image: linear-gradient(
+        to right,
+        transparent 0.75rem,
+        black 2.5rem,
+        black calc(100% - 2.5rem),
+        transparent calc(100% - 0.75rem)
+    );
 }
 
 .tabs-base__edge {
@@ -283,6 +310,7 @@ function selectTab(tab: TabItem): void {
     display: flex;
     align-items: center;
     border: none;
+    background: none;
     color: var(--tabs-edge-icon-color);
     cursor: pointer;
 }
@@ -290,13 +318,11 @@ function selectTab(tab: TabItem): void {
 .tabs-base__edge--start {
     left: 0;
     justify-content: flex-start;
-    background: linear-gradient(to right, var(--tabs-edge-fade) 40%, transparent);
 }
 
 .tabs-base__edge--end {
     right: 0;
     justify-content: flex-end;
-    background: linear-gradient(to left, var(--tabs-edge-fade) 40%, transparent);
 }
 
 .tabs-base__edge:hover {

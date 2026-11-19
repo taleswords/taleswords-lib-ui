@@ -142,7 +142,7 @@
        Checkbox — checked = gold (selection consistency)
        ────────────────────────────────────────── */
     --checkbox-accent: var(--color-primary-300);
-    --checkbox-border: var(--color-neutral-500);
+    --checkbox-border: var(--color-neutral-950);
     --checkbox-border-hover: var(--color-primary-400);
     --checkbox-border-checked: var(--color-primary-300);
     --checkbox-border-error: var(--color-danger-400);
@@ -153,7 +153,7 @@
        Radio — checked = gold (selection consistency)
        ────────────────────────────────────────── */
     --radio-accent: var(--color-primary-300);
-    --radio-border: var(--color-neutral-500);
+    --radio-border: var(--color-neutral-950);
     --radio-border-hover: var(--color-primary-400);
     --radio-border-checked: var(--color-primary-300);
     --radio-border-error: var(--color-danger-400);
@@ -292,7 +292,6 @@
     --tabs-tab-active-color: var(--color-neutral-1400);
     --tabs-tab-active-border: var(--color-primary-300);
     --tabs-tab-disabled-color: var(--color-neutral-900);
-    --tabs-edge-fade: var(--general-body-bg);
     --tabs-edge-icon-color: var(--tabs-tab-color);
 
     /* ──────────────────────────────────────────
