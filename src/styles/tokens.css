@@ -291,6 +291,8 @@
     --tabs-tab-active-color: var(--color-neutral-1400);
     --tabs-tab-active-border: var(--color-primary-300);
     --tabs-tab-disabled-color: var(--color-neutral-900);
+    --tabs-edge-fade: var(--general-body-bg);
+    --tabs-edge-icon-color: var(--tabs-tab-color);
 
     /* ──────────────────────────────────────────
        Dropdown

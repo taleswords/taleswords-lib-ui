@@ -6,7 +6,7 @@ import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
 import { definePlaygroundPage } from '../composables/usePageContract'
 
-definePlaygroundPage({ sections: ['Variants', 'States', 'Density', 'Accessibility'], isInteractive: true })
+definePlaygroundPage({ sections: ['Variants', 'States', 'Overflow', 'Density', 'Accessibility'], isInteractive: true })
 
 const activeTab = ref('overview')
 const controlledTab = ref('tab-a')
@@ -34,6 +34,18 @@ const controlledTabs: TabItem[] = [
     { id: 'tab-b', label: 'Tab B' },
     { id: 'tab-c', label: 'Tab C' },
 ]
+
+const adminTabs: TabItem[] = [
+    { id: 'rulings', label: 'Rulings' },
+    { id: 'verdicts', label: 'Story check verdicts' },
+    { id: 'accounts', label: 'Accounts' },
+    { id: 'frozen', label: 'Frozen accounts' },
+    { id: 'log', label: 'Log' },
+]
+const overflowTab375 = ref('rulings')
+const overflowTab320 = ref('rulings')
+const overflowTabLast = ref('log')
+const fitsTab = ref('overview')
 
 const iconActiveTab = ref('home')
 const disabledActiveTab = ref('active-1')
@@ -91,6 +103,45 @@ const disabledActiveTab = ref('active-1')
                     </div>
                 </template>
             </TabsBase>
+        </Case>
+    </Section>
+
+    <Section title="Overflow" :full-width="true">
+        <Case title="A row wider than its column scrolls (343px column, a 375px screen)" layout="columns">
+            <div data-testid="tabs-overflow-375" style="width: 343px;">
+                <TabsBase v-model="overflowTab375" :tabs="adminTabs">
+                    <template #default="{ activeTab: current }">
+                        <p>Active: {{ current }}</p>
+                    </template>
+                </TabsBase>
+            </div>
+        </Case>
+        <Case title="288px column (a 320px screen)" layout="columns">
+            <div data-testid="tabs-overflow-320" style="width: 288px;">
+                <TabsBase v-model="overflowTab320" :tabs="adminTabs">
+                    <template #default="{ activeTab: current }">
+                        <p>Active: {{ current }}</p>
+                    </template>
+                </TabsBase>
+            </div>
+        </Case>
+        <Case title="Opened on the last tab" layout="columns">
+            <div data-testid="tabs-overflow-last" style="width: 288px;">
+                <TabsBase v-model="overflowTabLast" :tabs="adminTabs">
+                    <template #default="{ activeTab: current }">
+                        <p>Active: {{ current }}</p>
+                    </template>
+                </TabsBase>
+            </div>
+        </Case>
+        <Case title="A row that fits shows no edge" layout="columns">
+            <div data-testid="tabs-fits" style="width: 600px;">
+                <TabsBase v-model="fitsTab" :tabs="basicTabs">
+                    <template #default="{ activeTab: current }">
+                        <p>Active: {{ current }}</p>
+                    </template>
+                </TabsBase>
+            </div>
         </Case>
     </Section>
 
