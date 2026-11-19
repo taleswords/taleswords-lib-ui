@@ -91,6 +91,7 @@
     --textbox-text: var(--color-nord-text-bright);
     --textbox-border: var(--color-nord-border);
     --textbox-placeholder: var(--color-nord-text-subtle);
+    --textbox-color-scheme: dark;
     --textbox-bg-disabled: var(--color-nord-dim);
     --textbox-border-disabled: var(--color-nord-dim-border);
     --textbox-text-disabled: var(--color-nord-text-muted);
@@ -103,7 +104,7 @@
        Checkbox — checked = gold
        ────────────────────────────────────────── */
     --checkbox-accent: var(--color-nord-primary);
-    --checkbox-border: var(--color-nord-border);
+    --checkbox-border: var(--color-nord-control-border);
     --checkbox-border-hover: var(--color-nord-primary);
     --checkbox-border-checked: var(--color-nord-primary);
     --checkbox-border-error: var(--color-nord-danger);
@@ -114,7 +115,7 @@
        Radio — checked = gold (selection consistency)
        ────────────────────────────────────────── */
     --radio-accent: var(--color-nord-primary);
-    --radio-border: var(--color-nord-border);
+    --radio-border: var(--color-nord-control-border);
     --radio-border-hover: var(--color-nord-primary);
     --radio-border-checked: var(--color-nord-primary);
     --radio-border-error: var(--color-nord-danger);
@@ -249,6 +250,7 @@
     --tabs-tab-active-color: var(--color-nord-text-bright);
     --tabs-tab-active-border: var(--color-nord-primary);
     --tabs-tab-disabled-color: var(--color-nord-sub-dim);
+    --tabs-edge-icon-color: var(--tabs-tab-color);
 
     /* ──────────────────────────────────────────
        Dropdown

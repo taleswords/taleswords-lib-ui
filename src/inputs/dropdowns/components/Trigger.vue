@@ -60,6 +60,9 @@ defineEmits<{
     padding: calc(0.625rem * var(--density-scale)) calc(1em * var(--density-scale));
     font-family: var(--dropdown-font);
     font-size: var(--dropdown-size);
+    line-height: var(--control-line-height);
+    min-height: var(--control-height);
+    box-sizing: border-box;
     color: var(--textbox-text);
     background-color: var(--textbox-bg);
     border: 1px solid var(--textbox-border);

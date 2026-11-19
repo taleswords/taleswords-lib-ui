@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { DropdownBase, ButtonBase } from '@lib'
+import { DropdownBase, ButtonBase, TextboxBase } from '@lib'
 import type { DropdownOption } from '@lib'
 import Section from '../components/Section.vue'
 import Case from '../components/Case.vue'
@@ -15,6 +15,12 @@ const groupedValue = ref<string | undefined>(undefined)
 const iconValue = ref<string | undefined>(undefined)
 const customValue = ref<string | undefined>(undefined)
 const topValue = ref<string | undefined>(undefined)
+const rowValue = ref<string | undefined>(undefined)
+const rowText = ref('')
+const rowDate = ref('')
+const rowCompactValue = ref<string | undefined>(undefined)
+const rowCompactText = ref('')
+const rowCompactDate = ref('')
 
 const basicOptions: DropdownOption<string>[] = [
     { value: 'apple', label: 'Apple' },
@@ -120,6 +126,20 @@ const customOptions: DropdownOption<string>[] = [
     </Section>
 
     <Section title="Composition">
+        <Case title="In one row with textboxes: one height" layout="columns">
+            <div data-testid="control-row" style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                <DropdownBase v-model="rowValue" :options="basicOptions" placeholder="Verdict" />
+                <TextboxBase v-model="rowText" placeholder="Text" />
+                <TextboxBase v-model="rowDate" type="date" />
+            </div>
+        </Case>
+        <Case title="The same row, compact" layout="columns">
+            <div data-density="compact" data-testid="control-row-compact" style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                <DropdownBase v-model="rowCompactValue" :options="basicOptions" placeholder="Verdict" />
+                <TextboxBase v-model="rowCompactText" placeholder="Text" />
+                <TextboxBase v-model="rowCompactDate" type="date" />
+            </div>
+        </Case>
         <Case title="Custom Trigger and Option Slots" layout="columns">
             <DropdownBase
                 v-model="customValue"

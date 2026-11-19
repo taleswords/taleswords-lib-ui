@@ -255,4 +255,66 @@ describe('TextboxBase', () => {
             })
         })
     })
+
+    describe('date type (2.7.0)', () => {
+        it('renders the browser date input', () => {
+            const wrapper = mount(TextboxBase, { props: { modelValue: '', type: 'date' } })
+            const input = wrapper.find('input')
+            expect(input.attributes('type')).toBe('date')
+            expect(input.classes()).toContain('textbox__input--date')
+        })
+
+        it('binds and emits the ISO string', async () => {
+            const wrapper = mount(TextboxBase, { props: { modelValue: '2026-11-17', type: 'date' } })
+            expect(wrapper.find('input').element.value).toBe('2026-11-17')
+            await wrapper.find('input').setValue('2026-11-19')
+            expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['2026-11-19'])
+        })
+
+        it('emits an empty string when the date is cleared', async () => {
+            const wrapper = mount(TextboxBase, { props: { modelValue: '2026-11-17', type: 'date' } })
+            await wrapper.find('input').setValue('')
+            expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([''])
+        })
+
+        it('passes min and max to the input', () => {
+            const wrapper = mount(TextboxBase, {
+                props: { modelValue: '', type: 'date', min: '2026-11-01', max: '2026-11-30' },
+            })
+            expect(wrapper.find('input').attributes('min')).toBe('2026-11-01')
+            expect(wrapper.find('input').attributes('max')).toBe('2026-11-30')
+        })
+
+        it('marks an empty date so its segments read as a placeholder', async () => {
+            const wrapper = mount(TextboxBase, { props: { modelValue: '', type: 'date' } })
+            expect(wrapper.find('input').classes()).toContain('is-empty')
+            await wrapper.setProps({ modelValue: '2026-11-17' })
+            expect(wrapper.find('input').classes()).not.toContain('is-empty')
+        })
+
+        it('does not put min, max or the date class on other inputs by default', () => {
+            const wrapper = mount(TextboxBase, { props: { modelValue: 'a' } })
+            const input = wrapper.find('input')
+            expect(input.attributes('min')).toBeUndefined()
+            expect(input.attributes('max')).toBeUndefined()
+            expect(input.classes()).not.toContain('textbox__input--date')
+        })
+
+        it('has no accessibility violations inside a label', async () => {
+            const wrapper = mount({
+                components: { TextboxBase },
+                template: '<label>From <TextboxBase model-value="2026-11-17" type="date" /></label>',
+            })
+            const results = await axe(wrapper.element)
+            expect(results).toHaveNoViolations()
+        })
+
+        it('never puts min or max on a textarea', () => {
+            const wrapper = mount(TextboxBase, {
+                props: { modelValue: '', multiline: true, min: '1', max: '2' },
+            })
+            expect(wrapper.find('textarea').attributes('min')).toBeUndefined()
+            expect(wrapper.find('textarea').attributes('max')).toBeUndefined()
+        })
+    })
 })

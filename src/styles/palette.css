@@ -14,6 +14,7 @@
     --color-neutral-700: #C0C0C0;
     --color-neutral-800: #B0B0B0;
     --color-neutral-900: #A0AEC0;
+    --color-neutral-950: #8C8C8C; /* a control's resting boundary: 3:1 on the page and on a card */
     --color-neutral-1000: #657B83;
     --color-neutral-1100: #4A5568;
     --color-neutral-1200: #4A4A4A;
@@ -68,6 +69,7 @@
     --color-nord-bg: #2B2F3A;
     --color-nord-surface: #343947;
     --color-nord-border: #454B5E;
+    --color-nord-control-border: #7D869E; /* a control's resting boundary: 3:1 on the page and on a card */
     --color-nord-muted: #4C5366;
     --color-nord-hover: #3E4455;
     --color-nord-elevated: #5B6380;

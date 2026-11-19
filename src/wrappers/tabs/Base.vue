@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch, nextTick, onMounted } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { uid } from '../../utils/uid'
 
 // ── Types ──────────────────────────────────────────
@@ -63,13 +63,78 @@ function updateIndicator(): void {
     }
 }
 
+// ── Overflow: the row scrolls and shows it ─────────
+
+const hasStart = ref(false)
+const hasEnd = ref(false)
+
+function updateEdges(): void {
+    const list = tabListRef.value
+    if (!list) return
+    hasStart.value = list.scrollLeft > 1
+    hasEnd.value = list.scrollLeft + list.clientWidth < list.scrollWidth - 1
+}
+
+function activeTabElement(): HTMLElement | null {
+    return tabListRef.value?.querySelector<HTMLElement>(
+        `[data-tab-id="${props.modelValue}"]`,
+    ) ?? null
+}
+
+function revealActiveTab(): void {
+    const activeBtn = activeTabElement()
+    if (activeBtn && typeof activeBtn.scrollIntoView === 'function') {
+        activeBtn.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+    }
+}
+
+function prefersReducedMotion(): boolean {
+    return typeof window.matchMedia === 'function'
+        && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
+function scrollRow(direction: -1 | 1): void {
+    const list = tabListRef.value
+    if (!list || typeof list.scrollBy !== 'function') return
+    list.scrollBy({
+        left: direction * list.clientWidth * 0.8,
+        behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+    })
+}
+
+function refresh(): void {
+    updateIndicator()
+    updateEdges()
+}
+
+let resizeObserver: InstanceType<typeof window.ResizeObserver> | null = null
+
 onMounted(() => {
-    nextTick(updateIndicator)
+    nextTick(() => {
+        revealActiveTab()
+        refresh()
+    })
+    if (tabListRef.value && typeof window.ResizeObserver === 'function') {
+        resizeObserver = new window.ResizeObserver(refresh)
+        resizeObserver.observe(tabListRef.value)
+    }
+})
+
+onBeforeUnmount(() => {
+    resizeObserver?.disconnect()
+    resizeObserver = null
 })
 
 watch(() => props.modelValue, () => {
-    nextTick(updateIndicator)
+    nextTick(() => {
+        revealActiveTab()
+        refresh()
+    })
 })
+
+watch(() => props.tabs, () => {
+    nextTick(refresh)
+}, { deep: true })
 
 // ── Keyboard ───────────────────────────────────────
 
@@ -120,11 +185,17 @@ function selectTab(tab: TabItem): void {
 
 <template>
     <div class="tabs-base" :data-testid="testId">
+        <div class="tabs-base__list-wrap">
         <div
             ref="tabListRef"
             class="tabs-base__list"
+            :class="{
+                'tabs-base__list--fade-start': hasStart,
+                'tabs-base__list--fade-end': hasEnd,
+            }"
             role="tablist"
             @keydown="handleKeydown"
+            @scroll.passive="updateEdges"
         >
             <button
                 v-for="tab in tabs"
@@ -148,6 +219,29 @@ function selectTab(tab: TabItem): void {
             </button>
             <span class="tabs-base__indicator" :style="indicatorStyle" />
         </div>
+            <button
+                v-if="hasStart"
+                type="button"
+                class="tabs-base__edge tabs-base__edge--start"
+                tabindex="-1"
+                aria-hidden="true"
+                data-testid="tabs-edge-start"
+                @click="scrollRow(-1)"
+            >
+                <span class="material-symbols-rounded tabs-base__edge-icon">chevron_left</span>
+            </button>
+            <button
+                v-if="hasEnd"
+                type="button"
+                class="tabs-base__edge tabs-base__edge--end"
+                tabindex="-1"
+                aria-hidden="true"
+                data-testid="tabs-edge-end"
+                @click="scrollRow(1)"
+            >
+                <span class="material-symbols-rounded tabs-base__edge-icon">chevron_right</span>
+            </button>
+        </div>
 
         <div
             :id="panelId(modelValue)"
@@ -162,11 +256,81 @@ function selectTab(tab: TabItem): void {
 </template>
 
 <style scoped>
+/* The row's 2px rule is drawn by the wrap, and the list keeps the same 2px as
+   padding: the indicator, a child of the scrolling list, lies over the rule
+   and is never clipped by the scroll container. */
+.tabs-base__list-wrap {
+    position: relative;
+    box-shadow: inset 0 -2px 0 var(--tabs-border-color);
+}
+
 .tabs-base__list {
     display: flex;
     position: relative;
-    border-bottom: 2px solid var(--tabs-border-color);
+    padding-bottom: 2px;
     gap: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    /* A tab scrolled into view stays clear of the faded edge and its chevron. */
+    scroll-padding-inline: 2.5rem;
+}
+
+.tabs-base__list::-webkit-scrollbar {
+    display: none;
+}
+
+/* An edge with tabs beyond it fades the tabs themselves (a mask, so it holds on
+   any ground: the page, a card, a modal). A mask reads alpha only: `black`
+   here is opacity, not a colour. */
+.tabs-base__list--fade-start {
+    mask-image: linear-gradient(to right, transparent 0.75rem, black 2.5rem);
+}
+
+.tabs-base__list--fade-end {
+    mask-image: linear-gradient(to left, transparent 0.75rem, black 2.5rem);
+}
+
+.tabs-base__list--fade-start.tabs-base__list--fade-end {
+    mask-image: linear-gradient(
+        to right,
+        transparent 0.75rem,
+        black 2.5rem,
+        black calc(100% - 2.5rem),
+        transparent calc(100% - 0.75rem)
+    );
+}
+
+.tabs-base__edge {
+    position: absolute;
+    top: 0;
+    bottom: 2px;
+    width: 2.5rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    color: var(--tabs-edge-icon-color);
+    cursor: pointer;
+}
+
+.tabs-base__edge--start {
+    left: 0;
+    justify-content: flex-start;
+}
+
+.tabs-base__edge--end {
+    right: 0;
+    justify-content: flex-end;
+}
+
+.tabs-base__edge:hover {
+    color: var(--tabs-tab-hover-color);
+}
+
+.tabs-base__edge-icon {
+    font-size: 1.25rem;
 }
 
 .tabs-base__tab {
@@ -181,9 +345,16 @@ function selectTab(tab: TabItem): void {
     cursor: pointer;
     transition: color 0.2s;
     white-space: nowrap;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     gap: calc(0.375rem * var(--density-scale));
+}
+
+.tabs-base__tab:focus-visible {
+    outline: 2px solid var(--general-focus-ring);
+    outline-offset: -2px;
+    border-radius: var(--radius-xs);
 }
 
 .tabs-base__tab:hover:not(:disabled) {
@@ -206,7 +377,7 @@ function selectTab(tab: TabItem): void {
 
 .tabs-base__indicator {
     position: absolute;
-    bottom: -2px;
+    bottom: 0;
     left: 0;
     height: 2px;
     background-color: var(--tabs-tab-active-border);
